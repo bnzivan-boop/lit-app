@@ -1,6 +1,7 @@
 import { animate, motion, useMotionValue, useReducedMotion, useTransform } from 'motion/react'
 import { useEffect, useRef, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
+import { lockScroll } from '../lib/scrollLock'
 import s from './Sheet.module.css'
 
 type Props = { label: string; onClose: () => void; children: ReactNode }
@@ -33,12 +34,11 @@ export function Sheet({ label, onClose, children }: Props) {
     }
     const before = document.activeElement as HTMLElement | null
     panel.current?.focus({ preventScroll: true })
-    const { overflow } = document.body.style
-    document.body.style.overflow = 'hidden'
+    const unlock = lockScroll()
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && closeRef.current()
     addEventListener('keydown', onKey)
     return () => {
-      document.body.style.overflow = overflow
+      unlock()
       removeEventListener('keydown', onKey)
       before?.focus({ preventScroll: true })
     }

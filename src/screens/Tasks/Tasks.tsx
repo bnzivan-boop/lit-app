@@ -1,7 +1,6 @@
-import { useState } from 'react'
 import { useSearchParams } from 'react-router'
 import { Amount } from '../../components/Amount'
-import { RewardScreen } from '../../components/RewardScreen'
+import { useClaim } from '../../components/useClaim'
 import { TaskTile, TaskTrio } from '../../components/TaskTile'
 import { TopBar } from '../../components/TopBar'
 import { left } from '../../data/format'
@@ -13,9 +12,6 @@ import { PartnerCard, QuestRow, SuperQuest, type QuestView } from './parts'
 import { QuestSheet } from './QuestSheet'
 import s from './Tasks.module.css'
 
-type Won = { title: string; reward: Reward; image?: string; before: Snap; after: Snap }
-type Snap = { soft: number; hard: number; level: number; xp: number; xpNext: number }
-
 /* сначала то, что можно собрать, собранное — в конец */
 const ORDER: Record<QuestStatus, number> = { ready: 0, active: 1, review: 2, todo: 3, claimed: 4 }
 const byStatus = (a: QuestView, b: QuestView) => ORDER[a.status] - ORDER[b.status]
@@ -24,24 +20,20 @@ const byStatus = (a: QuestView, b: QuestView) => ORDER[a.status] - ORDER[b.statu
 export function Tasks() {
   const open = useOpen()
   const store = useStore()
-  const { quests, balance, user, now, dailyChest, tasks, minutesToMidnight, weekEndsAt, boost } = store
+  const { quests, balance, now, dailyChest, tasks, minutesToMidnight, weekEndsAt } = store
   const [params, setParams] = useSearchParams()
-  const [won, setWon] = useState<(Omit<Won, 'after'> & { reward: Reward }) | null>(null)
+  const { claim: collect, reward } = useClaim('К заданиям')
 
   const of = (kind: QuestView['kind']) => quests.filter((q) => q.kind === kind)
   const opened = quests.find((q) => q.id === params.get('open'))
   const show = (id: string) => setParams({ open: id }, { replace: true })
   const hide = () => setParams({}, { replace: true })
-  const snap = (): Snap => ({ ...balance, level: user.level, xp: user.xp, xpNext: user.xpNext })
   const midnight = now + minutesToMidnight * 60_000
   const endsAt = (q: QuestView) => (q.endsAt ? Date.parse(q.endsAt) : q.kind === 'weekly' ? weekEndsAt : midnight)
 
   function claim(id: string, title: string, reward: Reward, image?: string) {
     hide()
-    /* буст удваивает XP: показываем то, что начислится */
-    const shown = boost.msLeft > 0 && reward.xp ? { ...reward, xp: reward.xp * boost.multiplier } : reward
-    setWon({ title, reward: shown, image, before: snap() })
-    store.claim(id)
+    collect(id, title, reward, image)
   }
 
   function run(q: QuestView) {
@@ -125,7 +117,7 @@ export function Tasks() {
           onApprove={() => store.approve(opened.id)}
         />
       )}
-      {won && <RewardScreen {...won} after={snap()} onClose={() => setWon(null)} />}
+      {reward}
     </main>
   )
 }

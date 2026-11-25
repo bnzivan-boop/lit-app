@@ -12,6 +12,7 @@ import { MenuSheet } from '../../components/MenuSheet'
 import { Stats, StatsSkeleton } from '../../components/Stats'
 import { DeleteSheet } from '../Account/DeleteSheet'
 import { TaskTile, TaskTileSkeleton, TaskTrio } from '../../components/TaskTile'
+import { useClaim } from '../../components/useClaim'
 import { Toast } from '../../components/Toast'
 import { TopBar } from '../../components/TopBar'
 import { ChargeTile, StreakTile, TileSkeleton } from '../../components/Tiles'
@@ -174,7 +175,7 @@ function useCollect({ charge, balance, collect: commit }: Store) {
 type TasksProps = { store: Store; onPlay: (game: string) => void; onScan: () => void }
 
 function DailyTasks({ store, onPlay, onScan }: TasksProps) {
-  const go = useNavigate()
+  const { claim, reward } = useClaim('Готово')
   const { tasks, doneCount, action } = store
   const allDone = doneCount === tasks.length
   return (
@@ -212,7 +213,13 @@ function DailyTasks({ store, onPlay, onScan }: TasksProps) {
               done={t.status === 'claimed'}
               ready={t.status === 'ready'}
               main={!t.done && ((action.kind === 'task' && action.id === t.id) || (action.kind === 'receipt' && receipt))}
-              onClick={() => (t.done ? go(`/tasks?open=${t.id}`) : receipt ? onScan() : t.game && onPlay(t.game))}
+              onClick={() => {
+                /* награду собираем здесь же, в «Задания» не уводим */
+                if (t.status === 'ready') return claim(t.id, t.title, t.reward)
+                if (t.done) return
+                if (receipt) onScan()
+                else if (t.game) onPlay(t.game)
+              }}
             />
           )
         })}
@@ -223,6 +230,7 @@ function DailyTasks({ store, onPlay, onScan }: TasksProps) {
           <p>Буст ×2 к силе и XP на 24 часа</p>
         </div>
       )}
+      {reward}
     </section>
   )
 }

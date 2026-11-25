@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom'
 import { num } from '../data/format'
 import type { Reward } from '../data/types'
 import { flyCoins, haptic, reduced, tween } from '../lib/motion'
+import { lockScroll } from '../lib/scrollLock'
 import { sparks } from '../lib/sparks'
 import { Amount } from './Amount'
 import { Button } from './Button'
@@ -35,8 +36,7 @@ export function RewardScreen({ title, reward, before, after, image, action = 'К
 
   useEffect(() => {
     const still = reduced()
-    const overflow = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
+    const unlock = lockScroll()
     haptic('done')
     const stopFire = tween(900, (x) => (fire.current.power = 0.95 * x))
     const stopBurst = tween(800, (x) => (fire.current.burst = 1 - x))
@@ -70,7 +70,7 @@ export function RewardScreen({ title, reward, before, after, image, action = 'К
       still ? 0 : 850,
     )
     return () => {
-      document.body.style.overflow = overflow
+      unlock()
       clearTimeout(t)
       stopFire()
       stopBurst()
