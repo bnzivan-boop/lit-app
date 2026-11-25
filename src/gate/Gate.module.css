@@ -1,0 +1,72 @@
+.screen {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100dvh;
+  padding: calc(var(--safe-top) + 34px) var(--screen-pad) calc(var(--safe-bottom) + 24px);
+  overflow: hidden;
+}
+
+.flame {
+  position: absolute;
+  right: -84px;
+  top: -110px;
+  width: min(360px, 88vw, 46dvh);
+  aspect-ratio: 810 / 1212;
+  rotate: 12deg;
+  background: var(--accent);
+  -webkit-mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+  mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+}
+
+.logo {
+  position: relative;
+  width: 148px;
+  height: auto;
+}
+
+.form {
+  position: relative;
+  margin-top: 180px;
+}
+
+.form h1 {
+  font-size: min(64px, 16.4vw);
+}
+
+.form p {
+  margin-top: 10px;
+  font-size: 17px;
+  line-height: 1.4;
+}
+
+.form input {
+  width: 100%;
+  height: 60px;
+  margin-top: 20px;
+  padding: 0 18px;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  outline: none;
+  background: var(--surface-2);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 20px;
+}
+
+.form input:focus {
+  border-color: var(--accent);
+}
+
+.form input[aria-invalid='true'] {
+  border-color: var(--warn);
+}
+
+.form b {
+  display: block;
+  min-height: 20px;
+  margin: 8px 0 14px;
+  color: var(--warn-text);
+  font: 400 14px / 20px var(--font-body);
+}

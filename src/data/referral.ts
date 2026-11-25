@@ -1,4 +1,5 @@
 import mock from '../../data/mock.json'
+import { BASE } from '../lib/base'
 import { tgStart } from '../lib/telegram'
 import type { Reward } from './types'
 
@@ -27,7 +28,7 @@ export function codeError(v: string, own: string) {
 
 /** Ссылка для друга: бот с кодом, а пока бота нет — само приложение */
 export const inviteLink = (code: string) =>
-  mock.telegram.bot ? `https://t.me/${mock.telegram.bot}?startapp=${code}` : `${location.origin}/?ref=${code}`
+  mock.telegram.bot ? `https://t.me/${mock.telegram.bot}?startapp=${code}` : `${location.origin}${BASE}?ref=${code}`
 
 /** Код из ссылки, по которой пришёл игрок */
 const start = new URLSearchParams(location.search).get('ref') ?? tgStart() ?? ''

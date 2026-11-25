@@ -15,6 +15,7 @@ import { Friends } from './screens/Account/Friends'
 import { Notifications } from './screens/Account/Notifications'
 import { Settings } from './screens/Account/Settings'
 import { Support } from './screens/Account/Support'
+import { appPath } from './lib/base'
 import { useScroll } from './lib/useOrigin'
 import { Home } from './screens/Home/Home'
 import { Kit } from './screens/Kit/Kit'
@@ -56,7 +57,7 @@ function useFramed() {
     mq.addEventListener('change', on)
     return () => mq.removeEventListener('change', on)
   }, [])
-  return wide && window.top === window.self && !location.pathname.startsWith('/kit') && chromeWanted()
+  return wide && window.top === window.self && !appPath().startsWith('/kit') && chromeWanted()
 }
 
 export function App() {
@@ -64,7 +65,7 @@ export function App() {
 }
 
 /** Лоадер на каждое открытие и обновление. ?loader=0 — без него */
-const wantLoader = () => !location.pathname.startsWith('/kit') && new URLSearchParams(location.search).get('loader') !== '0'
+const wantLoader = () => !appPath().startsWith('/kit') && new URLSearchParams(location.search).get('loader') !== '0'
 
 function Screens() {
   const [phase, setPhase] = useState<'load' | 'reveal' | 'ready'>(() => (wantLoader() ? 'load' : 'ready'))
@@ -75,7 +76,7 @@ function Screens() {
   }, [phase])
   return (
     <>
-      {!location.pathname.startsWith('/kit') && <IosChrome />}
+      {!appPath().startsWith('/kit') && <IosChrome />}
       {phase !== 'load' && <Pages />}
       {phase !== 'ready' && <Loader onReveal={reveal} onDone={done} />}
     </>
@@ -84,7 +85,7 @@ function Screens() {
 
 /** Колесо предлагаем сразу после лоадера на главной. ?wheel=0 — без него */
 const wantWheel = () =>
-  wantLoader() && location.pathname === '/' && new URLSearchParams(location.search).get('wheel') !== '0'
+  wantLoader() && appPath() === '/' && new URLSearchParams(location.search).get('wheel') !== '0'
 
 function Pages() {
   useScroll()

@@ -1,14 +1,32 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter } from 'react-router'
 import './tokens.css'
 import './base.css'
-import { App } from './App'
+import { hasAccess } from './gate/access'
+import { Gate } from './gate/Gate'
+import { loadTelegram } from './lib/telegram'
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </StrictMode>,
-)
+const root = createRoot(document.getElementById('root')!)
+
+/* само приложение грузим только после входа */
+async function start() {
+  const { Root } = await import('./Root')
+  root.render(
+    <StrictMode>
+      <Root />
+    </StrictMode>,
+  )
+}
+
+async function boot() {
+  const [open] = await Promise.all([hasAccess(), loadTelegram()])
+  if (open) return start()
+  document.documentElement.removeAttribute('data-boot')
+  root.render(
+    <StrictMode>
+      <Gate onOpen={start} />
+    </StrictMode>,
+  )
+}
+
+void boot()

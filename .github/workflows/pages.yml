@@ -1,0 +1,61 @@
+# Сборка и публикация на GitHub Pages: https://bnzivan-boop.github.io/lit-app/
+# Код для входа берётся из секрета APP_CODE (Settings → Secrets and variables → Actions)
+name: Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  # без кода сайт не публикуем: ждём секрет
+  code:
+    runs-on: ubuntu-latest
+    outputs:
+      ready: ${{ steps.check.outputs.ready }}
+    steps:
+      - id: check
+        env:
+          APP_CODE: ${{ secrets.APP_CODE }}
+        run: |
+          if [ ${#APP_CODE} -ge 8 ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "::warning::Нет секрета APP_CODE или он короче 8 символов. Сайт не опубликован."
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  deploy:
+    needs: code
+    if: needs.code.outputs.ready == 'true'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+        env:
+          BASE_PATH: /lit-app/
+          APP_CODE: ${{ secrets.APP_CODE }}
+      # любая ссылка внутрь приложения открывает его же
+      - run: cp dist/index.html dist/404.html
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+      - id: deploy
+        uses: actions/deploy-pages@v4

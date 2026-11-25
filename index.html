@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content" />
     <meta name="theme-color" content="#0B0D0D" />
     <meta name="color-scheme" content="dark" />
+    <meta name="robots" content="noindex, nofollow" />
     <title>LIT Energy</title>
     <link rel="icon" type="image/png" href="/assets/currency/coin-soft.png" />
     <script>
       /* Первый кадр сразу тиффани: до загрузки кода не мигает чёрным */
-      if ((innerWidth < 600 || top !== self) && !/^\/kit/.test(location.pathname) && !/[?&]loader=0/.test(location.search))
+      if ((innerWidth < 600 || top !== self) && !/\/kit$/.test(location.pathname) && !/[?&]loader=0/.test(location.search))
         document.documentElement.setAttribute('data-boot', '')
     </script>
     <style>
