@@ -1,0 +1,275 @@
+.panel,
+.feature {
+  position: relative;
+  display: block;
+}
+
+.panel {
+  width: 100%;
+  height: 196px;
+  color: #fff;
+}
+
+.frame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--game);
+}
+
+.scene {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Текст стоит на цвете игры, а не на картинке */
+.shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--game) 0%, color-mix(in srgb, var(--game) 82%, transparent) 32%, transparent 66%);
+}
+
+.hero {
+  position: absolute;
+  max-width: none;
+  filter: drop-shadow(0 14px 14px rgba(0, 0, 0, 0.42));
+  pointer-events: none;
+}
+
+.text {
+  position: absolute;
+  left: 18px;
+  bottom: 34px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 9px;
+}
+
+.name {
+  width: min-content;
+  font: var(--weight-display) 36px / 0.92 var(--font-display);
+  letter-spacing: var(--tracking-display);
+  text-transform: uppercase;
+}
+
+.note {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font: var(--weight-label) 15px / 1 var(--font-display);
+}
+
+.note i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #fff;
+  color: #0b0d0d;
+}
+
+.task {
+  padding: 4px 7px 5px;
+  border-radius: 6px;
+  background: #fff;
+  color: var(--bg);
+  font: var(--weight-display) 13px / 1 var(--font-display);
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+/* Герои широких кадров */
+[data-game='energy-jet'].panel .hero {
+  right: -2px;
+  top: -30px;
+  height: 222px;
+}
+
+[data-game='energy-rush'].panel .hero {
+  right: -18px;
+  top: 44px;
+  width: 244px;
+}
+
+/* Парные кадры: текст внизу */
+.panel[data-side] {
+  height: 268px;
+}
+
+.panel[data-side] .shade {
+  background: linear-gradient(0deg, var(--game) 14%, color-mix(in srgb, var(--game) 80%, transparent) 38%, transparent 66%);
+}
+
+.panel[data-side] .text {
+  left: 16px;
+  right: 12px;
+  bottom: 34px;
+}
+
+.panel[data-side='right'] .text {
+  left: 20px;
+}
+
+.panel[data-side] .name {
+  font-size: 30px;
+}
+
+[data-game='energy-mix'].panel .hero {
+  left: 4px;
+  top: 4px;
+  width: 182px;
+}
+
+[data-game='energy-ninja'].panel .hero {
+  left: 18px;
+  top: -14px;
+  width: 168px;
+}
+
+[data-game='energy-hunt'].panel .hero {
+  left: -4px;
+  top: 2px;
+  width: 208px;
+  clip-path: inset(-40px 15% 0 0);
+}
+
+[data-game='energy-cosmo'].panel .hero {
+  right: 26px;
+  top: -20px;
+  height: 222px;
+}
+
+/* ноги и пальто уходят в тень, подпись остаётся поверх */
+[data-game='energy-hunt'].panel .hero,
+[data-game='energy-cosmo'].panel .hero {
+  -webkit-mask: linear-gradient(#000 62%, transparent 84%);
+  mask: linear-gradient(#000 62%, transparent 84%);
+}
+
+/* Новинка */
+.feature {
+  height: calc(var(--safe-top) + 478px);
+  margin-inline: calc(var(--screen-pad) * -1);
+}
+
+.feature .scene {
+  object-position: 62% 0;
+}
+
+.feature .shade {
+  background: linear-gradient(0deg, var(--game) 20%, color-mix(in srgb, var(--game) 78%, transparent) 40%, transparent 68%);
+}
+
+.feature .hero {
+  left: 50%;
+  top: calc(var(--safe-top) + 34px);
+  height: 338px;
+  margin-left: -118px;
+  -webkit-mask: linear-gradient(#000 48%, transparent 78%);
+  mask: linear-gradient(#000 48%, transparent 78%);
+  animation: leap 3.4s ease-in-out infinite alternate;
+}
+
+@keyframes leap {
+  from {
+    transform: translate(-5px, 8px) rotate(-1.5deg);
+  }
+  to {
+    transform: translate(7px, -8px) rotate(1.5deg);
+  }
+}
+
+.cover {
+  position: absolute;
+  inset: 0;
+}
+
+.sticker {
+  position: absolute;
+  left: var(--screen-pad);
+  top: calc(var(--safe-top) + 14px);
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 12px 1px;
+  border-radius: 10px;
+  background: #fff;
+  color: var(--bg);
+  font: var(--weight-display) 20px / 1 var(--font-display);
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.big {
+  position: absolute;
+  inset: auto var(--screen-pad) 44px;
+  pointer-events: none;
+}
+
+.big h1 {
+  font-size: min(62px, 16vw);
+  line-height: 0.88;
+  text-wrap: wrap;
+}
+
+.big p {
+  margin-top: 10px;
+  font-size: var(--fs-body);
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+  pointer-events: auto;
+}
+
+.actions .play {
+  flex: 1;
+  width: auto;
+  min-width: 0;
+}
+
+.more {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 52px;
+  padding-inline: 16px 10px;
+  border-radius: var(--r-button);
+  background: rgba(5, 9, 9, 0.72);
+  font: var(--weight-label) 16px / 1 var(--font-display);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feature .hero {
+    animation: none;
+  }
+}
+
+/* узкий экран: название не встречается с героем */
+@media (max-width: 379px) {
+  .name {
+    font-size: 32px;
+  }
+
+  [data-game='energy-jet'].panel .hero {
+    right: -22px;
+    top: -26px;
+    height: 208px;
+  }
+
+  [data-game='energy-rush'].panel .hero {
+    right: -26px;
+    width: 226px;
+  }
+
+  .panel[data-side] .name {
+    font-size: 28px;
+  }
+}

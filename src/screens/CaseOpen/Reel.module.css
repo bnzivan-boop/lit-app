@@ -1,0 +1,107 @@
+.view {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Свет сцены: принимает цвет карточки под указателем */
+.light {
+  position: absolute;
+  inset: 8% -20%;
+  background-color: transparent;
+  transition: background-color 420ms ease;
+  -webkit-mask: radial-gradient(52% 46% at 50% 50%, #000, transparent);
+  mask: radial-gradient(52% 46% at 50% 50%, #000, transparent);
+}
+
+.strip {
+  position: relative;
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  will-change: transform;
+}
+
+.card,
+.prize {
+  position: relative;
+  transition: opacity 300ms ease;
+}
+
+.landed .card {
+  opacity: 0.16;
+}
+
+.landed .prize > * {
+  animation: take 900ms var(--ease);
+}
+
+@keyframes take {
+  0% {
+    scale: 1;
+  }
+  30% {
+    scale: 1.12;
+  }
+  100% {
+    scale: 1.06;
+  }
+}
+
+/* Указатели: фирменные зубцы сверху и снизу */
+.marks i {
+  position: absolute;
+  z-index: 12;
+  left: 50%;
+  width: 40px;
+  height: 34px;
+  margin-left: -20px;
+  background: var(--text);
+}
+
+.marks i:first-child {
+  top: calc(50% - 204px);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: 50% 0;
+}
+
+.marks i:last-child {
+  bottom: calc(50% - 204px);
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  transform-origin: 50% 100%;
+}
+
+.line {
+  position: absolute;
+  z-index: 11;
+  left: 50%;
+  top: calc(50% - 172px);
+  width: 3px;
+  height: 344px;
+  margin-left: -1.5px;
+  background: var(--text);
+  transition: opacity 200ms ease;
+}
+
+.marks {
+  transition: opacity 200ms ease;
+}
+
+.landed .line,
+.landed .marks {
+  opacity: 0;
+}
+
+.hint {
+  position: absolute;
+  inset: auto 0 calc(var(--safe-bottom) + 36px);
+  text-align: center;
+  font-size: var(--fs-body-sm);
+}

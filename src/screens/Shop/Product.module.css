@@ -1,0 +1,212 @@
+.page {
+  position: relative;
+  min-height: 100dvh;
+  overflow-x: clip;
+  padding: 0 var(--screen-pad) calc(var(--safe-bottom) + 170px);
+}
+
+/* Фото от края до края, низ скошен, тёмная тень снимка обрезана */
+.photo {
+  position: relative;
+  margin-inline: calc(var(--screen-pad) * -1);
+  padding-top: calc(var(--safe-top) + 2px);
+}
+
+.frame {
+  position: relative;
+  height: min(506px, 100dvh - var(--safe-top) - 290px);
+  border-radius: 30px 30px 0 0;
+  overflow: hidden;
+  background: #fff;
+}
+
+.frame img {
+  width: 100%;
+  height: auto;
+  margin-top: -6px;
+}
+
+/* с размерами фото ниже: выбор размера виден сразу */
+.photo[data-sized] .frame {
+  height: 312px;
+}
+
+.photo[data-sized] img {
+  height: 106%;
+  object-fit: cover;
+  object-position: 50% 42%;
+}
+
+.back,
+.cart {
+  position: absolute;
+  top: calc(var(--safe-top) + 12px);
+}
+
+.back {
+  left: var(--screen-pad);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--tap);
+  height: var(--tap);
+  border-radius: 50%;
+  background: #050909;
+}
+
+.back svg {
+  rotate: 180deg;
+}
+
+.cart {
+  right: var(--screen-pad);
+}
+
+.tags {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 16px;
+  font: var(--weight-label) 16px / 1.1 var(--font-display);
+}
+
+.league {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.left {
+  padding: 6px 10px 7px;
+  border-radius: 9px;
+  background: var(--surface-2);
+}
+
+.title {
+  margin-top: 14px;
+  font-size: min(40px, 10.4vw);
+  line-height: 0.95;
+}
+
+.about {
+  margin-top: 12px;
+  font-size: 16px;
+}
+
+.how {
+  margin-top: 8px;
+  color: var(--text-muted);
+  font-size: var(--fs-body-sm);
+}
+
+.sizes {
+  margin-top: 12px;
+}
+
+.sizes header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sizes h2 {
+  font-size: 24px;
+}
+
+.sizes h2[data-hint] {
+  color: var(--accent);
+}
+
+.chart {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-height: var(--tap);
+  font: var(--weight-label) 16px / 1 var(--font-display);
+}
+
+.sizes > div {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.sizes > div button {
+  height: 56px;
+  border-radius: 18px;
+  background: var(--surface-2);
+  font: var(--weight-display) 22px / 1 var(--font-display);
+  text-align: center;
+  transition: background var(--t-fast) ease, color var(--t-fast) ease;
+}
+
+.sizes > div button[aria-checked='true'] {
+  background: #fff;
+  color: var(--bg);
+}
+
+.bar {
+  position: fixed;
+  z-index: 20;
+  bottom: 0;
+  left: 50%;
+  width: 100%;
+  max-width: var(--app-max);
+  translate: -50% 0;
+  padding: 12px var(--screen-pad) calc(var(--safe-bottom) + 14px);
+  background: var(--bg);
+}
+
+.bar::before {
+  content: '';
+  position: absolute;
+  inset: -28px 0 100%;
+  background: linear-gradient(transparent, var(--bg));
+  pointer-events: none;
+}
+
+.note {
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.added {
+  display: grid;
+  grid-template-columns: minmax(112px, 0.72fr) 1fr;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.added button {
+  padding-inline: 8px;
+}
+
+.need {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.need span {
+  font: var(--weight-display) 30px / 1 var(--font-display);
+  letter-spacing: -0.04em;
+}
+
+.need i {
+  flex: 1;
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--track);
+}
+
+.need b {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--accent);
+  transform-origin: left;
+}

@@ -1,0 +1,114 @@
+.screen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: var(--app-max);
+  margin-inline: auto;
+  padding: var(--safe-top) var(--screen-pad) calc(var(--safe-bottom) + 14px);
+  overflow: hidden;
+  background: #060909;
+  text-align: center;
+}
+
+.stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+}
+
+.fire {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(470px, 118%);
+  aspect-ratio: 1;
+  translate: -50% -56%;
+  pointer-events: none;
+}
+
+.art {
+  position: relative;
+  width: min(360px, 94%);
+  max-height: 88%;
+  object-fit: contain;
+  animation: pop 620ms cubic-bezier(0.2, 1.1, 0.3, 1);
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+/* Ленты приклеиваются крест-накрест */
+.tape {
+  position: absolute;
+  bottom: 12%;
+  left: -30px;
+  right: -30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 58px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font: var(--weight-display) 38px / 1 var(--font-display);
+  letter-spacing: -0.03em;
+  rotate: -6deg;
+  animation: tape 460ms 260ms cubic-bezier(0.23, 1, 0.32, 1) backwards;
+}
+
+.tape[data-back] {
+  justify-content: space-around;
+  background: #17978f;
+  rotate: 5deg;
+  animation-delay: 140ms;
+}
+
+.tape i {
+  width: 18px;
+  height: 28px;
+  background: var(--accent-ink);
+  opacity: 0.55;
+  -webkit-mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+  mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+}
+
+@keyframes tape {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0);
+  }
+}
+
+.screen h1 {
+  font-size: min(46px, 12vw);
+}
+
+.screen p {
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+.screen footer {
+  display: grid;
+  gap: 10px;
+  width: 100%;
+  margin-top: 30px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .art,
+  .tape {
+    animation: none;
+  }
+}

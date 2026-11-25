@@ -1,0 +1,32 @@
+.total {
+  margin-top: 30px;
+}
+
+.total h2 {
+  font-size: 26px;
+}
+
+.total dl {
+  margin-top: 8px;
+}
+
+.total div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 46px;
+}
+
+.total div + div {
+  border-top: 1px solid var(--line);
+}
+
+.total dt {
+  color: var(--text-muted);
+}
+
+.total dd {
+  margin: 0;
+  font: var(--weight-display) 21px / 1 var(--font-display);
+  letter-spacing: -0.02em;
+}

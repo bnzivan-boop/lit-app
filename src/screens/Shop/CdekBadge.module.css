@@ -1,0 +1,10 @@
+.badge {
+  display: inline-block;
+  padding: 4px 7px 4px;
+  border-radius: 6px;
+  background: #00a13a;
+  color: #fff;
+  font: var(--weight-display) 14px / 1 var(--font-display);
+  letter-spacing: 0.01em;
+  vertical-align: 1px;
+}

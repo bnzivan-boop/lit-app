@@ -1,0 +1,16 @@
+.amount {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  white-space: nowrap;
+}
+
+.value {
+  font-family: var(--font-display);
+  font-weight: var(--weight-label);
+  font-variant-numeric: tabular-nums;
+}
+
+.coin {
+  flex: none;
+}

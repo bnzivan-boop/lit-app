@@ -1,0 +1,10 @@
+node_modules
+dist
+.DS_Store
+*.local
+
+# не публикуем: макеты с фото людей и чужие навыки
+design
+skills
+install-skills.sh
+.env

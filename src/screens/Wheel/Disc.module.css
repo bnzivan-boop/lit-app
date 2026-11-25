@@ -1,0 +1,57 @@
+.disc {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.face {
+  fill: #1d2827;
+  stroke: #1d2827;
+  transition: fill 160ms ease, stroke 160ms ease;
+}
+
+.hard .face {
+  fill: #121a1a;
+  stroke: #121a1a;
+}
+
+.amount {
+  fill: #fff;
+  font: 700 34px 'Roboto Condensed', sans-serif;
+  letter-spacing: -0.01em;
+  text-anchor: middle;
+  transition: fill 160ms ease;
+}
+
+.hard .amount {
+  fill: var(--rarity-legend);
+  font-size: 25px;
+}
+
+.hard .long {
+  font-size: 22px;
+}
+
+/* Под указателем: сектор загорается своим цветом */
+.lit .face {
+  fill: var(--accent);
+  stroke: var(--accent);
+}
+
+.hard.lit .face {
+  fill: var(--rarity-legend);
+  stroke: var(--rarity-legend);
+}
+
+.lit .amount,
+.hard.lit .amount {
+  fill: var(--accent-ink);
+}
+
+.sector {
+  transition: opacity 320ms ease;
+}
+
+.lose {
+  opacity: 0.28;
+}

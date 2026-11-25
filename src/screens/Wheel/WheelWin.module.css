@@ -1,0 +1,149 @@
+.screen {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  overflow: hidden;
+  background: var(--loot);
+  color: var(--fg);
+  animation: reveal 560ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Цвет раскрывается из-под указателя колеса */
+@keyframes reveal {
+  from {
+    clip-path: circle(60px at 50% 54%);
+  }
+  to {
+    clip-path: circle(130% at 50% 54%);
+  }
+}
+
+.glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(100% 50% at 50% 38%, var(--hi) 0%, var(--loot) 50%, var(--deep) 106%);
+}
+
+.flame {
+  position: absolute;
+  left: 50%;
+  bottom: -8%;
+  height: 104%;
+  aspect-ratio: 810 / 1212;
+  translate: -50% 0;
+  background: var(--deep);
+  opacity: 0.32;
+  animation: breathe 2.2s ease-in-out infinite alternate;
+  -webkit-mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+  mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+}
+
+@keyframes breathe {
+  from {
+    transform: scale(0.97);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
+
+.top {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  justify-content: flex-end;
+  padding: calc(var(--safe-top) + 12px) var(--screen-pad) 0;
+}
+
+.balance {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  height: var(--tap);
+  padding-inline: 16px;
+  border-radius: var(--r-chip);
+  background: var(--accent-ink);
+  color: var(--text);
+  font-size: 18px;
+}
+
+.center {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  padding-inline: var(--screen-pad);
+}
+
+.stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: min(230px, 28dvh);
+}
+
+.art {
+  max-width: 78%;
+  max-height: 100%;
+  filter: drop-shadow(0 26px 24px rgba(0, 0, 0, 0.38));
+  animation: arrive 680ms 60ms cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+@keyframes arrive {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.7);
+  }
+}
+
+.amount {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 26px;
+  font-size: min(84px, 10dvh);
+  line-height: 0.8;
+  white-space: nowrap;
+}
+
+.coin img {
+  width: 0.62em;
+  height: 0.62em;
+}
+
+.note {
+  margin-top: 20px;
+  font-size: var(--fs-body);
+}
+
+.actions {
+  position: relative;
+  z-index: 2;
+  padding: var(--space-3) var(--screen-pad) calc(var(--safe-bottom) + var(--space-4));
+}
+
+.take {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 60px;
+  border-radius: 18px;
+  background: var(--fg);
+  color: var(--on);
+  font: var(--weight-display) 20px / 1 var(--font-display);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .screen,
+  .art,
+  .flame {
+    animation: none;
+  }
+}

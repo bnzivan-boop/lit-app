@@ -1,0 +1,71 @@
+.plate {
+  position: relative;
+  display: grid;
+  grid-template: 1fr 1fr / 1.15fr 1fr;
+  gap: 0 var(--space-5);
+  height: 226px;
+  margin: 0;
+  padding: 44px 20px 20px;
+  overflow: hidden;
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.flame {
+  position: absolute;
+  left: -34px;
+  top: -20px;
+  width: 190px;
+  aspect-ratio: 810 / 1212;
+  rotate: -16deg;
+  background: var(--accent-ink);
+  opacity: 0.09;
+  -webkit-mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+  mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+}
+
+.plate > div {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-width: 0;
+}
+
+/* Первая — герой, на всю высоту */
+.plate > div:nth-of-type(1) {
+  grid-row: 1 / -1;
+}
+
+.plate > div:nth-of-type(2) {
+  padding-bottom: 12px;
+}
+
+.plate > div:nth-of-type(3) {
+  padding-top: 12px;
+  border-top: 2px solid color-mix(in srgb, var(--accent-ink) 16%, transparent);
+}
+
+.plate dd {
+  margin: 0;
+  font: var(--weight-display) 44px / 0.8 var(--font-display);
+  letter-spacing: var(--tracking-display);
+  font-variant-numeric: tabular-nums;
+}
+
+.plate > div:nth-of-type(1) dd {
+  margin-left: -4px;
+  font-size: 124px;
+  line-height: 0.76;
+}
+
+.plate dt {
+  margin-top: 8px;
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+.plate > div:nth-of-type(1) dt {
+  margin-top: 14px;
+  font: var(--weight-label) 18px / 1.1 var(--font-display);
+}

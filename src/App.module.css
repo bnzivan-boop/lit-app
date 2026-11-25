@@ -1,0 +1,5 @@
+/* Последний блок не прячется под нижней панелью */
+.shell {
+  padding-bottom: calc(68px + var(--safe-bottom) + var(--space-5));
+  overflow-x: clip;
+}

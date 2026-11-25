@@ -1,0 +1,30 @@
+.stepper {
+  display: inline-grid;
+  grid-template-columns: 44px 30px 44px;
+  align-items: center;
+  height: 44px;
+  border-radius: 16px;
+  background: var(--surface-2);
+}
+
+.stepper[data-big] {
+  grid-template-columns: 1fr 40px 1fr;
+  height: 52px;
+  border-radius: var(--r-button);
+}
+
+.stepper button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.stepper b {
+  font: var(--weight-display) 20px / 1 var(--font-display);
+  text-align: center;
+}
+
+.stepper[data-big] b {
+  font-size: 24px;
+}

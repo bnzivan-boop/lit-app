@@ -1,0 +1,85 @@
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  text-align: center;
+  transition: opacity var(--t-fast) ease;
+}
+
+.md {
+  width: 100%;
+  min-height: var(--button-h);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--r-button);
+  font: var(--weight-label) var(--fs-button) / 1.15 var(--font-display);
+}
+
+.sm {
+  min-height: var(--button-sm-h);
+  padding: var(--space-1) var(--space-4);
+  border-radius: var(--r-button-sm);
+  font: var(--weight-label) var(--fs-button-sm) / 1.15 var(--font-display);
+}
+
+.sm .label {
+  gap: 5px;
+  white-space: nowrap;
+}
+
+.primary {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.secondary {
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+/* Загрузка: вместо надписи пульсирует полоса, ширина кнопки не меняется */
+.button[aria-busy='true'] .label {
+  opacity: 0;
+}
+
+.loader {
+  position: absolute;
+  width: 40%;
+  height: 10px;
+  border-radius: 5px;
+  background: currentColor;
+  animation: pulse 0.7s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+  from {
+    opacity: 0.45;
+  }
+  to {
+    opacity: 0.15;
+  }
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: var(--tap);
+  height: var(--tap);
+  border-radius: var(--r-button-sm);
+  background: var(--surface-1);
+  color: var(--text);
+}
+
+.icon[aria-pressed='true'] {
+  background: var(--text);
+  color: var(--bg);
+}

@@ -1,0 +1,140 @@
+.printer {
+  position: relative;
+  padding-top: 7px;
+}
+
+/* Щель, из которой выходит чек */
+.slot {
+  position: absolute;
+  z-index: 2;
+  inset: 0 -4px auto;
+  height: 14px;
+  border-radius: 7px;
+  background: #000;
+  box-shadow: inset 0 0 0 2px var(--idle), 0 8px 14px rgba(0, 0, 0, 0.6);
+}
+
+.window {
+  position: relative;
+  margin-inline: 8px;
+  overflow: hidden;
+}
+
+.paper {
+  position: relative;
+  margin-bottom: -1px;
+  padding: 26px 18px 22px;
+  background: #fff;
+  color: var(--bg);
+  /* зубчатый край */
+  -webkit-mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / 18px 100%;
+  mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / 18px 100%;
+}
+
+.head h1 {
+  font-size: 40px;
+}
+
+.head p {
+  margin: 5px 0 11px;
+  font-size: var(--fs-body-sm);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 66px;
+  padding-block: 7px;
+  border-top: 2px dashed #c9d2d2;
+}
+
+.thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #e9f1f1;
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thumb .can {
+  width: auto;
+  height: 48px;
+}
+
+.title {
+  flex: 1;
+  min-width: 0;
+  font-size: var(--fs-body);
+  line-height: 1.25;
+}
+
+.title small {
+  display: block;
+  margin-top: 2px;
+  color: #56625f;
+  font: var(--weight-label) 13px / 1 var(--font-display);
+}
+
+.sum {
+  flex: none;
+  font-size: 22px;
+}
+
+.task {
+  min-height: 46px;
+}
+
+.total {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 15px 0 8px;
+  border-top: 2px dashed #c9d2d2;
+}
+
+.big {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font: var(--weight-display) 72px / 0.76 var(--font-display);
+  letter-spacing: var(--tracking-display);
+}
+
+.big img {
+  width: 56px;
+  height: 56px;
+}
+
+.xp {
+  padding-bottom: 2px;
+  font: var(--weight-display) 24px / 1 var(--font-display);
+  letter-spacing: -0.03em;
+  text-align: right;
+}
+
+.xp small {
+  display: block;
+  margin-top: 4px;
+  font: 400 var(--fs-caption) / 1 var(--font-body);
+  letter-spacing: 0;
+}
+
+.ready {
+  flex: none;
+  padding: 7px 10px 8px;
+  border-radius: 12px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font: var(--weight-label) var(--fs-button-sm) / 1 var(--font-display);
+}

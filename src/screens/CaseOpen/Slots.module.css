@@ -1,0 +1,120 @@
+.view {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  padding: calc(var(--safe-top) + 64px) var(--screen-pad) calc(var(--safe-bottom) + 70px);
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.row {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+  gap: var(--gap);
+  height: min(100%, calc(var(--cell) * 2.5));
+  min-height: calc(var(--cell) * 1.7);
+}
+
+.low {
+  height: calc(var(--cell) * 2.3);
+}
+
+/* Указатели по бокам на линии выигрыша */
+.mark::before,
+.mark::after {
+  content: '';
+  position: absolute;
+  z-index: 4;
+  top: calc(50% - 15px);
+  width: 14px;
+  height: 30px;
+  background: var(--text);
+}
+
+.mark::before {
+  left: -16px;
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+
+.mark::after {
+  right: -16px;
+  clip-path: polygon(100% 0, 0 50%, 100% 100%);
+}
+
+.mark {
+  display: contents;
+}
+
+/* Колонка: верх и низ уходят в темноту */
+.column {
+  position: relative;
+  height: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--accent-ink) 82%, transparent);
+  box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--text) 10%, transparent);
+  transition: box-shadow 250ms ease, background-color 250ms ease;
+}
+
+.column::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(#030606 2%, transparent 34% 66%, #030606 98%);
+  pointer-events: none;
+}
+
+/* Остановилась: рамка загорается цветом приза */
+.stopped {
+  background: color-mix(in srgb, var(--loot) 34%, var(--accent-ink));
+  box-shadow: 0 0 0 3px var(--loot);
+}
+
+.strip {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  padding-inline: 5px;
+  will-change: transform;
+}
+
+.cell,
+.prize {
+  flex: none;
+  height: var(--cell);
+  transition: opacity 250ms ease;
+}
+
+.stopped .cell {
+  opacity: 0.1;
+}
+
+.stopped .prize {
+  animation: hit 420ms var(--ease);
+}
+
+@keyframes hit {
+  0% {
+    transform: scale(1);
+  }
+  35% {
+    transform: scale(1.12);
+  }
+  100% {
+    transform: none;
+  }
+}
+
+.hint {
+  position: absolute;
+  inset: auto 0 calc(var(--safe-bottom) + 36px);
+  text-align: center;
+  font-size: var(--fs-body-sm);
+}

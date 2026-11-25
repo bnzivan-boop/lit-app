@@ -1,0 +1,9 @@
+.spark {
+  position: absolute;
+  z-index: 1;
+  aspect-ratio: 810 / 1212;
+  background: var(--light, #fff);
+  pointer-events: none;
+  -webkit-mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+  mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+}

@@ -1,0 +1,357 @@
+/* Провода тянутся от плиток: зазор 30 px над карточкой */
+.chest {
+  --back: #1b1450;
+  --shape: #30248a;
+  --idle-wire: rgba(255, 255, 255, 0.16);
+  --lit: var(--accent);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  padding: 222px 16px 24px;
+  border-radius: 28px;
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  background: var(--back);
+}
+
+/* Свет из сундука: чем больше заданий, тем ярче */
+.light {
+  position: absolute;
+  left: 50%;
+  top: -40px;
+  width: 460px;
+  height: 360px;
+  margin-left: -230px;
+  background: radial-gradient(closest-side, var(--accent) 0%, var(--streak-blue) 34%, var(--streak-violet) 62%, transparent 100%);
+  opacity: calc(0.42 + var(--k) * 0.55);
+  transition: opacity 600ms ease;
+}
+
+.flame {
+  position: absolute;
+  left: 50%;
+  top: -6px;
+  width: 236px;
+  margin-left: -112px;
+  aspect-ratio: 810 / 1212;
+  rotate: 10deg;
+  background: var(--shape);
+  opacity: 0.75;
+  -webkit-mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+  mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+}
+
+/* Пол: под сундуком темнее, текст читается */
+.floor {
+  position: absolute;
+  inset: 182px -20% -30%;
+  border-radius: 50% 50% 0 0 / 60px 60px 0 0;
+  background: #120d38;
+}
+
+.wires {
+  position: absolute;
+  inset: 0 0 auto;
+  width: 100%;
+  height: 300px;
+  overflow: visible;
+}
+
+.wire,
+.pulse {
+  fill: none;
+  stroke: var(--idle-wire);
+  stroke-width: 5;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+g[data-on] .wire {
+  stroke: var(--lit);
+}
+
+/* Огонь бежит по проводу в сундук */
+.pulse {
+  stroke: #fff;
+  stroke-dasharray: 14 100;
+  animation: run 1.5s linear infinite;
+}
+
+@keyframes run {
+  from {
+    stroke-dashoffset: 14;
+  }
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+/* Гнездо на верхнем крае, ровно под своей плиткой */
+.socket {
+  position: absolute;
+  z-index: 1;
+  left: calc((100% - 20px) / 6 + var(--i) * ((100% - 20px) / 3 + 10px) - 22px);
+  top: -20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 4px solid var(--bg);
+  border-radius: 50%;
+  background: #2c2276;
+  transition: background 300ms ease;
+}
+
+.socket::before {
+  content: '';
+  position: absolute;
+  bottom: calc(100% + 2px);
+  width: 5px;
+  height: 14px;
+  background: #2c2276;
+  transition: background 300ms ease;
+}
+
+.socket i {
+  width: 16px;
+  height: 24px;
+  background: #6a5cc8;
+  -webkit-mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+  mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+}
+
+.socket[data-on],
+.socket[data-on]::before {
+  background: var(--lit);
+}
+
+.socket[data-on] i {
+  background: var(--accent-ink);
+}
+
+.art {
+  position: absolute;
+  left: 50%;
+  top: 46px;
+  width: 244px;
+  margin-left: -120px;
+}
+
+.art img {
+  width: 100%;
+  filter: drop-shadow(0 18px 14px rgba(4, 2, 24, 0.6)) brightness(calc(0.84 + var(--k) * 0.24)) saturate(calc(0.9 + var(--k) * 0.2));
+  transition: filter 600ms ease;
+}
+
+.embers {
+  position: absolute;
+  left: 8%;
+  top: 4%;
+  width: 78%;
+  height: 24%;
+}
+
+.embers i {
+  position: absolute;
+  bottom: 0;
+  left: var(--x);
+  width: var(--s);
+  aspect-ratio: 810 / 1212;
+  background: #fff;
+  opacity: 0;
+  -webkit-mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+  mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+  animation: rise 2.6s var(--d) linear infinite;
+}
+
+@keyframes rise {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  15% {
+    opacity: 0.95;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--sway), -74px) scale(1);
+  }
+}
+
+.title {
+  position: relative;
+  font-size: 36px;
+}
+
+.goal {
+  position: relative;
+  margin-top: 6px;
+  color: #c9c2ff;
+  font-size: var(--fs-body);
+}
+
+.loot {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.loot div {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding-inline: min(16px, 3.4vw);
+}
+
+.loot div + div {
+  border-left: 2px solid rgba(255, 255, 255, 0.16);
+}
+
+.loot img {
+  width: 30px;
+  height: 30px;
+}
+
+.loot b {
+  white-space: nowrap;
+  font: var(--weight-display) 28px / 1 var(--font-display);
+  letter-spacing: -0.04em;
+}
+
+/* Можно открыть: сцена светлая, сундук рвётся наружу */
+.chest[data-ready] {
+  --back: #41e9de;
+  --shape: #a6fff9;
+  --lit: #fff;
+  padding-bottom: 16px;
+  color: var(--accent-ink);
+}
+
+.chest[data-ready] .light {
+  background: radial-gradient(closest-side, #fff 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.chest[data-ready] .flame {
+  opacity: 0.8;
+}
+
+.chest[data-ready] .floor {
+  background: #2bd8cd;
+}
+
+.chest[data-ready] .goal {
+  color: #0b3f3c;
+}
+
+.chest[data-ready] .loot div + div {
+  border-color: rgba(6, 23, 22, 0.2);
+}
+
+.chest[data-ready] .socket,
+.chest[data-ready] .socket::before {
+  background: #fff;
+}
+
+.chest[data-ready] .art img {
+  animation: shake 1.5s ease-in-out infinite;
+}
+
+.chest[data-ready] .embers i {
+  background: #fff;
+}
+
+@keyframes shake {
+  0%,
+  50%,
+  100% {
+    transform: none;
+  }
+  60% {
+    transform: rotate(-4deg) scale(1.04);
+  }
+  70% {
+    transform: rotate(4deg) scale(1.06);
+  }
+  80% {
+    transform: rotate(-3deg) scale(1.05);
+  }
+  90% {
+    transform: rotate(2deg) scale(1.02);
+  }
+}
+
+.open {
+  position: relative;
+  width: 100%;
+  height: 54px;
+  margin-top: 18px;
+  border-radius: var(--r-button);
+  background: var(--accent-ink);
+  color: #fff;
+  font: var(--weight-display) 20px / 1 var(--font-display);
+  text-align: center;
+}
+
+/* Открыт: тихая строка до завтра */
+.closed {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px 12px 12px;
+  border-radius: var(--r-card);
+  background: var(--surface-1);
+}
+
+.closed img {
+  width: 74px;
+  filter: grayscale(1) brightness(0.6);
+}
+
+.closed span {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+  color: var(--text-muted);
+  font-size: var(--fs-body-sm);
+}
+
+.closed b {
+  color: var(--text);
+  font: var(--weight-display) 21px / 1 var(--font-display);
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+.closed i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .art img,
+  .chest[data-ready] .art img {
+    animation: none;
+  }
+
+  .pulse,
+  .embers {
+    display: none;
+  }
+}

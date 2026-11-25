@@ -1,0 +1,28 @@
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding-inline: 11px;
+  border-radius: 16px;
+  background: var(--chip, rgba(5, 9, 9, 0.62));
+  color: var(--text);
+  font: var(--weight-label) 16px / 1 var(--font-display);
+  white-space: nowrap;
+}
+
+.lg {
+  gap: 8px;
+}
+
+.lg .chip {
+  height: 44px;
+  padding-inline: 16px;
+  border-radius: 22px;
+  font-size: 20px;
+}

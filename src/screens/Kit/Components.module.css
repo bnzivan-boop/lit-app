@@ -1,0 +1,105 @@
+.group + .group {
+  margin-top: var(--space-8);
+}
+
+.state {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: var(--space-5);
+}
+
+.name {
+  color: var(--text-muted);
+  font-size: var(--fs-caption);
+}
+
+.onCard {
+  margin-top: var(--space-4);
+  padding: 1px var(--card-pad) var(--card-pad);
+  border-radius: var(--r-card);
+  background: var(--surface-1);
+}
+
+.bleed {
+  margin-inline: calc(var(--screen-pad) * -1);
+  --safe-top: 0px;
+  --safe-bottom: 0px;
+}
+
+/* Имитация системной полосы iPhone, только для витрины */
+.phone {
+  position: relative;
+}
+
+.phone::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  left: calc(50% - 67px);
+  width: 134px;
+  height: 5px;
+  border-radius: 3px;
+  background: var(--text);
+  pointer-events: none;
+}
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.lines {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.hero {
+  --safe-top: 0px;
+  padding-top: var(--space-2);
+}
+
+.filler {
+  color: var(--text-muted);
+  font-size: var(--fs-body-sm);
+}
+
+.icons {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--space-5) var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.onSurface2 {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-radius: var(--r-block);
+  background: var(--surface-2);
+}
+
+.bleed + * {
+  margin-top: var(--space-1);
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  padding-inline: var(--space-4);
+  border-radius: var(--r-button-sm);
+  background: var(--surface-2);
+  color: var(--text);
+  font: var(--weight-label) var(--fs-button-sm) / 1 var(--font-display);
+  text-decoration: none;
+}

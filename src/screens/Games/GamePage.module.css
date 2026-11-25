@@ -1,0 +1,365 @@
+.page {
+  position: relative;
+  min-height: 100dvh;
+  overflow-x: clip;
+  padding: 0 var(--screen-pad) calc(var(--safe-bottom) + 100px);
+}
+
+/* Сцена во весь верх, низ скошен, герой выходит за рамку */
+.top {
+  position: relative;
+  height: calc(var(--safe-top) + 372px);
+  margin-inline: calc(var(--screen-pad) * -1);
+}
+
+.frame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--game);
+}
+
+.scene {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(5, 9, 9, 0.5), transparent calc(var(--safe-top) + 10px)),
+    linear-gradient(0deg, var(--game) 26%, color-mix(in srgb, var(--game) 64%, transparent) 46%, transparent 68%);
+}
+
+.hero {
+  position: absolute;
+  right: -6px;
+  bottom: 70px;
+  max-width: none;
+  height: 270px;
+  filter: drop-shadow(0 18px 18px rgba(0, 0, 0, 0.45));
+  translate: 0 -66px;
+  animation: float 3.2s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes float {
+  from {
+    transform: translateY(6px);
+  }
+  to {
+    transform: translateY(-6px) rotate(1deg);
+  }
+}
+
+/* ноги и нижние края уходят в цвет игры под названием */
+[data-game='energy-jet'] .hero,
+[data-game='energy-ninja'] .hero {
+  -webkit-mask: linear-gradient(#000 62%, transparent 90%);
+  mask: linear-gradient(#000 62%, transparent 90%);
+}
+
+[data-game='energy-jump'] .hero {
+  right: 66px;
+  bottom: 60px;
+  height: 270px;
+  -webkit-mask: linear-gradient(#000 60%, transparent 92%);
+  mask: linear-gradient(#000 60%, transparent 92%);
+}
+
+[data-game='energy-rush'] .hero {
+  right: -56px;
+  bottom: 110px;
+  width: 372px;
+  height: auto;
+}
+
+[data-game='energy-mix'] .hero {
+  -webkit-mask: linear-gradient(transparent, #000 16%);
+  mask: linear-gradient(transparent, #000 16%);
+  right: 14px;
+  bottom: 124px;
+  width: 310px;
+  height: auto;
+}
+
+[data-game='energy-hunt'] .hero {
+  right: 0;
+  bottom: 0;
+  height: 296px;
+  -webkit-mask: linear-gradient(#000 56%, transparent 86%);
+  mask: linear-gradient(#000 56%, transparent 86%);
+  animation: none;
+}
+
+[data-game='energy-cosmo'] .hero {
+  right: 64px;
+  bottom: 22px;
+  height: 330px;
+  -webkit-mask: linear-gradient(#000 60%, transparent 92%);
+  mask: linear-gradient(#000 60%, transparent 92%);
+}
+
+[data-game='energy-ninja'] .hero {
+  right: 44px;
+  bottom: 88px;
+  height: 248px;
+}
+
+.back {
+  position: absolute;
+  left: var(--screen-pad);
+  top: calc(var(--safe-top) + 12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--tap);
+  height: var(--tap);
+  border-radius: 50%;
+  background: rgba(5, 9, 9, 0.8);
+}
+
+.back svg {
+  rotate: 180deg;
+}
+
+.top h1 {
+  position: absolute;
+  left: var(--screen-pad);
+  bottom: 128px;
+  width: min-content;
+  font-size: min(56px, 14.4vw);
+  line-height: 0.88;
+}
+
+/* Рекорд и место: первое, что видно под названием */
+.stats {
+  position: absolute;
+  inset: auto var(--screen-pad) 36px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.stats div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stats div + div {
+  padding-left: 18px;
+  border-left: 2px solid rgba(255, 255, 255, 0.24);
+}
+
+.stats b {
+  font: var(--weight-display) 52px / 0.9 var(--font-display);
+  letter-spacing: var(--tracking-display);
+}
+
+.stats span {
+  font-size: var(--fs-body-sm);
+}
+
+.leaders {
+  margin-top: 2px;
+}
+
+.leaders h2 {
+  font-size: 26px;
+}
+
+/* Цель дня */
+.goal {
+  position: relative;
+  margin-top: 28px;
+  padding: 18px 150px 20px 18px;
+  border-radius: var(--r-card);
+  background: var(--game);
+}
+
+.goal img {
+  position: absolute;
+  right: 0;
+  bottom: 8px;
+  width: 152px;
+  filter: drop-shadow(0 12px 10px rgba(0, 0, 0, 0.4));
+}
+
+.goal img[data-off] {
+  filter: grayscale(1) brightness(0.6);
+}
+
+.goal h2 {
+  font-size: 34px;
+  white-space: nowrap;
+}
+
+.goal p {
+  margin-top: 6px;
+  line-height: 1.3;
+}
+
+.task {
+  margin-top: 12px;
+  padding: 16px;
+  border-radius: var(--r-card);
+  background: var(--surface-1);
+  --chip: var(--surface-2);
+}
+
+.task > div:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.tag {
+  padding: 5px 8px 6px;
+  border-radius: 7px;
+  background: var(--text);
+  color: var(--bg);
+  font: var(--weight-display) 14px / 1 var(--font-display);
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.section {
+  margin-top: 36px;
+}
+
+.section h2 {
+  font-size: 28px;
+}
+
+/* Переключатель: бегунок ездит под пальцем */
+.switch {
+  position: relative;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  margin-top: 14px;
+  padding: 4px;
+  border-radius: 18px;
+  background: var(--surface-1);
+}
+
+.switch::before {
+  content: '';
+  position: absolute;
+  inset: 4px auto 4px 4px;
+  width: calc((100% - 8px) / var(--n));
+  border-radius: 14px;
+  background: #fff;
+  transform: translateX(calc(var(--at) * 100%));
+  transition: transform 260ms var(--ease);
+}
+
+.switch button {
+  position: relative;
+  height: 48px;
+  font: var(--weight-display) 18px / 1 var(--font-display);
+  text-align: center;
+  transition: color 200ms ease;
+}
+
+.switch button[aria-checked='true'] {
+  color: var(--bg);
+}
+
+.hint {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: var(--tap);
+  margin-top: 8px;
+}
+
+.hint button {
+  flex: none;
+  min-height: var(--tap);
+  padding-inline: 16px;
+  border-radius: 22px;
+  background: var(--surface-2);
+  font: var(--weight-label) var(--fs-button-sm) / 1 var(--font-display);
+}
+
+.boardHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: var(--tap);
+}
+
+.boardHead span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font: var(--weight-label) 16px / 1 var(--font-display);
+}
+
+.podium {
+  margin-top: 32px;
+}
+
+/* Как играть: коротко и мелко, это читают один раз */
+.how {
+  margin-top: 30px;
+  font-size: var(--fs-body-sm);
+  line-height: 1.4;
+}
+
+.how h2 {
+  font-size: 20px;
+}
+
+.how p {
+  margin-top: 8px;
+}
+
+.how ol {
+  margin: 8px 0 0;
+  padding-left: 20px;
+}
+
+.how li::marker {
+  font: var(--weight-display) 15px / 1 var(--font-display);
+}
+
+.how .note {
+  color: var(--text-muted);
+}
+
+.bar {
+  position: fixed;
+  z-index: 20;
+  bottom: 0;
+  left: 50%;
+  width: 100%;
+  max-width: var(--app-max);
+  translate: -50% 0;
+  padding: 12px var(--screen-pad) calc(var(--safe-bottom) + 14px);
+  background: var(--bg);
+}
+
+.bar::before {
+  content: '';
+  position: absolute;
+  inset: -28px 0 100%;
+  background: linear-gradient(transparent, var(--bg));
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero {
+    animation: none;
+  }
+
+  .switch::before {
+    transition: none;
+  }
+}

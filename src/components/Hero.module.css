@@ -1,0 +1,257 @@
+.hero {
+  position: relative;
+  height: calc(312px + var(--safe-top));
+  padding-top: var(--safe-top);
+}
+
+/* Фирменный огонь крупно за головой, ниже героя не свисает */
+.backdrop {
+  position: absolute;
+  inset: 0 calc(var(--screen-pad) * -1);
+  overflow: hidden;
+}
+
+.logo {
+  position: absolute;
+  right: -72px;
+  top: -70px;
+  width: 320px;
+  max-width: none;
+  opacity: 0.07;
+  rotate: -18deg;
+}
+
+.who {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 6px;
+  max-width: 62%;
+  min-height: 60px;
+  padding-top: 6px;
+  transform-origin: left center;
+}
+
+.hero .menu {
+  position: absolute;
+  z-index: 3;
+  top: calc(var(--safe-top) + 16px);
+  right: 0;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
+  color: var(--accent);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+
+.nick {
+  max-width: 100%;
+  overflow: hidden;
+  font: var(--weight-display) 36px / 1 var(--font-display);
+  letter-spacing: var(--tracking-display);
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ID нужен для розыгрышей: тап копирует целиком */
+.id {
+  position: absolute;
+  z-index: 2;
+  left: -10px;
+  top: calc(var(--safe-top) + 48px);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: var(--tap);
+  padding-inline: 10px;
+  color: var(--text-muted);
+  font: var(--weight-label) 13px / 1 var(--font-display);
+  letter-spacing: 0.02em;
+}
+
+.id svg {
+  color: var(--accent);
+}
+
+/* Плашка: слева тёмная, справа горит от головы */
+.plate {
+  position: absolute;
+  inset: calc(88px + var(--safe-top)) 0 0;
+  background:
+    radial-gradient(58% 92% at 84% 34%, var(--accent) 0%, var(--glow-mid) 38%, var(--glow-low) 66%, transparent 100%),
+    var(--surface-1);
+}
+
+.plateEmpty {
+  border-radius: 26px;
+  background: var(--surface-1);
+}
+
+.fire {
+  position: absolute;
+  right: -8px;
+  top: calc(var(--safe-top) - 34px);
+  width: 296px;
+  height: 296px;
+  pointer-events: none;
+}
+
+.head {
+  position: absolute;
+  right: -2px;
+  top: calc(var(--safe-top) - 8px);
+  width: 282px;
+  max-width: none;
+  transform-origin: 50% 55%;
+}
+
+.level {
+  position: absolute;
+  right: 12px;
+  bottom: 88px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 50px;
+  height: 70px;
+  border-radius: 25px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font: var(--weight-label) 13px / 1 var(--font-display);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.38);
+}
+
+.level span {
+  font: var(--weight-display) 34px / 0.8 var(--font-display);
+  letter-spacing: var(--tracking-display);
+}
+
+.money {
+  position: absolute;
+  left: 14px;
+  bottom: 78px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.coin {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.coinIcon img {
+  width: 42px;
+  height: 42px;
+}
+
+.coinText {
+  display: flex;
+  flex-direction: column;
+  font: var(--weight-display) 34px / 0.8 var(--font-display);
+  letter-spacing: var(--tracking-display);
+  font-variant-numeric: tabular-nums;
+}
+
+/* шестизначный баланс не заходит на лицо */
+.coinLong {
+  font-size: 26px;
+}
+
+.coin small {
+  margin-bottom: 6px;
+  font: var(--weight-label) 12px / 1 var(--font-display);
+  letter-spacing: 0;
+  text-transform: capitalize;
+}
+
+/* Жидкая шкала */
+.xp {
+  position: absolute;
+  inset: auto 12px 12px;
+  height: 52px;
+  border-radius: 26px;
+  overflow: hidden;
+  outline: 4px solid color-mix(in srgb, var(--accent-ink) 45%, transparent);
+  background: color-mix(in srgb, var(--accent-ink) 82%, transparent);
+}
+
+.glow {
+  position: absolute;
+  left: -70px;
+  top: -20px;
+  width: 140px;
+  height: 92px;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--accent) 75%, transparent), transparent);
+}
+
+.xpText {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 18px;
+  font: var(--weight-label) var(--fs-body-sm) / 1 var(--font-display);
+}
+
+.xpText b {
+  font: var(--weight-display) 20px / 1 var(--font-display);
+  letter-spacing: -0.03em;
+}
+
+.boost {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.xpText .boost b {
+  padding: 5px 8px;
+  border-radius: 10px;
+  background: var(--accent-ink);
+  color: var(--accent);
+  font-size: 16px;
+}
+
+.xpFill {
+  background: linear-gradient(90deg, var(--accent-low), var(--accent) 60%);
+  color: var(--accent-ink);
+}
+
+/* Блик по верхнему краю: объём жидкости */
+.xp::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), inset 0 -6px 12px rgba(6, 23, 22, 0.12);
+  pointer-events: none;
+}
+
+/* Узкий экран: пламя не заходит на ник */
+@media (max-width: 379px) {
+  .fire {
+    right: -22px;
+    top: calc(var(--safe-top) - 24px);
+    width: 280px;
+    height: 280px;
+  }
+
+  .head {
+    right: -12px;
+    top: calc(var(--safe-top) + 4px);
+    width: 262px;
+  }
+
+  .nick {
+    font-size: 32px;
+  }
+}

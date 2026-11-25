@@ -1,0 +1,100 @@
+.title {
+  margin-top: 2px;
+  font-size: 32px;
+}
+
+.draw {
+  margin-top: 12px;
+  border-radius: 22px;
+  background: var(--bg);
+}
+
+.draw svg {
+  display: block;
+  width: 100%;
+  max-height: 220px;
+  overflow: visible;
+  padding: 10px 0;
+}
+
+.line,
+.measure {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.measure {
+  stroke: var(--accent);
+  stroke-width: 2;
+  stroke-dasharray: 1 6;
+}
+
+.dot {
+  fill: var(--accent);
+}
+
+.num {
+  fill: var(--accent-ink);
+  font: var(--weight-display) 15px / 1 var(--font-display);
+  text-anchor: middle;
+}
+
+.table {
+  width: 100%;
+  margin-top: 14px;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+.table thead th {
+  padding-block: 8px;
+  font: var(--weight-display) 20px / 1 var(--font-display);
+}
+
+.table tbody th {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.table tbody th i {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  margin-right: 10px;
+  border-radius: 50%;
+  background: var(--accent-tint);
+  color: var(--accent);
+  font: var(--weight-display) 14px / 1 var(--font-display);
+}
+
+.table td {
+  width: 46px;
+  font: var(--weight-label) 17px / 1 var(--font-display);
+  text-align: center;
+}
+
+.table tbody tr > * {
+  height: 46px;
+  border-top: 1px solid var(--line);
+}
+
+.hide {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+.note {
+  margin: 12px 0 16px;
+  color: var(--text-muted);
+  font-size: var(--fs-body-sm);
+}

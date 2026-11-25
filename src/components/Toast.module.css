@@ -1,0 +1,36 @@
+.toast {
+  position: fixed;
+  z-index: 50;
+  left: 50%;
+  bottom: calc(84px + var(--safe-bottom));
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding-inline: 14px 18px;
+  border-radius: 22px;
+  background: var(--text);
+  color: var(--bg);
+  font: var(--weight-label) var(--fs-button-sm) / 1 var(--font-display);
+  white-space: nowrap;
+  translate: -50% 0;
+  transition: opacity var(--t-base) var(--ease), transform var(--t-slow) var(--ease);
+}
+
+@starting-style {
+  .toast {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+.leaving {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toast {
+    transform: none;
+  }
+}

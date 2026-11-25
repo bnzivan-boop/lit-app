@@ -1,0 +1,44 @@
+.title {
+  margin-top: 4px;
+  font-size: 32px;
+}
+
+.text {
+  margin-top: 10px;
+}
+
+.level {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 64px;
+  margin-block: 24px;
+  border-radius: 32px;
+  background: var(--bg);
+}
+
+.level i {
+  position: absolute;
+  width: 60px;
+  height: 48px;
+  border: 2px solid var(--idle);
+  border-radius: 24px;
+  transition: border-color 200ms ease;
+}
+
+.level span {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #fff;
+  transition: background 200ms ease;
+}
+
+.level[data-saved] i {
+  border-color: var(--accent);
+}
+
+.level[data-saved] span {
+  background: var(--accent);
+}

@@ -1,0 +1,370 @@
+/* Супер-задание */
+.super {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-inline: calc(var(--screen-pad) * -1);
+  padding: calc(var(--safe-top) + 14px) var(--screen-pad) 22px;
+  overflow: hidden;
+  background: radial-gradient(120% 78% at 18% -6%, var(--accent) 0%, #34cfc5 26%, #0d5a56 56%, var(--bg) 86%);
+}
+
+.super > :not(.superFlame, .superArt) {
+  position: relative;
+  z-index: 1;
+}
+
+.super > [role='progressbar'] {
+  width: 100%;
+}
+
+.superFlame {
+  position: absolute;
+  right: -90px;
+  top: -20px;
+  width: 340px;
+  aspect-ratio: 810 / 1212;
+  rotate: -12deg;
+  background: #04201e;
+  opacity: 0.35;
+  -webkit-mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+  mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+}
+
+.sticker {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 40px;
+  padding: 0 12px 1px;
+  border-radius: 10px;
+  background: var(--text);
+  color: var(--bg);
+  font: var(--weight-display) 20px / 1 var(--font-display);
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.sticker i {
+  width: 14px;
+  height: 20px;
+  background: var(--bg);
+  -webkit-mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+  mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+}
+
+.superTitle {
+  width: 72%;
+  margin-top: 16px;
+  font-size: min(46px, 12vw);
+  line-height: 0.94;
+  text-wrap: wrap;
+}
+
+/* Банка заходит на шкалу и наклонена */
+.superArt {
+  position: absolute;
+  z-index: 0;
+  right: 8px;
+  top: calc(var(--safe-top) + 64px);
+  height: 212px;
+  width: auto;
+  max-width: none;
+  rotate: 14deg;
+  filter: drop-shadow(0 24px 26px rgba(0, 0, 0, 0.5));
+  animation: hover 2.8s ease-in-out infinite alternate;
+}
+
+@keyframes hover {
+  from {
+    transform: translateY(4px);
+  }
+  to {
+    transform: translateY(-6px);
+  }
+}
+
+.superRewards {
+  margin: 18px 0 14px;
+}
+
+.superRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: var(--tap);
+  margin-top: 12px;
+  font-size: var(--fs-body-sm);
+}
+
+.more {
+  min-height: var(--tap);
+  padding-inline: 18px;
+  border-radius: 22px;
+  background: var(--surface-2);
+  font: var(--weight-label) var(--fs-button-sm) / 1 var(--font-display);
+}
+
+.claim {
+  position: relative;
+  z-index: 2;
+  flex: none;
+  min-height: 46px;
+  padding-inline: 20px;
+  border-radius: 23px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font: var(--weight-display) 18px / 1 var(--font-display);
+}
+
+/* Вся карточка нажимается, кнопка «Собрать» лежит выше */
+.cover {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  border-radius: inherit;
+}
+
+/* Партнёры */
+.partner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: 132px;
+  padding: 16px;
+  border-radius: var(--r-card);
+  overflow: hidden;
+  background: var(--brand);
+  transition: transform var(--t-press) var(--ease), opacity 250ms ease;
+}
+
+.partner:has(.cover:active),
+.row:has(.cover:active) {
+  transform: scale(0.98);
+}
+
+.partnerDone {
+  opacity: 0.45;
+}
+
+.partnerFlame {
+  position: absolute;
+  right: -18px;
+  bottom: -70px;
+  width: 150px;
+  aspect-ratio: 810 / 1212;
+  rotate: 12deg;
+  background: #000;
+  opacity: 0.13;
+  -webkit-mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+  mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+}
+
+.partnerTop {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.partnerTop h3 {
+  font-size: 25px;
+  line-height: 0.98;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  flex: none;
+  height: 32px;
+  padding-inline: 11px;
+  border-radius: 16px;
+  background: #fff;
+}
+
+.logo img {
+  width: auto;
+  height: 20px;
+}
+
+.partnerBottom {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 10px;
+  --chip: rgba(0, 0, 0, 0.3);
+}
+
+.partnerBottom .claim {
+  pointer-events: auto;
+  background: #fff;
+  color: var(--bg);
+}
+
+.count {
+  flex: none;
+  font: var(--weight-display) 26px / 32px var(--font-display);
+  letter-spacing: -0.03em;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--bg);
+}
+
+/* Недельные */
+.row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border-radius: var(--r-card);
+  background: var(--surface-1);
+  transition: transform var(--t-press) var(--ease), opacity 250ms ease;
+  --chip: var(--surface-2);
+}
+
+.rowDone {
+  opacity: 0.45;
+}
+
+.ring {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 84px;
+  height: 84px;
+}
+
+.ring svg:first-child {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  rotate: -90deg;
+}
+
+.ring svg:first-child circle {
+  fill: none;
+  stroke: var(--track);
+  stroke-width: 6;
+}
+
+.ring svg:first-child .arc {
+  stroke: var(--accent);
+  stroke-linecap: round;
+  transition: stroke-dasharray var(--t-progress) var(--ease);
+}
+
+.ring svg:first-child .arc[stroke-dasharray^='0 '] {
+  stroke: none;
+}
+
+.ring b {
+  font: var(--weight-display) 28px / 1 var(--font-display);
+  letter-spacing: -0.03em;
+}
+
+.ring small {
+  font: var(--weight-label) 15px / 1 var(--font-display);
+  letter-spacing: 0;
+}
+
+.rowText {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  min-width: 0;
+}
+
+.tag {
+  padding: 4px 7px 5px;
+  border-radius: 6px;
+  background: var(--text);
+  color: var(--bg);
+  font: var(--weight-display) 13px / 1 var(--font-display);
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.review {
+  padding: 4px 7px 5px;
+  border-radius: 6px;
+  background: var(--accent-tint);
+  color: var(--accent);
+  font: var(--weight-display) 13px / 1 var(--font-display);
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+/* Проверка идёт: дуга медленно ходит по кругу */
+.ring[data-review] svg:first-child {
+  animation: turn 2.4s linear infinite;
+}
+
+.ring[data-review] svg:first-child .arc {
+  transition: none;
+}
+
+@keyframes turn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rowTitle {
+  font: var(--weight-display) 21px / 1.02 var(--font-display);
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+.claimWide {
+  margin-top: 2px;
+}
+
+.artFlame {
+  width: 96px;
+  aspect-ratio: 810 / 1212;
+  background: #fff;
+  -webkit-mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+  mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .superArt,
+  .ring[data-review] svg:first-child {
+    animation: none;
+  }
+}
+
+/* на узком экране банка уходит за край, чтобы не спорить с наградой */
+@media (max-width: 379px) {
+  .superArt {
+    translate: 22px 0;
+  }
+
+  .sticker {
+    padding-inline: 10px;
+    font-size: 18px;
+  }
+}

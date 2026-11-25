@@ -1,0 +1,39 @@
+.mark {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: var(--s);
+  height: var(--s);
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 24%, var(--l), var(--d) 92%);
+  box-shadow: 0 0 0 5px var(--bg), inset 0 2px 0 rgba(255, 255, 255, 0.5);
+}
+
+.mark i {
+  width: 40%;
+  aspect-ratio: 810 / 1212;
+  background: rgba(8, 6, 14, 0.82);
+  -webkit-mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+  mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+}
+
+.mark[data-locked] {
+  background: radial-gradient(circle at 32% 24%, color-mix(in srgb, var(--l) 46%, #1b2222), color-mix(in srgb, var(--d) 42%, #1b2222) 92%);
+  box-shadow: 0 0 0 5px var(--bg);
+}
+
+.mark b {
+  position: absolute;
+  right: -4px;
+  bottom: -4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--bg);
+}

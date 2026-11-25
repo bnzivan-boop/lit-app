@@ -1,0 +1,120 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  color-scheme: dark;
+  background: var(--bg);
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scrollbar-color: var(--idle) var(--bg);
+  scrollbar-width: thin;
+}
+
+html,
+body {
+  overscroll-behavior: none;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font: 400 var(--fs-body) / var(--lh-body) var(--font-body);
+  /* У Liter одно начертание: не даём браузеру рисовать поддельный жирный */
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  max-width: var(--app-max);
+  min-height: 100dvh;
+  margin-inline: auto;
+}
+
+h1,
+h2,
+h3 {
+  font: var(--weight-display) var(--fs-section) / var(--lh-display) var(--font-display);
+  letter-spacing: var(--tracking-display);
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+a,
+[role='button'] {
+  touch-action: manipulation;
+}
+
+button,
+[role='button'] {
+  font: inherit;
+  color: inherit;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+input,
+textarea,
+select {
+  font: inherit;
+  font-size: 16px;
+  caret-color: var(--accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+/* Нажатие: одно на все интерактивные элементы. data-pressed — только для витрины. */
+.press {
+  transition: transform var(--t-press) var(--ease), opacity var(--t-press) var(--ease);
+}
+
+.press:active:not(:disabled, [aria-busy='true']),
+.press[data-pressed] {
+  transform: scale(var(--press-scale));
+}
+
+.press:disabled:not([aria-busy='true']) {
+  opacity: var(--disabled-opacity);
+}
+
+button {
+  padding: 0;
+  border: 0;
+  background: none;
+  text-align: inherit;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: default;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .press:active:not(:disabled, [aria-busy='true']),
+  .press[data-pressed] {
+    transform: none;
+    opacity: 0.75;
+  }
+}

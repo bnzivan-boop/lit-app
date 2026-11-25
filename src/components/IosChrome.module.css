@@ -1,0 +1,91 @@
+.chrome {
+  position: fixed;
+  z-index: 110;
+  inset: 0;
+  width: 100%;
+  max-width: var(--app-max);
+  margin-inline: auto;
+  color: #fff;
+  font-family: -apple-system, 'SF Pro Text', system-ui, sans-serif;
+  font-synthesis: auto;
+  pointer-events: none;
+}
+
+.chrome svg {
+  display: block;
+  fill: currentColor;
+}
+
+.chrome svg[fill='none'] {
+  fill: none;
+}
+
+.inline {
+  position: absolute;
+  inset: 0 0 auto;
+}
+
+.status {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 54px;
+  padding: 6px 30px 0 46px;
+}
+
+.time {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.island {
+  position: absolute;
+  top: 11px;
+  left: 50%;
+  width: 124px;
+  height: 36px;
+  margin-left: -62px;
+  border-radius: 18px;
+  background: #000;
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.telegram {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px 14px;
+}
+
+.telegram > span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+  padding-inline: 13px;
+  border-radius: 16px;
+  background: #2b3131;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.telegram .more {
+  gap: 14px;
+}
+
+.home {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  width: 134px;
+  height: 5px;
+  margin-left: -67px;
+  border-radius: 3px;
+  background: #fff;
+}

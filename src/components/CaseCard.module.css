@@ -1,0 +1,248 @@
+/* Запас сверху: ящик выходит за край карточки */
+.track {
+  display: flex;
+  gap: var(--space-3);
+  margin: -20px calc(var(--screen-pad) * -1) 0;
+  padding: 24px var(--screen-pad) 0;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--screen-pad);
+  scrollbar-width: none;
+}
+
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+.track > * {
+  flex: none;
+  width: 84%;
+  scroll-snap-align: start;
+}
+
+.card {
+  --light: var(--accent);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 182px;
+  padding: 18px;
+  border-radius: var(--r-card);
+  background: var(--surface-2);
+}
+
+.rare {
+  --light: var(--rarity-rare);
+}
+
+.epic {
+  --light: var(--rarity-epic);
+}
+
+.legend {
+  --light: var(--rarity-legend);
+}
+
+/* Свет за ящиком */
+.scene {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  background: radial-gradient(
+    74% 150% at 96% 6%,
+    var(--light) 0%,
+    var(--light) 34%,
+    color-mix(in srgb, var(--light) 48%, var(--surface-2)) 62%,
+    var(--surface-2) 100%
+  );
+}
+
+/* Тёмный фирменный огонь между текстом и светом */
+.flame {
+  position: absolute;
+  left: 33%;
+  top: -30px;
+  width: 176px;
+  aspect-ratio: 810 / 1212;
+  rotate: 20deg;
+  background: var(--surface-1);
+  opacity: 0.55;
+  -webkit-mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+  mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+}
+
+.boxWrap {
+  position: absolute;
+  right: 6px;
+  top: -18px;
+  width: 52%;
+  max-width: 178px;
+}
+
+/* Длинный сундук шире ящика */
+.wide {
+  right: -14px;
+  top: 6px;
+  width: 64%;
+  max-width: 226px;
+}
+
+.box {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 18px 16px rgba(0, 0, 0, 0.45));
+  animation: float 2.6s ease-in-out infinite alternate;
+}
+
+/* Пока рендер один: редкость меняет цвет ящика */
+.epic .box {
+  filter: drop-shadow(0 18px 16px rgba(0, 0, 0, 0.45)) hue-rotate(64deg) saturate(1.1);
+}
+
+.legend .box {
+  filter: drop-shadow(0 18px 16px rgba(0, 0, 0, 0.45)) sepia(0.85) saturate(2.6) hue-rotate(-10deg);
+}
+
+@keyframes float {
+  from {
+    transform: translateY(3px);
+  }
+  to {
+    transform: translateY(-5px) rotate(-1.2deg);
+  }
+}
+
+/* Искры вылетают из-под крышки */
+.sparks {
+  position: absolute;
+  left: 18%;
+  top: 4px;
+  width: 64%;
+  height: 22%;
+}
+
+.sparks i {
+  position: absolute;
+  bottom: 0;
+  left: var(--x);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0;
+  animation: rise 2.4s var(--d) linear infinite;
+}
+
+@keyframes rise {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(1);
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--sway), -56px) scale(0.4);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .box {
+    animation: none;
+  }
+
+  .sparks {
+    display: none;
+  }
+}
+
+.card > :not(.scene, .boxWrap) {
+  position: relative;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: var(--fs-case-lg);
+}
+
+/* длинное название не заходит на ящик */
+.long {
+  font-size: 33px;
+}
+
+.sticker {
+  padding: 4px 7px 4px;
+  margin: 0 0 7px;
+  border-radius: 5px;
+  background: var(--text);
+  color: var(--bg);
+  font: var(--weight-display) 14px / 1 var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+.rarity {
+  margin-top: 4px;
+  color: var(--light);
+  font: var(--weight-label) var(--fs-body-sm) / 1 var(--font-display);
+}
+
+.common .rarity {
+  color: var(--rarity-common);
+}
+
+.pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: var(--button-pill-h);
+  margin-top: auto;
+  padding-inline: 20px;
+  border-radius: var(--r-chip);
+  font: var(--weight-display) 18px / 1 var(--font-display);
+}
+
+/* Блик сверху и тень снизу внутри: кнопка объёмная, как в фигме */
+.open {
+  background: var(--accent);
+  color: var(--accent-ink);
+  box-shadow: inset 0 2px 1px rgba(255, 255, 255, 0.75), inset 0 -3px 6px rgba(6, 23, 22, 0.16);
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.open[aria-busy='true'] .label {
+  opacity: 0;
+}
+
+.loader {
+  position: absolute;
+  width: 40%;
+  height: 10px;
+  border-radius: 5px;
+  background: currentColor;
+  opacity: 0.25;
+}
+
+.locked {
+  background: color-mix(in srgb, var(--accent-ink) 88%, transparent);
+  color: var(--text);
+}
+
+.gap {
+  height: 10px;
+}
+
+.pillSkeleton {
+  margin-top: auto;
+}

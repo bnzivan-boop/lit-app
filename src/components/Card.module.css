@@ -1,0 +1,27 @@
+.card {
+  padding: var(--card-pad);
+  border-radius: var(--r-card);
+  background: var(--surface-1);
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.head > :last-child:not(h2) {
+  flex: none;
+}
+
+.count {
+  color: var(--text-muted);
+  font: var(--weight-label) var(--fs-body-sm) / 1 var(--font-display);
+}
+
+.aside {
+  color: var(--text-muted);
+  font-size: var(--fs-caption);
+}

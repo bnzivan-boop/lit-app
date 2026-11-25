@@ -1,0 +1,73 @@
+/* Содержимое занимает 68 px (6 + 56 + 6). Ниже — системная полоса; вместе не больше 84 px. */
+.bar {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: start;
+  height: min(var(--tabbar-h), calc(68px + var(--safe-bottom)));
+  padding: 6px var(--space-1) 0;
+  border-top: 1px solid var(--line);
+  background: var(--bg);
+}
+
+.fixed {
+  position: fixed;
+  z-index: 10;
+  bottom: 0;
+  left: 50%;
+  width: 100%;
+  max-width: var(--app-max);
+  translate: -50% 0;
+}
+
+.tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 0;
+  height: 50px;
+  border-radius: var(--r-button-sm);
+  color: var(--text-muted);
+  font-size: var(--fs-min);
+  line-height: 1.2;
+}
+
+.tab[aria-current='page'] {
+  color: var(--accent);
+}
+
+.scanCell {
+  display: flex;
+  justify-content: center;
+}
+
+.scan {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--fab);
+  height: var(--fab);
+  border-radius: var(--r-fab);
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.iconBox {
+  position: relative;
+}
+
+.iconBox i {
+  position: absolute;
+  top: -7px;
+  left: 13px;
+  min-width: 18px;
+  height: 18px;
+  padding-inline: 4px;
+  border-radius: 9px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  box-shadow: 0 0 0 2px var(--bg);
+  font: var(--weight-display) 13px / 18px var(--font-display);
+  text-align: center;
+}

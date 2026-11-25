@@ -1,0 +1,83 @@
+.boost,
+.ticket {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 152px;
+  padding: 14px;
+  border-radius: var(--r-card);
+  overflow: hidden;
+}
+
+.boost h2,
+.ticket h2 {
+  position: relative;
+  font: var(--weight-label) var(--fs-button) / 1 var(--font-display);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.boost {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.flame {
+  position: absolute;
+  right: -26px;
+  bottom: -34px;
+  width: 138px;
+  aspect-ratio: 810 / 1212;
+  rotate: 10deg;
+  background: var(--glow-mid);
+  -webkit-mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+  mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+}
+
+.x {
+  position: relative;
+  margin: 12px 0 0 -2px;
+  font: var(--weight-display) 64px / 0.74 var(--font-display);
+  letter-spacing: var(--tracking-display);
+}
+
+.sub {
+  position: relative;
+  margin-top: 8px;
+  font-size: var(--fs-caption);
+  line-height: 1.2;
+}
+
+.time {
+  position: relative;
+  margin-top: auto;
+  font: var(--weight-display) 24px / 0.8 var(--font-display);
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Билет: градиент стрика, перфорация по бокам */
+.ticket {
+  background: radial-gradient(110% 110% at 100% 0%, var(--streak-blue), var(--streak-violet) 55%, var(--streak-deep));
+  -webkit-mask: radial-gradient(circle 12px at 0 62%, #0000 98%, #000) 0 0 / 51% 100% no-repeat,
+    radial-gradient(circle 12px at 100% 62%, #0000 98%, #000) 100% 0 / 51% 100% no-repeat;
+  mask: radial-gradient(circle 12px at 0 62%, #0000 98%, #000) 0 0 / 51% 100% no-repeat,
+    radial-gradient(circle 12px at 100% 62%, #0000 98%, #000) 100% 0 / 51% 100% no-repeat;
+}
+
+.stub {
+  position: absolute;
+  right: 14px;
+  top: 12px;
+}
+
+.count {
+  margin-top: 20px;
+  font: var(--weight-display) 54px / 0.74 var(--font-display);
+  letter-spacing: var(--tracking-display);
+}
+
+.ticket .sub {
+  margin-top: auto;
+}

@@ -1,0 +1,114 @@
+.drop {
+  position: relative;
+  padding: 18px 126px 18px 18px;
+  margin-top: 26px;
+  border-radius: var(--r-card);
+  color: var(--accent-ink);
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  background: radial-gradient(80% 130% at 92% 30%, #fff0bd 0%, #ffd262 34%, var(--rarity-legend) 60%, #e08a1c 100%);
+}
+
+.flame {
+  position: absolute;
+  right: -14px;
+  bottom: -60px;
+  width: 190px;
+  aspect-ratio: 810 / 1212;
+  rotate: 12deg;
+  background: #b8600a;
+  opacity: 0.3;
+  -webkit-mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+  mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+}
+
+/* Приз стоит на плашке и выходит за верхний край */
+.prize {
+  position: absolute;
+  right: 14px;
+  bottom: 10px;
+  width: auto;
+  height: calc(100% + 18px);
+  max-height: 254px;
+  max-width: none;
+  rotate: 4deg;
+  filter: drop-shadow(0 14px 16px rgba(80, 36, 0, 0.5));
+}
+
+.head,
+.timer,
+.actions {
+  position: relative;
+}
+
+.head h3 {
+  font-size: 27px;
+  white-space: nowrap;
+}
+
+.head p {
+  margin-top: 7px;
+  font-size: var(--fs-body-sm);
+  line-height: 1.25;
+}
+
+.timer {
+  display: flex;
+  gap: 6px;
+  margin-top: 14px;
+}
+
+.timer span {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 0 8px;
+  border-radius: 14px;
+  background: var(--accent-ink);
+  color: var(--text);
+  font: 400 var(--fs-min) / 1 var(--font-body);
+}
+
+.timer b {
+  font: var(--weight-display) 32px / 0.8 var(--font-display);
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.bell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex: 1;
+  height: 46px;
+  border-radius: 14px;
+  background: var(--text);
+  color: var(--bg);
+  font: var(--weight-label) var(--fs-button) / 1 var(--font-display);
+}
+
+.actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.round {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: var(--accent-ink);
+  color: var(--text);
+}

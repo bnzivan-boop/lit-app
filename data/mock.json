@@ -1,0 +1,313 @@
+{
+  "_note": "Тестовые данные. Веса в caseLoot условные. Веса wheel — проценты: хард 1/5/15 вместе 5%, 50/1000 вместе 0,5%. Ники, цифры и призы условные. Бонусы за друзей, ссылки и ответы на вопросы условные. Цены, лиги, остатки магазина, пункты и тарифы СДЭК условные. Правила, цели и рейтинги игр условные, кроме Джампа и Джета; gameRun — условный курс очков. Основные данные — состояние «день»; demo.scenarios накладываются сверху.",
+  "demo": {
+    "default": "day",
+    "scenarios": {
+      "morning": { "now": "2026-11-25T09:00:00+03:00", "charge": { "current": 240 }, "streak": { "days": 40, "todayDone": false }, "taskProgress": { "t1": 0, "t2": 0, "t3": 0 } },
+      "day": { "now": "2026-11-25T15:00:00+03:00" },
+      "evening": { "now": "2026-11-25T21:45:00+03:00", "charge": { "current": 240 }, "streak": { "days": 40, "todayDone": false, "freezes": 0 }, "taskProgress": { "t1": 0, "t2": 0, "t3": 0 } },
+      "eveningFreeze": { "now": "2026-11-25T21:45:00+03:00", "charge": { "current": 240 }, "streak": { "days": 40, "todayDone": false, "freezes": 1 }, "taskProgress": { "t1": 0, "t2": 0, "t3": 0 } },
+      "done": { "now": "2026-11-25T18:00:00+03:00", "taskProgress": { "t1": 1, "t2": 3000, "t3": 1 } }
+    }
+  },
+  "user": {
+    "id": "96095853-21e8-48cc-bf2c-dOa85380b11f",
+    "nick": "Korostkina",
+    "avatar": "/assets/characters/hero-head-blue-fire.png",
+    "level": 14,
+    "xp": 65350,
+    "xpNext": 66000,
+    "league": "silver",
+    "balance": { "soft": 270, "hard": 572 },
+    "titanPower": 2940
+  },
+  "stats": [
+    { "id": "receipts", "title": "QR-кода отсканировано", "value": 23 },
+    { "id": "products", "title": "Продуктов добавлено", "value": 64 },
+    { "id": "tasks", "title": "Заданий выполнено", "value": 118 }
+  ],
+  "menu": [
+    { "id": "wheel", "title": "Колесо фортуны", "group": "wheel" },
+    { "id": "orders", "title": "Мои заказы", "group": "orders" },
+    { "id": "track", "title": "Где мой заказ", "group": "orders" },
+    { "id": "notifications", "title": "Уведомления", "group": "app" },
+    { "id": "faq", "title": "Частые вопросы", "group": "help" },
+    { "id": "support", "title": "Написать в поддержку", "group": "help" },
+    { "id": "settings", "title": "Настройки", "group": "app" }
+  ],
+  "telegram": { "username": "korostkina", "bot": "", "support": "https://t.me/" },
+  "notify": { "on": true, "streak": true, "charge": false, "order": true },
+  "referral": {
+    "inviter": { "soft": 200, "hard": 10, "xp": 500 },
+    "newcomer": { "soft": 100 },
+    "friends": [
+      { "nick": "dasha_88", "at": "2026-11-24T18:20:00+03:00", "claimed": false },
+      { "nick": "arsen_k", "at": "2026-11-19T12:05:00+03:00", "claimed": true }
+    ]
+  },
+  "faq": [
+    { "title": "Валюты", "items": [
+      { "q": "Чем софт отличается от харда?", "a": "Софт дают игры, задания и заряд, он тратится на mystery box. Хард дают в основном чеки, за него забираешь призы в магазине." },
+      { "q": "Откуда берётся заряд?", "a": "Заряд копится сам, пока тебя нет, и останавливается, когда полный. Собери его тапом по плитке на главной." },
+      { "q": "Сгорают ли монеты?", "a": "Нет. Софт и хард остаются у тебя, пока ты их не потратишь." }
+    ] },
+    { "title": "Чеки", "items": [
+      { "q": "Какие чеки подходят?", "a": "Любые чеки с продукцией LIT Energy и читаемым QR-кодом. Один чек можно добавить один раз." },
+      { "q": "Почему чек не принимается?", "a": "В нём нет LIT Energy, его уже добавили или QR не читается. Разгладь чек, добавь света и попробуй ещё раз." },
+      { "q": "Что даёт буст ×2?", "a": "Сутки после чека опыт и сила удваиваются. Новый чек продлевает буст ещё на сутки, но не больше трёх." }
+    ] },
+    { "title": "Призы и доставка", "items": [
+      { "q": "Почему товар с замком?", "a": "Он открывается с определённой лиги. Поднимайся в играх и заданиях, и замок пропадёт." },
+      { "q": "Что такое дроп?", "a": "Раз в неделю небольшая партия редких призов продаётся за хард. Кто успел к старту, тот забрал. Хард тех, кто не успел, остаётся у них." },
+      { "q": "Как приедет приз?", "a": "Через СДЭК: в пункт, постамат или курьером. Подписки и сертификаты приходят кодом в «Мои заказы»." }
+    ] },
+    { "title": "Аккаунт", "items": [
+      { "q": "Что будет, если пропустить день?", "a": "Стрик обнулится. Если есть заморозка, она спишется сама и стрик сохранится." },
+      { "q": "Зачем нужен ID игрока?", "a": "По нему тебя находят в розыгрышах и в поддержке. Он есть на главной и в настройках." }
+    ] }
+  ],
+  "charge": { "current": 90, "max": 240, "perHour": 60 },
+  "streak": {
+    "days": 41,
+    "freezes": 1,
+    "todayDone": true,
+    "milestones": [3, 7, 14, 30, 45, 60, 100]
+  },
+  "dailyTasks": [
+    { "id": "t1", "title": "Сыграй в «Энерджи Микс»", "short": "Энерджи Микс", "hint": "Сыграй 1 раз", "game": "energy-mix", "goal": 1, "progress": 1, "reward": { "soft": 20, "xp": 150 } },
+    { "id": "t2", "title": "3 000 очков в «Энерджи Джамп»", "short": "Энерджи Джамп", "hint": "Набери 3 000", "game": "energy-jump", "goal": 3000, "progress": 1800, "reward": { "soft": 30, "xp": 250 } },
+    { "id": "t3", "title": "Чек с газировкой LIT", "short": "Скан чека", "hint": "Газировка LIT", "type": "receipt", "goal": 1, "progress": 0, "reward": { "hard": 40 }, "bonus": "boost_x2" }
+  ],
+  "quests": [
+    {
+      "id": "super", "kind": "super", "title": "Купи 50 товаров LIT за\u00a0месяц", "unit": ["товар", "товара", "товаров"],
+      "goal": 50, "progress": 14, "endsAt": "2026-11-30T23:59:00+03:00", "image": "/assets/products/can-lemonade.webp",
+      "reward": { "hard": 200, "soft": 500, "xp": 2000 }, "how": "receipt", "match": { "any": true },
+      "steps": ["Покупай любые товары LIT Energy", "Сканируй чеки в приложении", "Набери 50 товаров до конца месяца"],
+      "rules": "Считаются товары из чеков, отсканированных до 30 ноября включительно."
+    },
+    {
+      "id": "p1", "kind": "partner", "partner": "pyat", "title": "Купи 3 энергетика", "unit": ["банка", "банки", "банок"],
+      "goal": 3, "progress": 3, "endsAt": "2026-12-03T23:59:00+03:00",
+      "reward": { "hard": 25, "soft": 50, "xp": 1000 }, "how": "receipt", "match": { "shop": "Пятёрочка", "tag": "energy" },
+      "steps": ["Купи 3 энергетика LIT в Пятёрочке", "Отсканируй чек", "Собери награду"],
+      "rules": "Можно несколькими чеками. Подходят любые вкусы."
+    },
+    {
+      "id": "p2", "kind": "partner", "partner": "pyat", "title": "Купи любой товар LIT", "unit": ["товар", "товара", "товаров"],
+      "goal": 1, "progress": 0, "endsAt": "2026-12-03T23:59:00+03:00", "image": "/assets/products/chips-pickle.webp",
+      "reward": { "hard": 8, "soft": 20, "xp": 200 }, "how": "receipt", "match": { "shop": "Пятёрочка", "any": true },
+      "steps": ["Купи любой товар LIT в Пятёрочке", "Отсканируй чек", "Собери награду"],
+      "rules": "Чек должен быть из Пятёрочки."
+    },
+    {
+      "id": "p3", "kind": "partner", "partner": "samokat", "title": "Купи лимонад «Груша»", "unit": ["банка", "банки", "банок"],
+      "goal": 1, "progress": 0, "endsAt": "2026-12-01T23:59:00+03:00",
+      "reward": { "hard": 10, "soft": 34, "xp": 200 }, "how": "receipt", "match": { "shop": "Самокат", "tag": "pear" },
+      "steps": ["Закажи лимонад «Груша» в Самокате", "Отсканируй чек из заказа", "Собери награду"],
+      "rules": "Чек придёт в приложение Самоката после доставки."
+    },
+    {
+      "id": "p4", "kind": "partner", "partner": "vinlab", "title": "Купи энергетик «Черника»", "unit": ["банка", "банки", "банок"],
+      "goal": 1, "progress": 0, "endsAt": "2026-12-01T23:59:00+03:00",
+      "reward": { "hard": 30, "soft": 21, "xp": 250 }, "how": "receipt", "match": { "shop": "Винлаб", "tag": "blueberry" },
+      "steps": ["Купи энергетик «Черника» в Винлабе", "Отсканируй чек", "Собери награду"],
+      "rules": "Чек должен быть из Винлаба."
+    },
+    {
+      "id": "p5", "kind": "partner", "partner": "magnit", "title": "Купи 2 пачки чипсов «Сальса»", "unit": ["пачка", "пачки", "пачек"],
+      "goal": 2, "progress": 1, "endsAt": "2026-12-05T23:59:00+03:00",
+      "reward": { "hard": 90, "soft": 68, "xp": 600 }, "how": "receipt", "match": { "shop": "Магнит", "tag": "salsa" },
+      "steps": ["Купи 2 пачки чипсов «Сальса» в Магните", "Отсканируй чек", "Собери награду"],
+      "rules": "Можно двумя чеками."
+    },
+    {
+      "id": "w1", "kind": "weekly", "tag": "Готовимся к лету", "title": "Купи 10 бутылок энергетика без сахара", "unit": ["штука", "штуки", "штук"],
+      "goal": 10, "progress": 6, "reward": { "hard": 10 }, "how": "receipt", "match": { "tag": "sugarfree" },
+      "steps": ["Купи 10 бутылок энергетика без сахара", "Загрузи чеки в приложение", "Собери награду"],
+      "rules": "Подходят чеки из любых магазинов."
+    },
+    {
+      "id": "w2", "kind": "weekly", "tag": "LIT Energy в кадре", "title": "Сними видео с LIT", "unit": ["видео", "видео", "видео"],
+      "goal": 1, "progress": 0, "reward": { "hard": 15, "xp": 300 }, "how": "upload",
+      "steps": ["Сними ролик с любой банкой LIT", "Выложи его в соцсети", "Прикрепи ссылку на ролик", "Дождись проверки и собери награду"],
+      "rules": "Проверка занимает до суток. Ролик должен быть открыт для всех, в кадре не должно быть других брендов."
+    }
+  ],
+  "videoNetworks": [
+    { "title": "VK", "hosts": ["vk.com", "vk.ru", "vkvideo.ru"] },
+    { "title": "TikTok", "hosts": ["tiktok.com"] },
+    { "title": "YouTube", "hosts": ["youtube.com", "youtu.be"] },
+    { "title": "Telegram", "hosts": ["t.me"] }
+  ],
+  "partners": {
+    "pyat": { "title": "Пятёрочка", "color": "#e30613", "logo": "/assets/partners/pyat.webp" },
+    "samokat": { "title": "Самокат", "color": "#e3124f", "logo": "/assets/partners/samokat.webp" },
+    "vinlab": { "title": "Винлаб", "color": "#5b2a58", "logo": "/assets/partners/vinlab.webp" },
+    "magnit": { "title": "Магнит", "color": "#c40018", "logo": "/assets/partners/magnit.webp" }
+  },
+  "claimed": ["t1"],
+  "receipt": {
+    "shop": "Пятёрочка",
+    "items": [
+      { "title": "Лимонад «Яблоко карамель»", "qty": 2, "tag": "lemonade", "hard": 25, "image": "/assets/products/can-lemonade.webp" },
+      { "title": "Чипсы «Малосольные огурчики»", "qty": 1, "tag": "chips", "hard": 30, "image": "/assets/products/chips-pickle.webp" }
+    ],
+    "xp": 150,
+    "tickets": 1
+  },
+  "wheel": [
+    { "id": "h1", "kind": "hard", "amount": 1, "tier": 1, "weight": 3.5 },
+    { "id": "s200", "kind": "soft", "amount": 200, "tier": 3, "weight": 15 },
+    { "id": "h1000", "kind": "hard", "amount": 1000, "tier": 5, "weight": 0.05 },
+    { "id": "s50", "kind": "soft", "amount": 50, "tier": 1, "weight": 44 },
+    { "id": "h5", "kind": "hard", "amount": 5, "tier": 2, "weight": 1.1 },
+    { "id": "s500", "kind": "soft", "amount": 500, "tier": 4, "weight": 6 },
+    { "id": "h50", "kind": "hard", "amount": 50, "tier": 4, "weight": 0.45 },
+    { "id": "s100", "kind": "soft", "amount": 100, "tier": 2, "weight": 28 },
+    { "id": "h15", "kind": "hard", "amount": 15, "tier": 3, "weight": 0.4 },
+    { "id": "s1500", "kind": "soft", "amount": 1500, "tier": 5, "weight": 1.5 }
+  ],
+  "dailyChest": { "reward": { "soft": 150, "hard": 5, "xp": 300 } },
+  "games": [
+    {"id": "energy-jump", "title": "Энерджи Джамп", "isNew": true, "best": 1800, "goal": 1000, "color": "#0a1c63", "about": "Забирайся всё выше и хватай банки LIT по пути.", "rules": ["Герой прыгает сам, ты задаёшь направление", "Приземляйся на платформы и собирай банки", "Набери 1 000 очков и продолжай на рекорд"], "note": "Победа засчитается после завершения забега.", "controls": [{"id": "touch", "title": "Пальцем", "hint": "Веди пальцем по экрану: герой полетит туда же"}, {"id": "tilt", "title": "Наклоном", "hint": "Наклоняй телефон, чтобы задавать направление прыжка"}], "top": 34000, "me": {"place": 56, "move": 1, "before": 281}},
+    {"id": "energy-jet", "title": "Энерджи Джет", "best": 950, "goal": 1000, "color": "#0f6f86", "about": "Реактивный ранец, трубы и банка впереди.", "rules": ["Тапай по экрану, чтобы набирать высоту", "Не падай вниз и облетай препятствия", "Достигай цели дня, чтобы получить награду"], "note": "Победа засчитается после завершения забега.", "top": 21500, "me": {"place": 112, "move": -1, "before": 0}},
+    {"id": "energy-mix", "title": "Энерджи Микс", "best": 3100, "goal": 2500, "color": "#0e4d6e", "about": "Разлей вкусы по банкам и не перепутай.", "rules": ["Переливай напиток из банки в банку", "В каждой банке должен остаться один вкус", "Чем меньше ходов, тем больше очков"], "note": "Победа засчитается, когда все банки собраны.", "top": 18200, "me": {"place": 31, "move": 1, "before": 2400}},
+    {"id": "energy-ninja", "title": "Энерджи Ниндзя", "best": 0, "goal": 1500, "color": "#0f4a2a", "about": "Режь пачки на лету, пока они не упали.", "rules": ["Проводи пальцем, чтобы разрезать пачку", "Три пропущенные пачки заканчивают игру", "Разрежешь несколько одним движением, получишь больше"], "note": "Победа засчитается после завершения раунда.", "top": 27400, "me": {"place": 0, "move": 0, "before": 0}},
+    {"id": "energy-rush", "title": "Энерджи Раш", "best": 4200, "goal": 3000, "durationMin": 1, "color": "#3a2a86", "about": "Ночной город и одна минута на максимум скорости.", "rules": ["Свайпай влево и вправо, чтобы менять полосу", "Собирай банки: каждая разгоняет машину", "Врежешься, и заезд закончится"], "note": "Заезд длится около минуты.", "top": 40900, "me": {"place": 18, "move": 1, "before": 3900}},
+    {"id": "energy-hunt", "title": "Энерджи Охота", "best": 0, "goal": 800, "color": "#1b1d1f", "about": "Нуар, лупа и спрятанные банки.", "rules": ["Рассматривай сцену и ищи банки LIT", "За каждую находку получаешь очки", "Промах отнимает время"], "note": "Победа засчитается, когда найдены все банки.", "top": 9800, "me": {"place": 0, "move": 0, "before": 0}},
+    {"id": "energy-cosmo", "title": "Космо Энерджи", "best": 620, "goal": 1200, "color": "#0b3c58", "about": "Чужая планета, кристаллы и мало кислорода.", "rules": ["Собирай кристаллы, пока не кончился кислород", "Обходи метеориты", "Банка LIT пополняет кислород"], "note": "Победа засчитается после завершения забега.", "top": 15300, "me": {"place": 74, "move": -1, "before": 0}}
+  ],
+  "gameRun": { "perPoints": 100, "soft": 1, "xp": 5 },
+  "gameBox": { "caseId": "start" },
+  "gameBoard": {
+    "nicks": ["nikitos_47", "vlad_drift", "masha.lit", "kirill_gg", "tema.energy", "lisa_run", "sanya_pro", "polina.z", "arsen_k", "dasha_88"],
+    "share": [1, 0.91, 0.84, 0.73, 0.69, 0.62, 0.58, 0.51, 0.47, 0.44],
+    "move": [1, 0, 1, 1, -1, 1, 0, -1, 1, 0]
+  },
+  "leagues": ["bronze", "silver", "gold", "platinum", "diamond"],
+  "leagueWeek": {
+    "season": "Титаны",
+    "week": 3,
+    "endsAt": "2026-11-29T23:59:00+03:00",
+    "promoteTop": 7,
+    "demoteBottom": 5,
+    "group": [
+      { "place": 1, "nick": "nikitos_47", "power": 4870 },
+      { "place": 2, "nick": "vlad_drift", "power": 4410 },
+      { "place": 3, "nick": "masha.lit", "power": 3980 },
+      { "place": 4, "nick": "kirill_gg", "power": 3300 },
+      { "place": 5, "nick": "tema.energy", "power": 3060 },
+      { "place": 6, "nick": "Korostkina", "power": 2940, "me": true },
+      { "place": 7, "nick": "lisa_run", "power": 2870 },
+      { "place": 8, "nick": "sanya_pro", "power": 2610 },
+      { "place": 29, "nick": "polina.z", "power": 410 },
+      { "place": 30, "nick": "arsen_k", "power": 220 }
+    ]
+  },
+  "seasonPass": {
+    "level": 18,
+    "receiptsForPremium": 3,
+    "receiptsDone": 1,
+    "tiers": [
+      { "level": 17, "free": "+30 софт", "premium": "Рамка аватара «Пламя»" },
+      { "level": 18, "free": "Mystery box «Старт»", "premium": "+60 хард" },
+      { "level": 19, "free": "+150 XP", "premium": "Бейдж «Титан II»" },
+      { "level": 20, "free": "+40 софт", "premium": "Mystery box «Импульс»" },
+      { "level": 25, "free": "Заморозка стрика", "premium": "Билет в розыгрыш" },
+      { "level": 50, "free": "Скин Титана", "premium": "Билет в финал сезона" }
+    ]
+  },
+  "cases": [
+    { "id": "start", "title": "Старт", "rarity": "common", "price": { "soft": 40 }, "image": "/assets/cases/chest.webp" },
+    { "id": "impulse", "title": "Импульс", "rarity": "epic", "price": { "soft": 75 }, "image": "/assets/cases/box-cutout.png" },
+    { "id": "ultimate", "title": "Ultimate", "rarity": "legend", "price": { "soft": 45000 }, "image": "/assets/cases/box-cutout.png" }
+  ],
+  "caseLoot": [
+    { "id": "soft20", "kind": "soft", "amount": 20, "title": "+20 софт", "rarity": "common", "weight": 38 },
+    { "id": "soft100", "kind": "soft", "amount": 100, "title": "+100 софт", "rarity": "common", "weight": 24 },
+    { "id": "boost", "kind": "boost", "title": "Буст ×2 на 24 ч", "rarity": "rare", "weight": 15 },
+    { "id": "hard50", "kind": "hard", "amount": 50, "title": "+50 хард", "rarity": "rare", "weight": 11 },
+    { "id": "frame", "kind": "frame", "title": "Рамка «Пламя»", "rarity": "epic", "weight": 7 },
+    { "id": "headphones", "kind": "headphones", "title": "Наушники", "rarity": "epic", "weight": 4 },
+    { "id": "hoodie", "kind": "hoodie", "title": "Худи LIT", "rarity": "legend", "weight": 1 }
+  ],
+  "drop": { "title": "PlayStation 5 в стиле LIT", "image": "/assets/prizes/ps5.webp", "startsAt": "2026-11-27T19:00:00+03:00", "quantity": 50, "minLeague": "silver", "price": { "hard": 4990 }, "productId": "drop-ps5", "leftLive": 37 },
+  "shop": [
+    {"id": "wink", "title": "Wink на 3 месяца", "category": "subs", "price": {"hard": 390}, "minLeague": "bronze", "about": "Подписка на фильмы, сериалы и ТВ-каналы.", "digital": true},
+    {"id": "ivi", "title": "Иви на 6 месяцев", "category": "subs", "price": {"hard": 490}, "minLeague": "bronze", "about": "Полгода фильмов и сериалов без рекламы.", "digital": true},
+    {"id": "yaplus", "title": "Яндекс Плюс на 6 месяцев", "category": "subs", "price": {"hard": 1290}, "minLeague": "bronze", "about": "Музыка, кино и кешбэк баллами.", "digital": true},
+    {"id": "shorts", "title": "Шорты LIT Energy", "category": "merch", "price": {"hard": 2499}, "minLeague": "bronze", "about": "Плотный футер, карманы на молнии, вышивка на бедре.", "sizes": ["S", "M", "L", "XL"], "chart": "shorts", "left": 24},
+    {"id": "arc3", "title": "Сертификат ARC 3 000 ₽", "category": "cards", "price": {"hard": 1990}, "minLeague": "bronze", "about": "Электронный сертификат в магазины ARC.", "digital": true},
+    {"id": "psplus", "title": "PlayStation Plus Deluxe на 3 месяца", "category": "subs", "price": {"hard": 2990}, "minLeague": "silver", "about": "Онлайн, каталог игр и пробные версии.", "digital": true},
+    {"id": "ufc", "title": "UFC 5 для PS5", "category": "games", "price": {"hard": 2490}, "minLeague": "silver", "about": "Диск с игрой для PlayStation 5.", "left": 12},
+    {"id": "f1", "title": "F1 25 для PS5", "category": "games", "price": {"hard": 2690}, "minLeague": "silver", "about": "Диск с игрой для PlayStation 5.", "left": 12},
+    {"id": "hogwarts", "title": "Hogwarts Legacy для Switch 2", "category": "games", "price": {"hard": 2890}, "minLeague": "silver", "about": "Игра для Nintendo Switch 2.", "left": 10},
+    {"id": "arc5", "title": "Сертификат ARC 5 000 ₽", "category": "cards", "price": {"hard": 2990}, "minLeague": "silver", "about": "Электронный сертификат в магазины ARC.", "digital": true},
+    {"id": "station", "title": "Яндекс Станция", "category": "tech", "price": {"hard": 3999}, "minLeague": "silver", "about": "Умная колонка с Алисой и часами на корпусе.", "left": 15},
+    {"id": "fleece", "title": "Флисовая куртка LIT Energy", "category": "merch", "price": {"hard": 4490}, "minLeague": "gold", "about": "Тёплый флис, нагрудный карман с фирменным огнём.", "sizes": ["S", "M", "L", "XL"], "chart": "jacket", "left": 18},
+    {"id": "marshall", "title": "Колонка Marshall", "category": "tech", "price": {"hard": 7990}, "minLeague": "gold", "about": "Портативная колонка, которая держит заряд весь день.", "left": 8},
+    {"id": "arc7", "title": "Сертификат ARC 7 000 ₽", "category": "cards", "price": {"hard": 3990}, "minLeague": "gold", "about": "Электронный сертификат в магазины ARC.", "digital": true},
+    {"id": "sportmaster", "title": "Сертификат Спортмастер 15 000 ₽", "category": "cards", "price": {"hard": 8990}, "minLeague": "platinum", "about": "Электронный сертификат в магазины Спортмастер.", "digital": true},
+    {"id": "gopro", "title": "GoPro HERO13", "category": "tech", "price": {"hard": 14990}, "minLeague": "platinum", "about": "Экшн-камера для спорта и поездок.", "left": 5},
+    {"id": "cam360", "title": "Камера 360", "category": "tech", "price": {"hard": 15990}, "minLeague": "diamond", "about": "Снимает всё вокруг сразу, кадр выбираешь потом.", "left": 3},
+    {"id": "xbox", "title": "Xbox Series S", "category": "tech", "price": {"hard": 17990}, "minLeague": "diamond", "about": "Консоль и геймпад в комплекте.", "left": 3}
+  ],
+  "shopCategories": [
+    { "id": "all", "title": "Всё" },
+    { "id": "merch", "title": "Мерч" },
+    { "id": "tech", "title": "Техника" },
+    { "id": "games", "title": "Игры" },
+    { "id": "subs", "title": "Подписки" },
+    { "id": "cards", "title": "Сертификаты" }
+  ],
+  "shopOrder": {
+    "fee": 5,
+    "deliveryFrom": 300,
+    "firstNumber": 1042,
+    "payments": ["СБП", "SberPay", "T-Pay"]
+  },
+  "cdek": {
+    "fromCode": 44,
+    "parcel": { "weight": 1200, "length": 35, "width": 25, "height": 12 },
+    "cities": [
+      { "code": 44, "title": "Москва", "zone": 0 },
+      { "code": 137, "title": "Санкт-Петербург", "zone": 1 },
+      { "code": 414, "title": "Нижний Новгород", "zone": 1 },
+      { "code": 424, "title": "Казань", "zone": 1 },
+      { "code": 428, "title": "Саратов", "zone": 1 },
+      { "code": 435, "title": "Краснодар", "zone": 2 },
+      { "code": 250, "title": "Екатеринбург", "zone": 2 },
+      { "code": 270, "title": "Новосибирск", "zone": 3 }
+    ],
+    "zones": [
+      { "point": 220, "door": 390, "min": 1, "max": 2 },
+      { "point": 290, "door": 450, "min": 2, "max": 4 },
+      { "point": 340, "door": 520, "min": 3, "max": 5 },
+      { "point": 420, "door": 640, "min": 4, "max": 7 }
+    ],
+    "points": [
+      { "type": "PVZ", "street": "ул. Московская", "work": "Пн–Пт 9:00–20:00, Сб–Вс 10:00–18:00", "fitting": true, "x": 0.22, "y": 0.34 },
+      { "type": "POSTAMAT", "street": "пр. Ленина", "work": "Ежедневно 8:00–23:00", "fitting": false, "x": 0.44, "y": 0.2 },
+      { "type": "PVZ", "street": "ул. Садовая", "work": "Ежедневно 10:00–21:00", "fitting": true, "x": 0.58, "y": 0.46 },
+      { "type": "PVZ", "street": "ул. Гагарина", "work": "Пн–Сб 9:00–21:00", "fitting": false, "x": 0.8, "y": 0.28 },
+      { "type": "POSTAMAT", "street": "ул. Новая", "work": "Круглосуточно", "fitting": false, "x": 0.34, "y": 0.66 },
+      { "type": "PVZ", "street": "ул. Победы", "work": "Ежедневно 9:00–21:00", "fitting": true, "x": 0.72, "y": 0.72 },
+      { "type": "POSTAMAT", "street": "ул. Лесная", "work": "Ежедневно 7:00–23:00", "fitting": false, "x": 0.14, "y": 0.8 }
+    ]
+  },
+  "sizeCharts": {
+    "jacket": {
+      "title": "Куртка", "sizes": ["S", "M", "L", "XL"],
+      "rows": [["Длина по спинке", 68, 71, 74, 77], ["Ширина по груди", 61.5, 64.5, 67.5, 70.5], ["Ширина по низу", 43, 45.5, 48, 50.5], ["Длина рукава", 62, 63, 64, 65]]
+    },
+    "shorts": {
+      "title": "Шорты", "sizes": ["S", "M", "L", "XL"],
+      "rows": [["Ширина талии", 32.5, 35, 37.5, 40], ["Ширина бёдер", 55, 57.5, 60, 62.5], ["Ширина низа", 27, 28, 29, 30], ["Длина по боку", 50, 51.5, 53, 54.5]]
+    }
+  },
+  "banners": [
+    { "image": "/assets/banners/banner-chips-pyaterochka.png", "alt": "Покупай «Малосольные огурчики» в Пятёрочке и исполняй мечту" }
+  ],
+  "receiptBoost": { "multiplier": 2, "hours": 24, "maxHours": 72 }
+}

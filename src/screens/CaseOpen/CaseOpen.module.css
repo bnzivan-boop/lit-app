@@ -1,0 +1,276 @@
+.screen {
+  --light: var(--accent);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100dvh;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.rare {
+  --light: var(--rarity-rare);
+}
+
+.epic {
+  --light: var(--rarity-epic);
+}
+
+.legend {
+  --light: var(--rarity-legend);
+}
+
+.top {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: calc(var(--safe-top) + 12px) var(--screen-pad) 0;
+}
+
+.close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--tap);
+  height: var(--tap);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--accent-ink) 70%, transparent);
+}
+
+.balance {
+  display: flex;
+  align-items: center;
+  height: var(--tap);
+  padding-inline: 16px;
+  border-radius: var(--r-chip);
+  background: color-mix(in srgb, var(--accent-ink) 70%, transparent);
+  font-size: 18px;
+}
+
+/* Сцена на весь экран, панель лежит поверх её низа */
+.stage {
+  position: absolute;
+  inset: 0;
+  padding: calc(var(--safe-top) + 56px) 0 calc(var(--safe-bottom) + 330px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* под кнопкой есть подсказка: панель выше */
+.short {
+  padding-bottom: calc(var(--safe-bottom) + 310px);
+}
+
+.glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(110% 56% at 50% 44%, var(--light) 0%, color-mix(in srgb, var(--light) 44%, var(--bg)) 46%, var(--bg) 84%);
+  transition: opacity 500ms ease;
+}
+
+.flame {
+  position: absolute;
+  left: 50%;
+  top: 4%;
+  width: 460px;
+  margin-left: -230px;
+  aspect-ratio: 810 / 1212;
+  background: var(--bg);
+  opacity: 0.2;
+  -webkit-mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+  mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+}
+
+.name {
+  position: relative;
+  z-index: 1;
+  margin-top: 8px;
+  text-align: center;
+  transition: opacity 250ms ease;
+}
+
+.name h1 {
+  font-size: 64px;
+  line-height: 0.9;
+}
+
+.name p {
+  margin-top: 8px;
+  font-size: var(--fs-body);
+}
+
+.box {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  width: 82%;
+  margin: 4px 0 10px;
+  object-fit: contain;
+  filter: drop-shadow(0 30px 30px rgba(0, 0, 0, 0.5));
+  animation: float 2.6s ease-in-out infinite alternate;
+}
+
+.epic .box {
+  filter: drop-shadow(0 30px 30px rgba(0, 0, 0, 0.5)) hue-rotate(64deg) saturate(1.1);
+}
+
+.legend .box {
+  filter: drop-shadow(0 30px 30px rgba(0, 0, 0, 0.5)) sepia(0.85) saturate(2.6) hue-rotate(-10deg);
+}
+
+@keyframes float {
+  from {
+    transform: translateY(6px);
+  }
+  to {
+    transform: translateY(-8px) rotate(-1.4deg);
+  }
+}
+
+/* Замах: ящик сжимается, дрожит всё сильнее и взрывается светом */
+[data-phase='charge'] .box {
+  animation: charge 620ms linear forwards;
+}
+
+@keyframes charge {
+  0% {
+    transform: none;
+  }
+  14% {
+    transform: scale(0.92);
+  }
+  28% {
+    transform: scale(0.93) rotate(2deg);
+  }
+  40% {
+    transform: scale(0.94) rotate(-3deg);
+  }
+  52% {
+    transform: scale(0.96) rotate(4deg);
+  }
+  64% {
+    transform: scale(0.98) rotate(-5deg);
+  }
+  76% {
+    transform: scale(1) rotate(5deg);
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* в рулетке свет даёт карточка под указателем */
+[data-phase='spin'] .glow {
+  opacity: 0.2;
+}
+
+.flash {
+  position: absolute;
+  inset: -20% -20%;
+  background: #fff;
+  opacity: 0;
+  pointer-events: none;
+}
+
+[data-phase='spin'] .flash {
+  animation: flash 520ms var(--ease);
+}
+
+@keyframes flash {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+[data-phase='spin'] .box,
+[data-phase='charge'] .name,
+[data-phase='spin'] .name {
+  opacity: 0;
+}
+
+[data-phase='spin'] .box {
+  animation: none;
+}
+
+.panel {
+  position: relative;
+  z-index: 2;
+  padding: 18px 0 calc(var(--safe-bottom) + var(--space-4));
+  border-radius: 32px 32px 0 0;
+  background: var(--surface-1);
+  transition: transform 420ms var(--ease), opacity 250ms ease;
+}
+
+/* Пока крутится, остаётся только рулетка */
+[data-phase='charge'] .panel,
+[data-phase='spin'] .panel {
+  opacity: 0;
+  transform: translateY(60px);
+  pointer-events: none;
+}
+
+.panel h2 {
+  padding-inline: var(--screen-pad);
+  font-size: 24px;
+}
+
+.loot {
+  display: flex;
+  gap: 10px;
+  margin-top: var(--space-3);
+  padding-inline: var(--screen-pad);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+
+.loot::-webkit-scrollbar {
+  display: none;
+}
+
+/* Сколько открыть за раз */
+.counts {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 6px;
+  margin: 14px var(--screen-pad) 0;
+}
+
+.count {
+  height: var(--tap);
+  border-radius: 14px;
+  background: var(--surface-2);
+  font: var(--weight-display) 18px / 1 var(--font-display);
+  text-align: center;
+  transition: transform var(--t-press) var(--ease), background-color 150ms ease;
+}
+
+.count[aria-checked='true'] {
+  background: var(--text);
+  color: var(--bg);
+}
+
+.action {
+  padding: 12px var(--screen-pad) 0;
+}
+
+.action p {
+  margin-top: 10px;
+  color: var(--text-muted);
+  font-size: var(--fs-body-sm);
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .box {
+    animation: none;
+  }
+}

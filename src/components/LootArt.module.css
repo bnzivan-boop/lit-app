@@ -1,0 +1,69 @@
+.art {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  container-type: size;
+}
+
+.coin,
+.left,
+.right {
+  position: absolute;
+  width: 78cqmin;
+  height: 78cqmin;
+}
+
+.left {
+  width: 56cqmin;
+  height: 56cqmin;
+  transform: translate(-34cqmin, 14cqmin) rotate(-18deg);
+}
+
+.right {
+  width: 56cqmin;
+  height: 56cqmin;
+  transform: translate(34cqmin, 12cqmin) rotate(16deg);
+}
+
+.flame {
+  position: absolute;
+  height: 96cqmin;
+  aspect-ratio: 810 / 1212;
+  background: var(--accent);
+  -webkit-mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+  mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+}
+
+.x {
+  position: relative;
+  padding: 4cqmin 8cqmin 5cqmin;
+  border-radius: 12cqmin;
+  background: var(--accent-ink);
+  color: #fff;
+  font: var(--weight-display) 38cqmin / 0.9 var(--font-display);
+  letter-spacing: var(--tracking-display);
+}
+
+.ring {
+  width: 88cqmin;
+  height: 88cqmin;
+  padding: 8cqmin;
+  border-radius: 50%;
+  background: conic-gradient(var(--accent), var(--streak-violet), var(--streak-blue), var(--accent));
+}
+
+.ring img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--accent-ink);
+}
+
+.svg {
+  width: 88%;
+  height: 88%;
+}

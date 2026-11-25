@@ -1,0 +1,69 @@
+.track {
+  display: block;
+  overflow: hidden;
+  border-radius: var(--r-chip);
+  background: var(--surface-2);
+}
+
+.onSurface2 {
+  background: var(--track);
+}
+
+.sm {
+  height: var(--bar-h);
+}
+
+.lg {
+  height: var(--bar-h-lg);
+}
+
+/* Сдвиг вместо ширины: не дёргает раскладку и не мнёт скруглённый край */
+.fill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--accent);
+  transition: transform var(--t-progress) var(--ease);
+}
+
+.warn .fill {
+  display: block;
+  background: var(--warn);
+}
+
+.segments {
+  display: flex;
+  gap: 3px;
+}
+
+.segments > span {
+  flex: 1;
+  height: 6px;
+  border-radius: var(--r-chip);
+  transition: background-color var(--t-base) ease;
+}
+
+.segments > .done {
+  background: var(--accent);
+}
+
+.segments > .next {
+  background: var(--idle);
+  box-shadow: inset 0 0 0 1.5px var(--accent);
+}
+
+.segments > .idle {
+  background: var(--idle);
+}
+
+.segments > .warn {
+  background: var(--warn);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fill {
+  display: block;
+    transition: none;
+  }
+}

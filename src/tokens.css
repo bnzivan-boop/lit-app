@@ -1,0 +1,127 @@
+/* Токены дизайн-системы. Источник — DESIGN.md: сначала правим его, потом этот файл. */
+:root {
+  /* Фон и поверхности */
+  --bg: #0b0d0d;
+  --surface-1: #141919;
+  --surface-2: #1c2323;
+  --line: #222b2b;
+  --track: #2a3434;
+  --idle: #3a4646;
+
+  /* Текст */
+  --text: #ffffff;
+  --text-muted: #93a0a0;
+
+  /* Тиффани: только главное действие и прогресс */
+  --accent: #70fff6;
+  --accent-ink: #061716;
+  --accent-tint: rgba(112, 255, 246, 0.12);
+
+  /* Свечение: только плашка героя, шкала опыта и огонь персонажа */
+  --accent-low: #2ce3d8;
+  --glow-mid: #2fd9cf;
+  --glow-low: #0c6763;
+
+  /* Плитка стрика, цвета из рендера кейса */
+  --streak-blue: #3f7bff;
+  --streak-violet: #5a3fd8;
+  --streak-deep: #2a1d6b;
+
+  /* Оранжевый: только угроза потери */
+  --warn: #ff8a3d;
+  --warn-tint: rgba(255, 138, 61, 0.12);
+  --warn-text: #ffd2b5;
+
+  /* Редкость */
+  --rarity-common: #9aa6a6;
+  --rarity-rare: #4c8dff;
+  --rarity-epic: #a66bff;
+  --rarity-legend: #f5b83d;
+
+  /* Шрифты */
+  --font-display: 'Roboto Condensed', 'Arial Narrow', sans-serif;
+  --font-body: 'Liter', system-ui, sans-serif;
+  --weight-display: 800;
+  --weight-label: 700;
+  --tracking-display: -0.05em;
+
+  /* Размеры текста */
+  --fs-hero-max: 168px;
+  --fs-tile: 52px;
+  --fs-nick: 36px;
+  --fs-case-lg: 38px;
+  --fs-hero: 44px;
+  --fs-screen-lg: 40px;
+  --fs-screen: 32px;
+  --fs-figure: 30px;
+  --fs-section: 26px;
+  --fs-case: 22px;
+  --fs-button: 17px;
+  --fs-button-sm: 15px;
+  --fs-body: 15px;
+  --fs-body-sm: 14px;
+  --fs-caption: 12px;
+  --fs-min: 11px;
+
+  --lh-display: 1;
+  --lh-body: 1.4;
+
+  /* Отступы: сетка 4 px */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+
+  --screen-pad: var(--space-4);
+  --block-gap: var(--space-4);
+  --section-gap: 44px;
+  --card-pad: var(--space-4);
+
+  /* Скругления */
+  --r-plate: 26px;
+  --r-card: 24px;
+  --r-fab: 18px;
+  --r-block: 16px;
+  --r-button: 16px;
+  --r-button-sm: 12px;
+  --r-chip: 999px;
+
+  /* Размеры элементов */
+  --tap: 44px;
+  --button-h: 52px;
+  --button-sm-h: 44px;
+  --button-pill-h: 46px;
+  --tile-h: 150px;
+  --avatar: 40px;
+  --fab: 56px;
+  --tabbar-h: 84px;
+  --bar-h: 4px;
+  --bar-h-lg: 8px;
+  --coin-sm: 15px;
+  --coin: 18px;
+  --coin-lg: 20px;
+  --app-max: 430px;
+
+  /* Движение */
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --t-press: 120ms;
+  --t-fast: 150ms;
+  --t-base: 200ms;
+  --t-slow: 250ms;
+  --t-progress: 600ms;
+  --t-progress-delay: 100ms;
+  --press-scale: 0.97;
+  --disabled-opacity: 0.4;
+
+  /* Вырез экрана и кнопки Telegram. Переменные --tg-* задаёт telegram-web-app.js,
+     в обычном браузере работают env() и ноль. */
+  --safe-top: calc(
+    var(--tg-safe-area-inset-top, env(safe-area-inset-top, 0px)) +
+      var(--tg-content-safe-area-inset-top, 0px)
+  );
+  --safe-bottom: var(--tg-safe-area-inset-bottom, env(safe-area-inset-bottom, 0px));
+}

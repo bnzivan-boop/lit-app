@@ -1,0 +1,83 @@
+.edge,
+.bar {
+  position: fixed;
+  z-index: 12;
+  top: 0;
+  left: 50%;
+  width: 100%;
+  max-width: var(--app-max);
+  translate: -50% 0;
+  background: var(--bg);
+}
+
+.edge {
+  height: var(--safe-top);
+  opacity: 0;
+  transition: opacity var(--t-fast) ease;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: calc(var(--safe-top) + 50px);
+  padding: var(--safe-top) 10px 6px var(--screen-pad);
+}
+
+.bar:not(:has(button)) {
+  padding-right: var(--screen-pad);
+}
+
+.bar {
+  border-bottom: 1px solid var(--line);
+  opacity: 0;
+  transform: translateY(-12px);
+  transition: opacity var(--t-fast) ease, transform var(--t-slow) var(--ease);
+}
+
+.on {
+  opacity: 1;
+  transform: none;
+}
+
+.nick {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  font: var(--weight-display) 22px / 1.1 var(--font-display);
+  letter-spacing: var(--tracking-display);
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.balance {
+  display: flex;
+  gap: 14px;
+  font-size: 16px;
+}
+
+.bar .menu {
+  background: none;
+  color: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bar {
+    transform: none;
+  }
+}
+
+.back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: var(--tap);
+  height: var(--tap);
+  margin-left: -10px;
+}
+
+.back svg {
+  rotate: 180deg;
+}

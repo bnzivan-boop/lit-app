@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content" />
+    <meta name="theme-color" content="#0B0D0D" />
+    <meta name="color-scheme" content="dark" />
+    <title>LIT Energy</title>
+    <link rel="icon" type="image/png" href="/assets/currency/coin-soft.png" />
+    <script>
+      /* Первый кадр сразу тиффани: до загрузки кода не мигает чёрным */
+      if ((innerWidth < 600 || top !== self) && !/^\/kit/.test(location.pathname) && !/[?&]loader=0/.test(location.search))
+        document.documentElement.setAttribute('data-boot', '')
+    </script>
+    <style>
+      html[data-boot],
+      html[data-boot] body { background: #70fff6 !important; }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Liter&family=Roboto+Condensed:wght@700;800&display=swap" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

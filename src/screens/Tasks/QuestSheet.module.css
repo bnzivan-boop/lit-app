@@ -1,0 +1,167 @@
+.art {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 148px;
+  border-radius: 22px;
+  overflow: hidden;
+  background: radial-gradient(90% 130% at 50% 20%, color-mix(in srgb, var(--brand) 70%, #fff), var(--brand) 46%, color-mix(in srgb, var(--brand) 46%, #000));
+}
+
+.art > img {
+  position: relative;
+  width: auto;
+  height: 132px;
+  rotate: 8deg;
+  filter: drop-shadow(0 14px 16px rgba(0, 0, 0, 0.4));
+}
+
+.art[data-game] > :nth-child(2) {
+  position: absolute;
+  inset: 0;
+}
+
+.flame {
+  position: absolute;
+  left: 50%;
+  top: -40px;
+  width: 190px;
+  margin-left: -95px;
+  aspect-ratio: 810 / 1212;
+  background: #000;
+  opacity: 0.16;
+  -webkit-mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+  mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+}
+
+.logo {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+}
+
+.art .close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  border-radius: 50%;
+  background: rgba(5, 9, 9, 0.8);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 18px;
+}
+
+.kind {
+  padding: 5px 8px 6px;
+  border-radius: 7px;
+  background: var(--text);
+  color: var(--bg);
+  font: var(--weight-display) 14px / 1 var(--font-display);
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.left {
+  color: var(--text-muted);
+  font-size: var(--fs-body-sm);
+}
+
+.title {
+  margin-top: 10px;
+  font-size: 34px;
+  line-height: 0.96;
+}
+
+.bar {
+  margin-top: 16px;
+}
+
+.sub {
+  margin-top: 22px;
+  font: var(--weight-label) 18px / 1 var(--font-display);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.rewards {
+  margin-top: 10px;
+  --chip: var(--surface-2);
+}
+
+.bonus {
+  margin-top: 10px;
+  font-size: var(--fs-body-sm);
+}
+
+.steps {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.steps li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: var(--fs-body);
+  line-height: 1.25;
+}
+
+.steps li > span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--surface-2);
+  font: var(--weight-display) 16px / 1 var(--font-display);
+}
+
+.passed > span {
+  background: var(--accent) !important;
+  color: var(--accent-ink);
+}
+
+.rules {
+  margin-top: 16px;
+  color: var(--text-muted);
+  font-size: var(--fs-body-sm);
+}
+
+/* Действие всегда под пальцем */
+.action {
+  position: sticky;
+  bottom: calc((var(--safe-bottom) + var(--space-6)) * -1);
+  margin: 20px calc(var(--screen-pad) * -1) calc((var(--safe-bottom) + var(--space-6)) * -1);
+  padding: 12px var(--screen-pad) calc(var(--safe-bottom) + 14px);
+  background: var(--surface-1);
+}
+
+/* текст уходит под кнопку плавно, без среза по строке */
+.action::before {
+  content: '';
+  position: absolute;
+  inset: -28px 0 100%;
+  background: linear-gradient(transparent, var(--surface-1));
+  pointer-events: none;
+}
+
+.demo {
+  display: block;
+  width: 100%;
+  min-height: var(--tap);
+  color: var(--text-muted);
+  font-size: var(--fs-body-sm);
+  text-align: center;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

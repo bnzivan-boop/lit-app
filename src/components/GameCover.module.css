@@ -1,0 +1,43 @@
+.cover {
+  display: block;
+  overflow: hidden;
+  background: var(--surface-2);
+}
+
+.cover svg,
+.cover .photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cover .photo {
+  object-position: 50% 42%;
+}
+
+/* Скан чека: телефон сзади, банка впереди */
+.receipt {
+  position: relative;
+  background: radial-gradient(90% 100% at 70% 20%, #ffd76a, #f08a1d 55%, #b8470f);
+}
+
+.phone,
+.can {
+  position: absolute;
+  max-width: none;
+}
+
+.phone {
+  right: -22%;
+  top: 2%;
+  width: 104%;
+}
+
+.can {
+  left: 8%;
+  top: 14%;
+  width: 34%;
+  rotate: -9deg;
+  filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.45));
+}

@@ -1,0 +1,50 @@
+.main {
+  position: relative;
+  overflow-x: clip;
+  padding: 0 var(--screen-pad) 8px;
+}
+
+.balance {
+  position: absolute;
+  z-index: 3;
+  right: var(--screen-pad);
+  top: calc(var(--safe-top) + 14px);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  height: 40px;
+  padding-inline: 14px;
+  border-radius: var(--r-chip);
+  background: #050909;
+  font-size: 16px;
+}
+
+.title {
+  margin: 26px 0 0;
+  font-size: 30px;
+}
+
+/* Кадры стоят вплотную, между ними тонкая косая щель */
+.comic {
+  display: flex;
+  flex-direction: column;
+  margin: 38px -6px 0;
+}
+
+.row + .row {
+  margin-top: -10px;
+}
+
+.row[data-pair] {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.row[data-pair] > :first-child {
+  width: calc(100% + 6px);
+}
+
+.row[data-pair] > :last-child {
+  width: calc(100% + 6px);
+  margin-left: -6px;
+}

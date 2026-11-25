@@ -1,0 +1,17 @@
+.stub {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-4);
+  min-height: calc(100dvh - 100px);
+  padding: calc(var(--safe-top) + var(--space-6)) var(--screen-pad) var(--space-6);
+}
+
+.stub h1 {
+  font-size: var(--fs-screen-lg);
+}
+
+.stub p {
+  margin-bottom: var(--space-4);
+  color: var(--text-muted);
+}

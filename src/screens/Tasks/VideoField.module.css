@@ -1,0 +1,230 @@
+/* Поле выпадает над кнопкой: палец остаётся на месте */
+.drop {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 320ms var(--ease), opacity 200ms ease;
+}
+
+.drop[data-open] {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.label {
+  display: block;
+  font: var(--weight-label) 18px / 1 var(--font-display);
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 56px;
+  margin-top: 10px;
+  padding: 0 6px 0 14px;
+  border: 2px solid var(--track);
+  border-radius: var(--r-block);
+  background: var(--bg);
+  transition: border-color var(--t-fast) ease;
+}
+
+.field:focus-within {
+  border-color: var(--accent);
+}
+
+.field[data-error] {
+  border-color: var(--warn);
+}
+
+.field > svg {
+  flex: none;
+  color: var(--text-muted);
+}
+
+.field input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  outline: none;
+  background: none;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+}
+
+.field input::placeholder {
+  color: var(--text-muted);
+}
+
+.paste,
+.clear {
+  flex: none;
+  min-width: var(--tap);
+  height: var(--tap);
+  border-radius: 12px;
+}
+
+.paste {
+  padding-inline: 14px;
+  background: var(--surface-2);
+  font: var(--weight-label) var(--fs-button-sm) / 1 var(--font-display);
+}
+
+.clear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+}
+
+.hint {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  min-height: 40px;
+  margin-block: 8px 12px;
+}
+
+.net {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 28px;
+  padding-inline: 10px;
+  border-radius: 14px;
+  background: var(--surface-2);
+  font: var(--weight-label) 14px / 1 var(--font-display);
+  transition: background var(--t-fast) ease, color var(--t-fast) ease;
+}
+
+.net[data-on] {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.error {
+  color: var(--warn-text);
+  font-size: var(--fs-body-sm);
+  line-height: 1.3;
+}
+
+/* Видео на проверке */
+.review {
+  padding: 16px;
+  border-radius: 20px;
+  background: var(--surface-2);
+}
+
+.file {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.play {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.fileText {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.fileText b {
+  font: var(--weight-display) 20px / 1 var(--font-display);
+  letter-spacing: -0.03em;
+}
+
+.fileText span {
+  overflow: hidden;
+  color: var(--text-muted);
+  font-size: var(--fs-body-sm);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.edit {
+  flex: none;
+  min-height: var(--tap);
+  padding-inline: 14px;
+  border-radius: 14px;
+  background: var(--track);
+  font: var(--weight-label) var(--fs-button-sm) / 1 var(--font-display);
+}
+
+/* Путь: отправлено → проверка → награда */
+.path {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.path li {
+  font: var(--weight-label) 14px / 1 var(--font-display);
+  color: var(--text-muted);
+}
+
+.path li::before {
+  content: '';
+  display: block;
+  height: 6px;
+  margin-bottom: 8px;
+  border-radius: 3px;
+  background: var(--track);
+}
+
+.path li[data-on] {
+  color: var(--text);
+}
+
+.path li[data-on='done']::before {
+  background: var(--accent);
+}
+
+.path li[data-on='now']::before {
+  background: linear-gradient(90deg, var(--accent) 50%, var(--track) 50%) 0 / 200% 100%;
+  animation: run 1.6s var(--ease) infinite alternate;
+}
+
+@keyframes run {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drop {
+    transition: opacity 200ms ease;
+  }
+
+  .path li[data-on='now']::before {
+    animation: none;
+    background-position: 50% 0;
+  }
+}

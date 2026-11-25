@@ -1,0 +1,106 @@
+.back {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--base);
+  opacity: 0;
+  transition: opacity 420ms ease;
+}
+
+.soft {
+  --base: #70fff6;
+  --ray: #3fe3d9;
+  --deep: #0e8f88;
+  --hot: #e2fffd;
+}
+
+.hard {
+  --base: #ffc94a;
+  --ray: #f5ab2c;
+  --deep: #b9620b;
+  --hot: #fff3c4;
+}
+
+.on {
+  opacity: 1;
+}
+
+/* Плоские лучи из-за колеса, медленно поворачиваются */
+.rays {
+  position: absolute;
+  left: 50%;
+  top: 55%;
+  width: 190vmax;
+  height: 190vmax;
+  margin: -95vmax 0 0 -95vmax;
+  background: repeating-conic-gradient(var(--ray) 0 9deg, transparent 9deg 18deg);
+  animation: turn 48s linear infinite;
+}
+
+@keyframes turn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Горячий центр и тёмные края: глубина сцены */
+.edge {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    78% 56% at 50% 55%,
+    var(--hot) 0%,
+    color-mix(in srgb, var(--hot) 50%, transparent) 34%,
+    transparent 62%,
+    color-mix(in srgb, var(--deep) 88%, transparent) 130%
+  );
+}
+
+.flame {
+  position: absolute;
+  left: var(--x);
+  top: 100%;
+  width: var(--size);
+  aspect-ratio: 810 / 1212;
+  background: #fff;
+  opacity: 0;
+  animation: rise 9s var(--delay) linear infinite;
+  -webkit-mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+  mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+}
+
+@keyframes rise {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) rotate(-10deg);
+  }
+  8% {
+    opacity: 0.9;
+  }
+  50% {
+    transform: translate(var(--sway), -58dvh) rotate(10deg);
+  }
+  90% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0, -112dvh) rotate(-8deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rays {
+    animation: none;
+  }
+
+  .flame {
+    display: none;
+  }
+}

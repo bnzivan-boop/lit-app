@@ -1,0 +1,191 @@
+.tile {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: var(--tile-h);
+  border-radius: var(--r-card);
+  background: var(--surface-2);
+}
+
+.clip {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+.under,
+.over,
+.streak,
+.threat {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 14px;
+}
+
+.under,
+.over {
+  position: absolute;
+  inset: 0;
+}
+
+.over {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.streak,
+.threat {
+  overflow: hidden;
+}
+
+/* Стрик — огонь: свет справа, за фирменным пламенем */
+.streak {
+  background: radial-gradient(
+    86% 108% at 100% 46%,
+    var(--accent) 0%,
+    var(--streak-blue) 32%,
+    var(--streak-violet) 64%,
+    var(--streak-deep) 100%
+  );
+}
+
+.streak[aria-busy] {
+  background: var(--surface-2);
+}
+
+.threat {
+  background: radial-gradient(90% 120% at 100% 30%, #ffd18a 0%, var(--warn) 46%, #f0641f 100%);
+  color: var(--accent-ink);
+}
+
+.head {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 17px;
+  font: var(--weight-label) var(--fs-button) / 1 var(--font-display);
+}
+
+.headSide {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--fs-button-sm);
+}
+
+.figure {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  margin-top: 14px;
+  font: var(--weight-display) var(--fs-tile) / 0.74 var(--font-display);
+  letter-spacing: var(--tracking-display);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Свой трекинг: иначе хвост слипается с крупной цифрой */
+.figure small {
+  margin-left: 4px;
+  font: var(--weight-label) var(--fs-button) / 1 var(--font-display);
+  letter-spacing: 0;
+}
+
+.burn {
+  margin-left: auto;
+  font: 400 var(--fs-caption) / 1.25 var(--font-body);
+  letter-spacing: 0;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.sub {
+  margin-top: auto;
+  font-size: var(--fs-min);
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.sub b {
+  display: block;
+  margin-bottom: 3px;
+  font: var(--weight-label) var(--fs-button) / 1 var(--font-display);
+}
+
+.pill,
+.pillQuiet {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 42px;
+  margin-top: auto;
+  border-radius: var(--r-button-sm);
+  font: var(--weight-label) var(--fs-button) / 1 var(--font-display);
+}
+
+.pill {
+  background: var(--accent-ink);
+  color: var(--text);
+}
+
+.pillQuiet {
+  background: color-mix(in srgb, var(--accent-ink) 12%, transparent);
+}
+
+@media (max-width: 379px) {
+  .threat .headSide svg {
+    display: none;
+  }
+}
+
+/* Монета лежит на углу плитки и выходит за край */
+.coin {
+  position: absolute;
+  top: -14px;
+  right: -8px;
+  rotate: 12deg;
+}
+
+/* Фирменный огонь: знак стрика */
+.flame {
+  position: absolute;
+  right: 8px;
+  top: 34px;
+  width: 50px;
+  aspect-ratio: 810 / 1212;
+  background: var(--text);
+  -webkit-mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+  mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+}
+
+.threat .flame {
+  top: 30px;
+  right: 34px;
+  width: 56px;
+  background: var(--accent-ink);
+  opacity: 0.1;
+}
+
+.goal {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  margin-top: auto;
+}
+
+.goal .sub {
+  margin: 0;
+}
+
+/* На цветной плитке пустые сегменты прозрачно-белые */
+.streak .goal {
+  --idle: rgba(255, 255, 255, 0.28);
+}
