@@ -34,19 +34,15 @@ jobs:
             echo "ready=false" >> "$GITHUB_OUTPUT"
           fi
 
-  deploy:
+  build:
     needs: code
     if: needs.code.outputs.ready == 'true'
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-node@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
-          cache: npm
       - run: npm ci
       - run: npm run build
         env:
@@ -54,8 +50,16 @@ jobs:
           APP_CODE: ${{ secrets.APP_CODE }}
       # любая ссылка внутрь приложения открывает его же
       - run: cp dist/index.html dist/404.html
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
       - id: deploy
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
