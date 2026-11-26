@@ -19,12 +19,14 @@ type Props = {
   before: Side
   after: Side
   image?: string
+  /** картинка — фото со своим фоном: растворяем края, чтобы огонь горел вокруг */
+  photo?: boolean
   action?: string
   onClose: () => void
 }
 
 /** Отбивка: награда собрана. Монеты летят в баланс, шкала опыта растёт */
-export function RewardScreen({ title, reward, before, after, image, action = 'К заданиям', onClose }: Props) {
+export function RewardScreen({ title, reward, before, after, image, photo, action = 'К заданиям', onClose }: Props) {
   const root = useRef<HTMLDivElement>(null)
   const art = useRef<HTMLImageElement>(null)
   const chips = useRef<HTMLDivElement>(null)
@@ -95,7 +97,7 @@ export function RewardScreen({ title, reward, before, after, image, action = 'К
       </header>
       <div className={s.stage}>
         <Fire state={fire} className={s.fire} />
-        <img ref={art} className={s.art} src={image ?? '/assets/rewards/emblem.webp'} alt="" data-item={image ? '' : undefined} />
+        <img ref={art} className={s.art} src={image ?? '/assets/rewards/emblem.webp'} alt="" data-item={image ? '' : undefined} data-photo={photo || undefined} />
       </div>
       <h1 className={s.title}>Награда твоя</h1>
       <p className={s.name}>{title}</p>

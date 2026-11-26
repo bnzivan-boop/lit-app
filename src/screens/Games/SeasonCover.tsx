@@ -6,16 +6,17 @@ import { leagueArt, leagueOf, seasonArt, SEASON } from '../../data/season'
 import { usePanel } from '../../lib/usePanel'
 import s from './SeasonCover.module.css'
 
-/** Обложка сезона вверху «Игр»: Титан, моя лига, сила и путь до следующей лиги */
+/** Обложка сезона вверху «Игр» — постер: фото на всю обложку, крупное название, лига со шкалой, кнопка */
 export function SeasonCover({ now, onOpen }: { now: number; onOpen: () => void }) {
   const frame = useRef<HTMLSpanElement>(null)
   const clip = usePanel(frame, { bottom: [34, 0], r: 0.1 })
   const power = SEASON.power
   const { league, next } = leagueOf(power)
-    return (
+  return (
     <section className={s.cover}>
       <span ref={frame} className={s.frame} style={clip}>
-        <img className={s.photo} src={seasonArt('titan')} alt="" />
+        <img className={s.photo} src={seasonArt('titan-cover')} alt="" />
+        <span className={s.tint} />
         <span className={s.shade} />
       </span>
       <button type="button" className={s.hit} aria-label={`Сезон «${SEASON.title}»: подробнее`} onClick={onOpen} />
@@ -25,7 +26,6 @@ export function SeasonCover({ now, onOpen }: { now: number; onOpen: () => void }
       </span>
       <div className={s.body}>
         <h1>{SEASON.title}</h1>
-        <p>Набирай силу Титана в играх и поднимайся от Бронзы до Бриллианта</p>
         <div className={s.me} data-league={league.id}>
           <img className={s.badge} src={leagueArt(league.id)} alt="" />
           <div className={s.stat}>

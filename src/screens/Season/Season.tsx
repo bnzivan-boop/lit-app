@@ -11,6 +11,7 @@ import { findGame, gameCover } from '../../data/games'
 import { leagueArt, leagueOf, nextReward, seasonArt, SEASON, type BoardRow, type Challenge } from '../../data/season'
 import { useStore } from '../../data/store'
 import { useOpen, useOrigin } from '../../lib/useOrigin'
+import { Power, PowerIcon } from './parts'
 import s from './Season.module.css'
 
 /* временные головы из макета для тройки, пока нет аватаров игроков */
@@ -33,14 +34,6 @@ const toNext = (el: HTMLDivElement | null) => {
 const tone = (c: Challenge) => ({ '--tone': findGame(c.game)?.color ?? '#0b5753' }) as CSSProperties
 const hue = (nick: string) => ({ '--hue': (nick.charCodeAt(0) * 47) % 360 }) as CSSProperties
 
-/** Сила Титана с молнией: так сила отличается от монет */
-const Power = ({ value, plus }: { value: number; plus?: boolean }) => (
-  <span className={s.powerChip}>
-    <Icon name="bolt" size={16} />
-    {plus ? '+' : ''}
-    {num(value)}
-  </span>
-)
 
 /** Экран сезона: моя лига и сила, следующая награда, испытания трёх видов, лидерборд, награды */
 export function Season() {
@@ -111,7 +104,7 @@ export function Season() {
           <span className={s.nextText}>
             <span className={s.nextLabel}>осталось</span>
             <b>
-              <Icon name="bolt" size={30} />
+              <PowerIcon size={46} />
               {num(reward.power - power)}
             </b>
             <span className={s.nextSub}>бокс откроется на {num(reward.power)} силы</span>
@@ -136,7 +129,7 @@ export function Season() {
         ) : (
           <div className={s.list}>
             {SEASON.challenges[kind].map((c) => (
-              <Row key={c.id} c={c} onClick={() => go(c.game ? `/games/${c.game}` : '/games')} />
+              <Row key={c.id} c={c} onClick={() => go(c.progress >= c.goal ? `/season/passed/${c.id}` : c.game ? `/games/${c.game}` : '/games')} />
             ))}
           </div>
         )}
@@ -168,7 +161,7 @@ export function Season() {
                   {r.place <= 3 && !r.me ? <img className={s.head3} src={HEADS[r.place - 1]} alt="" /> : avatar(r)}
                   <span className={s.playerPlace}>{r.place}</span>
                   <span className={s.playerNick}>{r.me ? 'Ты' : r.nick}</span>
-                  <Power value={r.power} />
+                  <Power className={s.powerChip} value={r.power} />
                 </li>
               ))}
             </ol>
@@ -184,7 +177,7 @@ export function Season() {
                   </span>
                   {avatar(r)}
                   <span className={s.tableNick}>{r.me ? 'Ты' : r.nick}</span>
-                  <Power value={r.power} />
+                  <Power className={s.powerChip} value={r.power} />
                 </li>
               ))}
             </ol>
@@ -215,7 +208,7 @@ export function Season() {
                     <img src={seasonArt(r.box)} alt="" />
                     {state !== 'next' && <i>{state === 'open' ? <Icon name="check" size={16} /> : <Icon name="lock" size={14} />}</i>}
                   </span>
-                  <Power value={r.power} />
+                  <Power className={s.powerChip} value={r.power} />
                 </span>
               )
             })}
@@ -311,7 +304,7 @@ function Row({ c, onClick }: { c: Challenge; onClick: () => void }) {
       <span className={s.gain}>
         <b>+{num(c.power)}</b>
         <span>
-          <Icon name="bolt" size={14} /> силы
+          <PowerIcon size={18} /> силы
         </span>
       </span>
     </button>
@@ -332,7 +325,7 @@ function Seasonal({ c }: { c: Challenge }) {
       </span>
       <Steps c={c} />
       <span className={s.seasonalGain}>
-        <Power value={c.power} plus /> и бокс
+        <Power className={s.powerChip} value={c.power} plus /> и бокс
       </span>
     </article>
   )

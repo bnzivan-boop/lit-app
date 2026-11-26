@@ -34,6 +34,11 @@ import { Wheel } from './screens/Wheel/Wheel'
 import { Tasks } from './screens/Tasks/Tasks'
 import { Stub } from './screens/Stub/Stub'
 import { Season } from './screens/Season/Season'
+import { Advent } from './screens/Advent/Advent'
+import { About } from './screens/Season/About'
+import { Rewards } from './screens/Season/Rewards'
+import { Leaders } from './screens/Season/Leaders'
+import { Moment } from './screens/Season/Moment'
 import s from './App.module.css'
 
 const PATH: Record<TabId, string> = { home: '/', tasks: '/tasks', scan: '/promo', games: '/games', shop: '/shop' }
@@ -115,10 +120,14 @@ function Pages() {
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/friends" element={<Friends />} />
+        <Route path="/advent" element={<Advent />} />
         <Route path="/season" element={<Season />} />
-        <Route path="/season/about" element={<Stub title="О сезоне" />} />
-        <Route path="/season/rewards" element={<Stub title="Награды сезона" />} />
-        <Route path="/season/board" element={<Stub title="Лидерборд" />} />
+        <Route path="/season/about" element={<About />} />
+        <Route path="/season/rewards" element={<Rewards />} />
+        <Route path="/season/board" element={<Leaders />} />
+        <Route path="/season/passed/:id" element={<Moment kind="passed" />} />
+        <Route path="/season/up" element={<Moment kind="up" />} />
+        <Route path="/season/end" element={<Moment kind="end" />} />
         <Route path="/games/:id" element={<GamePage />} />
         <Route path="/games/:id/top" element={<Board />} />
         <Route path="/games/:id/play" element={<Play />} />

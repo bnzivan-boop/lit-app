@@ -6,6 +6,8 @@ export type League = { id: LeagueId; name: string; /** «до Серебра» *
 export type Challenge = { id: string; game?: string; title: string; text: string; progress: number; goal: number; power: number; hard?: boolean; box?: string }
 export type BoardRow = { place: number; nick: string; power: number; me?: boolean }
 export type Board = { size: number; rows: BoardRow[] }
+/** бокс: софт гарантирован, хард выпадает с шансом (%) */
+export type Box = { box: string; soft: number; hard: number; chance: number }
 
 /** Сезон: лига растёт от набранной силы Титана, вниз не падает */
 export const SEASON = mock.season as {
@@ -15,7 +17,7 @@ export const SEASON = mock.season as {
   leagues: League[]
   challenges: { daily: Challenge[]; weekly: Challenge[]; seasonal: Challenge }
   /** базовые — за силу, дополнительные — за товары из чеков */
-  rewards: { base: { power: number; box: string }[]; extra: { items: number; box: string }[]; items: number }
+  rewards: { base: (Box & { power: number })[]; extra: (Box & { items: number })[]; items: number }
   board: { group: Board; all: Board }
 }
 

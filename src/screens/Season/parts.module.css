@@ -1,0 +1,35 @@
+.power {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font: var(--weight-display) 18px / 1 var(--font-display);
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+}
+
+.power {
+  gap: 4px;
+}
+
+.icon {
+  flex: none;
+  filter: drop-shadow(0 2px 4px rgb(0 0 0 / 0.4));
+}
+
+.back {
+  position: absolute;
+  z-index: 3;
+  left: var(--screen-pad);
+  top: calc(var(--safe-top) + 10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--tap);
+  height: var(--tap);
+  border-radius: 50%;
+  background: #050909;
+}
+
+.back svg {
+  rotate: 180deg;
+}

@@ -174,9 +174,41 @@ type State = {
   /** id заданий, награда за которые собрана; chest — сундук дня */
   claimed: string[]
   wheelSpun: boolean
+  /** адвент-календарь: собранные дни и сколько пропусков уже вернули сегодня */
+  advent: { taken: number[]; restored: number }
 }
 
-type Action = { type: 'profile'; data: Partial<State['profile']> } | { type: 'notify'; data: Partial<Notify> } | { type: 'friend'; nick: string; at: number } | { type: 'invited'; code: string } | { type: 'cart'; line: CartLine } | { type: 'checkout'; data: Checkout } | { type: 'order'; at: number } | { type: 'collect'; amount: number; at: number } | { type: 'toggleRemind' } | { type: 'receipt'; at: number } | { type: 'claim'; id: string; at: number } | { type: 'finishGame'; game: string; score: number; at: number } | { type: 'submitVideo'; id: string; link: string } | { type: 'approve'; id: string } | { type: 'spinWheel'; prize: WheelPrize } | { type: 'openCase'; price: number; loots: Loot[]; at: number; free?: boolean }
+type Action = { type: 'profile'; data: Partial<State['profile']> } | { type: 'notify'; data: Partial<Notify> } | { type: 'friend'; nick: string; at: number } | { type: 'invited'; code: string } | { type: 'cart'; line: CartLine } | { type: 'checkout'; data: Checkout } | { type: 'order'; at: number } | { type: 'collect'; amount: number; at: number } | { type: 'toggleRemind' } | { type: 'receipt'; at: number } | { type: 'claim'; id: string; at: number } | { type: 'finishGame'; game: string; score: number; at: number } | { type: 'submitVideo'; id: string; link: string } | { type: 'approve'; id: string } | { type: 'spinWheel'; prize: WheelPrize } | { type: 'openCase'; price: number; loots: Loot[]; at: number; free?: boolean } | { type: 'advent'; day: number }
+
+/** Адвент-календарь: подарок дня 1–24 декабря, плюс возврат пропущенных (1 в день, с 25-го — 2) */
+export const ADVENT = mock.advent as {
+  title: string
+  year: number
+  today: number
+  gifts: number
+  lateFrom: number
+  taken: number[]
+  reward: { soft: number; hard: number }
+  restore: { early: number; late: number }
+  rules: { when: string; text: string }[]
+}
+const adventRestoreLimit = () => (ADVENT.today >= ADVENT.lateFrom ? ADVENT.restore.late : ADVENT.restore.early)
+
+function adventView(a: State['advent']) {
+  const last = Math.min(ADVENT.today, ADVENT.gifts)
+  const missed = Array.from({ length: last }, (_, i) => i + 1).filter((d) => d < ADVENT.today && !a.taken.includes(d))
+  const todayReady = ADVENT.today <= ADVENT.gifts && !a.taken.includes(ADVENT.today)
+  const restoreLeft = Math.max(0, adventRestoreLimit() - a.restored)
+  return {
+    ...ADVENT,
+    taken: a.taken,
+    missed,
+    todayReady,
+    restoreLeft,
+    /** сколько подарков можно забрать прямо сейчас */
+    available: (todayReady ? 1 : 0) + Math.min(restoreLeft, missed.length),
+  }
+}
 
 /* для показа: ?soft=5000 и ?hard=5000 задают баланс */
 function demo(kind: 'soft' | 'hard') {
@@ -211,6 +243,7 @@ function init(id: ScenarioId): State {
     receipt: null,
     inventory: [],
     wheelSpun: false,
+    advent: { taken: ADVENT.taken, restored: 0 },
     best: Object.fromEntries(GAMES.map((g) => [g.id, g.best])),
     run: null,
     boxTaken: false,
@@ -396,6 +429,17 @@ function reduce(s: State, a: Action): State {
         progress: addXp(s.progress, xp * (s.boostUntil > a.at ? mock.receiptBoost.multiplier : 1)),
       }
     }
+    case 'advent': {
+      const { taken, restored } = s.advent
+      if (taken.includes(a.day) || a.day > ADVENT.today || a.day > ADVENT.gifts) return s
+      const back = a.day < ADVENT.today
+      if (back && restored >= adventRestoreLimit()) return s
+      return {
+        ...s,
+        advent: { taken: [...taken, a.day].sort((x, y) => x - y), restored: restored + (back ? 1 : 0) },
+        balance: { soft: s.balance.soft + ADVENT.reward.soft, hard: s.balance.hard + ADVENT.reward.hard },
+      }
+    }
     case 'invited':
       return s.invitedBy ? s : { ...s, invitedBy: a.code, balance: { ...s.balance, soft: s.balance.soft + (REFERRAL.newcomer.soft ?? 0) } }
     case 'receipt':
@@ -502,6 +546,8 @@ function useStoreValue(id: ScenarioId) {
     now,
     weekEndsAt: Date.parse(mock.leagueWeek.endsAt),
     claim: (questId: string) => dispatch({ type: 'claim', id: questId, at: now }),
+    advent: adventView(state.advent),
+    collectAdvent: (day: number) => dispatch({ type: 'advent', day }),
     profile: state.profile,
     saveProfile: (data: Partial<State['profile']>) => dispatch({ type: 'profile', data }),
     notify: state.notify,

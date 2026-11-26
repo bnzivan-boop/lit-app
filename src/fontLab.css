@@ -1,0 +1,54 @@
+/* Примерка шрифтов для заголовков и цифр: /?font=steelfish | damn | coolvetica | adderley, /?font=roboto — вернуть.
+   Трекинг −5% подобран под Roboto: узким шрифтам его убираем, иначе буквы слипаются.
+   У каждого шрифта одно начертание: объявляем его на весь диапазон весов, чтобы браузер не рисовал ложный жирный. */
+
+@font-face {
+  font-family: 'Lab Steelfish';
+  src: url('/fonts-lab/steelfish.ttf') format('truetype');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lab DAMN';
+  /* с осью оптического размера: мелкий текст шире по интервалу, крупный плотнее — браузер берёт размер сам */
+  src: url('/fonts-lab/damn-optical.ttf') format('truetype');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lab Coolvetica';
+  src: url('/fonts-lab/coolvetica.ttf') format('truetype');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lab Adderley';
+  /* буквы сжаты по горизонтали до 90 % */
+  src: url('/fonts-lab/adderley-narrow.ttf') format('truetype');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+html[data-font='steelfish'] {
+  --font-display: 'Lab Steelfish', 'Roboto Condensed', sans-serif;
+  --tracking-display: 0.02em;
+}
+
+html[data-font='damn'] {
+  --font-display: 'Lab DAMN', 'Roboto Condensed', sans-serif;
+  --tracking-display: 0;
+  font-optical-sizing: auto;
+}
+
+html[data-font='coolvetica'] {
+  --font-display: 'Lab Coolvetica', 'Roboto Condensed', sans-serif;
+  --tracking-display: 0;
+}
+
+html[data-font='adderley'] {
+  --font-display: 'Lab Adderley', 'Roboto Condensed', sans-serif;
+  --tracking-display: 0;
+}

@@ -8,3 +8,6 @@ design
 skills
 install-skills.sh
 .env
+
+# шрифты из примерки: лицензии не проверены, наружу не публикуем
+public/fonts-lab

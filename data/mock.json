@@ -255,6 +255,17 @@
       { "place": 30, "nick": "arsen_k", "power": 220 }
     ]
   },
+  "advent": {
+    "title": "Новогодние призы", "year": 2026, "today": 19, "gifts": 24, "lateFrom": 25,
+    "taken": [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15, 16, 17, 18],
+    "reward": { "soft": 150, "hard": 10 },
+    "restore": { "early": 1, "late": 2 },
+    "rules": [
+      { "when": "1–24 декабря", "text": "Новый подарок в 00:00 по Москве. Забирай его и один пропущенный на выбор" },
+      { "when": "25–31 декабря", "text": "Новых подарков нет — можно вернуть до двух пропущенных в день" },
+      { "when": "Главный приз", "text": "Собери все 24 подарка и участвуй в новогоднем розыгрыше" }
+    ]
+  },
   "season": {
     "title": "Титаны", "endsAt": "2026-12-21T23:59:00+03:00", "power": 1250,
     "leagues": [
@@ -267,7 +278,7 @@
     "challenges": {
       "daily": [
         { "id": "d1", "game": "energy-rush", "title": "Победи в Энерджи Раш", "text": "Займи 1 место в гонке", "progress": 1, "goal": 3, "power": 150 },
-        { "id": "d2", "title": "Сыграй в 3 игры", "text": "Любые мини-игры", "progress": 1, "goal": 3, "power": 150 },
+        { "id": "d2", "title": "Сыграй в 3 игры", "text": "Любые мини-игры", "progress": 3, "goal": 3, "power": 150 },
         { "id": "d3", "game": "energy-ninja", "title": "Набери 100 очков в Энерджи Ниндзя", "text": "За одну игру", "progress": 40, "goal": 100, "power": 250, "hard": true }
       ],
       "weekly": [
@@ -279,12 +290,19 @@
     },
     "rewards": {
       "base": [
-        { "power": 100, "box": "box-3" }, { "power": 500, "box": "box-4" }, { "power": 1000, "box": "box-8" },
-        { "power": 1500, "box": "box-1" }, { "power": 3000, "box": "box-5" }, { "power": 5000, "box": "box-2" }
+        { "power": 100, "box": "box-3", "soft": 300, "hard": 20, "chance": 10 },
+        { "power": 500, "box": "box-4", "soft": 800, "hard": 40, "chance": 10 },
+        { "power": 1000, "box": "box-8", "soft": 1500, "hard": 60, "chance": 15 },
+        { "power": 1500, "box": "box-1", "soft": 3000, "hard": 100, "chance": 15 },
+        { "power": 3000, "box": "box-5", "soft": 6000, "hard": 200, "chance": 20 },
+        { "power": 5000, "box": "box-2", "soft": 12000, "hard": 400, "chance": 25 }
       ],
       "extra": [
-        { "items": 10, "box": "box-9" }, { "items": 30, "box": "box-6" }, { "items": 50, "box": "box-2" },
-        { "items": 100, "box": "box-5" }, { "items": 200, "box": "box-1" }
+        { "items": 10, "box": "box-9", "soft": 5000, "hard": 300, "chance": 30 },
+        { "items": 30, "box": "box-6", "soft": 12000, "hard": 600, "chance": 35 },
+        { "items": 50, "box": "box-2", "soft": 20000, "hard": 1000, "chance": 40 },
+        { "items": 100, "box": "box-5", "soft": 45000, "hard": 2500, "chance": 50 },
+        { "items": 200, "box": "box-1", "soft": 90000, "hard": 5000, "chance": 60 }
       ],
       "items": 4
     },

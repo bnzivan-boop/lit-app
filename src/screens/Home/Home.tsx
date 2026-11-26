@@ -8,6 +8,7 @@ import { Hero, HeroSkeleton } from '../../components/Hero'
 import { SegmentBar } from '../../components/ProgressBar'
 import { PromoBanner } from '../../components/PromoBanner'
 import { BannerCarousel } from '../../components/BannerCarousel'
+import { AdventBanner } from '../Advent/AdventBanner'
 import { PromoSlide } from '../Promo/PromoSlide'
 import { PROMOS } from '../../data/promos'
 import { Skeleton } from '../../components/Skeleton'
@@ -78,6 +79,8 @@ export function Home({ topBar = true }: { topBar?: boolean }) {
         <ChargeTile ref={tile} {...charge} main={action.kind === 'charge'} onCollect={collect} />
         <StreakTile {...streak} onSave={() => action.kind === 'streak' && play(action.game)} />
       </div>
+
+      <AdventBanner onOpen={() => go('/advent')} />
 
       <BannerCarousel>
         {banners.map((b) => (

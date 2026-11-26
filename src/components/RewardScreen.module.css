@@ -71,6 +71,12 @@
   max-width: 78%;
 }
 
+.art[data-photo] {
+  max-width: 96%;
+  -webkit-mask: radial-gradient(closest-side, #000 52%, transparent 96%);
+  mask: radial-gradient(closest-side, #000 52%, transparent 96%);
+}
+
 @keyframes hit {
   0% {
     opacity: 0;

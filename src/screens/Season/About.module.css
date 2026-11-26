@@ -1,0 +1,179 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  padding: 0 var(--screen-pad) calc(var(--safe-bottom) + 104px);
+  color: #fff;
+}
+
+.hero {
+  position: relative;
+  margin-inline: calc(var(--screen-pad) * -1);
+  padding-top: var(--safe-top);
+  overflow: hidden;
+}
+
+.hero img {
+  display: block;
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  object-position: 50% 30%;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 48px;
+  background: linear-gradient(transparent, var(--bg));
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.head h1 {
+  font-size: var(--fs-screen-lg);
+}
+
+.head p {
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+}
+
+.mine {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 18px;
+  background: var(--surface-1);
+  font-size: var(--fs-body-sm);
+}
+
+/* лига — карточка в цвете своего металла */
+.leagues {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.league {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 96px;
+  padding: 10px 16px 10px 10px;
+  border-radius: 22px;
+  background:
+    radial-gradient(70% 140% at 0% 50%, color-mix(in srgb, var(--metal) 46%, transparent), transparent 72%),
+    var(--surface-1);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--metal) 34%, transparent);
+}
+
+.league[data-state='now'] {
+  background:
+    radial-gradient(80% 160% at 0% 50%, color-mix(in srgb, var(--metal) 72%, transparent), transparent 74%),
+    var(--surface-1);
+  box-shadow: inset 0 0 0 2px var(--metal);
+}
+
+.league img {
+  flex: none;
+  width: 76px;
+  filter: drop-shadow(0 6px 10px rgb(0 0 0 / 0.5));
+}
+
+.text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.label {
+  color: var(--metal-hi);
+  font: var(--weight-label) 14px / 1 var(--font-display);
+  text-transform: uppercase;
+}
+
+.text b {
+  font: var(--weight-display) 34px / 0.95 var(--font-display);
+  letter-spacing: var(--tracking-display);
+  text-transform: uppercase;
+}
+
+.left {
+  font-size: var(--fs-body-sm);
+  opacity: 0.7;
+}
+
+.mark {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgb(0 0 0 / 0.35);
+}
+
+.league[data-state='past'] .mark {
+  background: var(--metal);
+  color: #1a0d06;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.section h2 {
+  font-size: var(--fs-section);
+}
+
+.rules {
+  display: grid;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rules li {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  align-items: start;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+/* цифра по верхней грани первой строки */
+.rules b {
+  margin-top: 1px;
+  color: var(--accent);
+  font: var(--weight-display) 28px / 0.8 var(--font-display);
+  letter-spacing: var(--tracking-display);
+}
+
+.dock {
+  position: fixed;
+  z-index: 5;
+  inset: auto 0 0;
+  padding: 12px var(--screen-pad) calc(var(--safe-bottom) + 12px);
+  background: var(--bg);
+  border-top: 1px solid var(--line);
+}
