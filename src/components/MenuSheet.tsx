@@ -17,6 +17,7 @@ const ICON: Record<string, IconName> = {
   settings: 'gear',
   company: 'info',
   wheel: 'wheel',
+  levels: 'box',
 }
 
 type Props = {

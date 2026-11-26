@@ -36,6 +36,7 @@ import { Tasks } from './screens/Tasks/Tasks'
 import { Stub } from './screens/Stub/Stub'
 import { Season } from './screens/Season/Season'
 import { Advent } from './screens/Advent/Advent'
+import { Levels } from './screens/Levels/Levels'
 import { About } from './screens/Season/About'
 import { Rewards } from './screens/Season/Rewards'
 import { Leaders } from './screens/Season/Leaders'
@@ -123,6 +124,7 @@ function Pages() {
         <Route path="/settings" element={<Settings />} />
         <Route path="/friends" element={<Friends />} />
         <Route path="/advent" element={<Advent />} />
+        <Route path="/levels" element={<Levels />} />
         <Route path="/season" element={<Season />} />
         <Route path="/season/about" element={<About />} />
         <Route path="/season/rewards" element={<Rewards />} />

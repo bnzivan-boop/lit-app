@@ -73,6 +73,8 @@ export function Home({ topBar = true }: { topBar?: boolean }) {
         onProfile={() => go('/profile')}
         onMenu={() => setMenu(true)}
         onCopyId={copyId}
+        onLevels={() => go('/levels')}
+        levelReady={store.levels.ready}
       />
 
       <div className={s.tiles}>
@@ -122,7 +124,7 @@ export function Home({ topBar = true }: { topBar?: boolean }) {
           items={store.menu}
           onCopyId={copyId}
           onClose={() => setMenu(false)}
-          badges={{ wheel: store.wheel.spun ? '' : 'Крутить', friend: store.referral.ready > 0 ? `Собрать ${store.referral.ready}` : '' }}
+          badges={{ levels: store.levels.ready ? `Собрать ${store.levels.ready}` : '', wheel: store.wheel.spun ? '' : 'Крутить', friend: store.referral.ready > 0 ? `Собрать ${store.referral.ready}` : '' }}
           onSelect={(id) => {
             if (id === 'delete') return setLeaving(true)
             if (id === 'profile' || id === 'wheel') return go(`/${id}`)

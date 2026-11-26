@@ -28,6 +28,7 @@
   ],
   "menu": [
     { "id": "wheel", "title": "Колесо фортуны", "group": "wheel" },
+    { "id": "levels", "title": "Награды за уровень", "group": "wheel" },
     { "id": "orders", "title": "Мои заказы", "group": "orders" },
     { "id": "track", "title": "Где мой заказ", "group": "orders" },
     { "id": "notifications", "title": "Уведомления", "group": "app" },
@@ -35,6 +36,41 @@
     { "id": "support", "title": "Написать в поддержку", "group": "help" },
     { "id": "settings", "title": "Настройки", "group": "app" }
   ],
+  "levelRewards": {
+    "max": 30,
+    "claimedUpTo": 13,
+    "list": [
+      {"level": 2, "soft": 200},
+      {"level": 3, "soft": 250, "hard": 20},
+      {"level": 4, "soft": 200},
+      {"level": 5, "soft": 1000, "hard": 100},
+      {"level": 6, "soft": 200},
+      {"level": 7, "soft": 250, "hard": 20},
+      {"level": 8, "soft": 200},
+      {"level": 9, "soft": 250, "hard": 20},
+      {"level": 10, "soft": 1000, "hard": 100},
+      {"level": 11, "soft": 250, "hard": 20},
+      {"level": 12, "soft": 200},
+      {"level": 13, "soft": 250, "hard": 20},
+      {"level": 14, "soft": 200},
+      {"level": 15, "soft": 1000, "hard": 100},
+      {"level": 16, "soft": 200},
+      {"level": 17, "soft": 250, "hard": 20},
+      {"level": 18, "soft": 200},
+      {"level": 19, "soft": 250, "hard": 20},
+      {"level": 20, "soft": 1000, "hard": 100},
+      {"level": 21, "soft": 250, "hard": 20},
+      {"level": 22, "soft": 200},
+      {"level": 23, "soft": 250, "hard": 20},
+      {"level": 24, "soft": 200},
+      {"level": 25, "soft": 1000, "hard": 100},
+      {"level": 26, "soft": 200},
+      {"level": 27, "soft": 250, "hard": 20},
+      {"level": 28, "soft": 200},
+      {"level": 29, "soft": 250, "hard": 20},
+      {"level": 30, "soft": 1000, "hard": 100}
+    ]
+  },
   "promoStats": { "receipts": 3, "tickets": 3, "dreams": 1 },
   "promos": [
     {

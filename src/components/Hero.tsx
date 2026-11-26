@@ -17,6 +17,10 @@ type Props = {
   nick: string
   id: string
   level: number
+  /** открыть награды за уровень */
+  onLevels?: () => void
+  /** сколько наград за уровень ждут сбора */
+  levelReady?: number
   xp: number
   xpNext: number
   balance: { soft: number; hard: number }
@@ -32,7 +36,7 @@ type Props = {
 }
 
 /** Герой главной: ник, наклонная плашка, голова выходит за край, капсула уровня, жидкая шкала опыта */
-export function Hero({ nick, id, level, xp, xpNext, balance, boost, fire, head, softCoin, onProfile, onMenu, onCopyId }: Props) {
+export function Hero({ nick, id, level, xp, xpNext, balance, boost, fire, head, softCoin, onProfile, onMenu, onCopyId, onLevels, levelReady = 0 }: Props) {
   const plate = useRef<HTMLDivElement>(null)
   /* верхний край опускается вправо */
   const shape = usePlate(plate, 0, 44)
@@ -52,10 +56,11 @@ export function Hero({ nick, id, level, xp, xpNext, balance, boost, fire, head, 
       <div ref={plate} className={s.plate} style={shape} />
       {isNewYear() ? <Festive className={s.fire} /> : <Fire state={fire} className={s.fire} />}
       <img ref={head} className={s.head} src="/assets/characters/hero-head-blue-fire.png" alt="" />
-      <div className={s.level}>
+      <button type="button" className={`press ${s.level}`} onClick={onLevels} aria-label={`Уровень ${level}: награды за уровень${levelReady ? `, ждут ${levelReady}` : ''}`}>
         <span>{level}</span>
         LVL
-      </div>
+        {levelReady ? <i className={s.levelDot}>{levelReady}</i> : null}
+      </button>
       <IconButton icon="menu" label="Меню" onClick={onMenu} className={s.menu} />
       <div className={s.money}>
         <Money kind="soft" value={balance.soft} coin={softCoin} />

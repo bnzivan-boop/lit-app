@@ -178,9 +178,26 @@ type State = {
   wheelSpun: boolean
   /** адвент-календарь: собранные дни и сколько пропусков уже вернули сегодня */
   advent: { taken: number[]; restored: number }
+  /** уровни, награду за которые уже собрали */
+  levelsClaimed: number[]
 }
 
-type Action = { type: 'profile'; data: Partial<State['profile']> } | { type: 'notify'; data: Partial<Notify> } | { type: 'friend'; nick: string; at: number } | { type: 'invited'; code: string } | { type: 'cart'; line: CartLine } | { type: 'checkout'; data: Checkout } | { type: 'order'; at: number } | { type: 'collect'; amount: number; at: number } | { type: 'toggleRemind' } | { type: 'receipt'; at: number } | { type: 'claim'; id: string; at: number } | { type: 'finishGame'; game: string; score: number; at: number } | { type: 'submitVideo'; id: string; link: string } | { type: 'approve'; id: string } | { type: 'spinWheel'; prize: WheelPrize } | { type: 'openCase'; price: number; loots: Loot[]; at: number; free?: boolean } | { type: 'advent'; day: number }
+type Action = { type: 'profile'; data: Partial<State['profile']> } | { type: 'notify'; data: Partial<Notify> } | { type: 'friend'; nick: string; at: number } | { type: 'invited'; code: string } | { type: 'cart'; line: CartLine } | { type: 'checkout'; data: Checkout } | { type: 'order'; at: number } | { type: 'collect'; amount: number; at: number } | { type: 'toggleRemind' } | { type: 'receipt'; at: number } | { type: 'claim'; id: string; at: number } | { type: 'finishGame'; game: string; score: number; at: number } | { type: 'submitVideo'; id: string; link: string } | { type: 'approve'; id: string } | { type: 'spinWheel'; prize: WheelPrize } | { type: 'openCase'; price: number; loots: Loot[]; at: number; free?: boolean } | { type: 'advent'; day: number } | { type: 'level'; level: number }
+
+/** Награды за уровень: каждый новый уровень даёт софт и/или хард, собирать вручную */
+export type LevelReward = { level: number; soft?: number; hard?: number }
+export const LEVELS = mock.levelRewards as { max: number; claimedUpTo: number; list: LevelReward[] }
+
+function levelsView(claimed: number[], p: State['progress']) {
+  /* с какого XP начинается уровень: шаг между уровнями постоянный */
+  const from = (level: number) => p.xpNext - (p.level + 1 - level) * XP_STEP
+  const list = LEVELS.list.map((r) => ({
+    ...r,
+    from: from(r.level),
+    state: claimed.includes(r.level) ? ('taken' as const) : r.level <= p.level ? ('ready' as const) : ('locked' as const),
+  }))
+  return { list, ready: list.filter((r) => r.state === 'ready').length, current: p.level, from: from(p.level) }
+}
 
 /** Адвент-календарь: подарок дня 1–24 декабря, плюс возврат пропущенных (1 в день, с 25-го — 2) */
 export const ADVENT = mock.advent as {
@@ -259,6 +276,7 @@ function init(id: ScenarioId): State {
     inventory: [],
     wheelSpun: false,
     advent: { taken: ADVENT.taken, restored: 0 },
+    levelsClaimed: LEVELS.list.filter((r) => r.level <= LEVELS.claimedUpTo).map((r) => r.level),
     best: Object.fromEntries(GAMES.map((g) => [g.id, g.best])),
     run: null,
     boxTaken: false,
@@ -445,6 +463,15 @@ function reduce(s: State, a: Action): State {
         progress: addXp(s.progress, xp * (s.boostUntil > a.at ? mock.receiptBoost.multiplier : 1)),
       }
     }
+    case 'level': {
+      const r = LEVELS.list.find((x) => x.level === a.level)
+      if (!r || r.level > s.progress.level || s.levelsClaimed.includes(r.level)) return s
+      return {
+        ...s,
+        levelsClaimed: [...s.levelsClaimed, r.level],
+        balance: { soft: s.balance.soft + (r.soft ?? 0), hard: s.balance.hard + (r.hard ?? 0) },
+      }
+    }
     case 'advent': {
       const { taken, restored } = s.advent
       if (taken.includes(a.day) || a.day > ADVENT.today || a.day > ADVENT.gifts) return s
@@ -563,6 +590,8 @@ function useStoreValue(id: ScenarioId) {
     weekEndsAt: Date.parse(mock.leagueWeek.endsAt),
     claim: (questId: string) => dispatch({ type: 'claim', id: questId, at: now }),
     advent: adventView(state.advent),
+    levels: levelsView(state.levelsClaimed, state.progress),
+    claimLevel: (level: number) => dispatch({ type: 'level', level }),
     cashback: cashbackView(now),
     collectAdvent: (day: number) => dispatch({ type: 'advent', day }),
     profile: state.profile,

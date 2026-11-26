@@ -127,6 +127,24 @@
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.38);
 }
 
+.levelDot {
+  position: absolute;
+  right: -6px;
+  top: -6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding-inline: 5px;
+  border-radius: 11px;
+  background: #fff;
+  color: var(--bg);
+  box-shadow: 0 0 0 3px var(--bg);
+  font: var(--weight-display) 13px / 1 var(--font-display);
+  font-style: normal;
+}
+
 .level span {
   font: var(--weight-display) 34px / 0.8 var(--font-display);
   letter-spacing: var(--tracking-display);
