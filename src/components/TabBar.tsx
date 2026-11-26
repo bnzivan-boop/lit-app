@@ -30,6 +30,7 @@ export function TabBar({ active, onSelect, fixed = true, pressed, disabled = [],
       className={`press ${s.tab}`}
       aria-current={active === id ? 'page' : undefined}
       data-pressed={pressed === id || undefined}
+      data-tour={`tab-${id}`}
       disabled={disabled.includes(id)}
       onClick={() => onSelect?.(id)}
     >
@@ -51,6 +52,7 @@ export function TabBar({ active, onSelect, fixed = true, pressed, disabled = [],
           aria-label={active === 'scan' ? 'Сканировать чек' : 'Чеки и акции'}
           aria-current={active === 'scan' ? 'page' : undefined}
           data-pressed={pressed === 'scan' || undefined}
+          data-tour="tab-scan"
           disabled={disabled.includes('scan')}
           onClick={() => onSelect?.('scan')}
         >

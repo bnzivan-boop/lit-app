@@ -52,7 +52,7 @@ export function Shop() {
           <CartButton count={cartCount} onClick={() => open('/cart')} />
         </div>
         <img className={s.prize} src={drop.image} alt="" />
-        <div className={s.drop}>
+        <div className={s.drop} data-tour="s-drop">
           <h1>{drop.phase === 'live' ? 'Дроп идёт' : drop.phase === 'over' ? 'Дроп разобрали' : `Дроп ${weekdayOf(drop.startsAt)}`}</h1>
           <p>
             {drop.phase === 'live' ? `Осталось ${drop.left} из ${drop.quantity}. ` : ''}
@@ -78,7 +78,7 @@ export function Shop() {
         </div>
       </header>
 
-      <nav className={s.rail} aria-label="Лиги">
+      <nav className={s.rail} aria-label="Лиги" data-tour="s-rail">
         {LEAGUES.map((l, i) => (
           <button key={l} type="button" className="press" data-state={i === at ? 'me' : i < at ? 'open' : 'lock'} onClick={() => jump(l)}>
             <LeagueMark league={l} locked={i > at} size={i === at ? 60 : 46} />
@@ -87,7 +87,7 @@ export function Shop() {
         ))}
       </nav>
 
-      <div className={s.chips} role="radiogroup" aria-label="Раздел">
+      <div className={s.chips} data-tour="s-chips" role="radiogroup" aria-label="Раздел">
         {CATEGORIES.map((c) => (
           <button key={c.id} type="button" role="radio" aria-checked={c.id === category} className={`press ${s.chip}`} onClick={() => setCategory(c.id)}>
             {c.title}
@@ -96,7 +96,7 @@ export function Shop() {
       </div>
 
       {onSale.length > 0 && (
-        <section className={`${s.shelf} ${s.saleShelf}`}>
+        <section className={`${s.shelf} ${s.saleShelf}`} data-tour="s-sale">
           <header>
             <span className={s.saleMark}>%</span>
             <div>

@@ -41,6 +41,7 @@ export function ChargeTile({ ref, current, max, minutesToFull, main, onCollect, 
       ref={ref}
       type="button"
       className={`press ${s.tile} ${s.charge}`}
+      data-tour="charge"
       onClick={current > 0 ? onCollect : undefined}
       disabled={disabled}
       data-pressed={pressed || undefined}
@@ -92,6 +93,7 @@ export function StreakTile({ days, milestones, freezes, todayDone, threat, minut
       <button
         type="button"
         className={`press ${s.tile} ${s.threat}`}
+        data-tour="streak"
         onClick={onSave}
         data-pressed={pressed || undefined}
         aria-label={`Сохранить стрик ${daysText(days)}: ${freezes > 0 ? 'спишется заморозка' : 'сгорит'} через ${left}`}
@@ -126,7 +128,7 @@ export function StreakTile({ days, milestones, freezes, todayDone, threat, minut
   }
 
   return (
-    <div className={`${s.tile} ${s.streak}`}>
+    <div className={`${s.tile} ${s.streak}`} data-tour="streak">
       <span className={s.flame} />
       <span className={s.head}>
         Стрик

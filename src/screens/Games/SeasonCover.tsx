@@ -13,7 +13,7 @@ export function SeasonCover({ now, onOpen }: { now: number; onOpen: () => void }
   const power = SEASON.power
   const { league, next } = leagueOf(power)
   return (
-    <section className={s.cover}>
+    <section className={s.cover} data-tour="g-season">
       <span ref={frame} className={s.frame} style={clip}>
         <img className={s.photo} src={seasonArt('titan-cover')} alt="" />
         <span className={s.tint} />

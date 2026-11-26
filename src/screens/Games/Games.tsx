@@ -34,7 +34,7 @@ export function Games() {
       <BoxBar {...gameBox} next={duration(minutesToMidnight)} onOpen={() => openOver(`/case/${BOX_CASE}`)} />
 
       <h2 className={s.title}>Все игры</h2>
-      <div className={s.comic}>
+      <div className={s.comic} data-tour="g-games">
         {ROWS.map((ids, i) => {
           /* общая линия скоса между рядами: вверх-вниз по очереди */
           const line = (n: number): [number, number] => (n < 0 || n >= ROWS.length - 1 ? [0, 0] : n % 2 ? [18, 0] : [0, 18])

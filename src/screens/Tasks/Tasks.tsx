@@ -59,7 +59,7 @@ export function Tasks() {
         />
       )}
 
-      <Section title="От партнёров">
+      <Section title="От партнёров" tour="t-partner">
         {of('partner')
           .sort(byStatus)
           .map((q) => (
@@ -67,7 +67,7 @@ export function Tasks() {
           ))}
       </Section>
 
-      <Section title="Еженедельные" aside={left(weekEndsAt - now)}>
+      <Section title="Еженедельные" tour="t-weekly" aside={left(weekEndsAt - now)}>
         {of('weekly')
           .sort(byStatus)
           .map((q) => (
@@ -75,7 +75,7 @@ export function Tasks() {
           ))}
       </Section>
 
-      <Section title="Ежедневные" aside={left(midnight - now)}>
+      <Section title="Ежедневные" tour="t-daily" aside={left(midnight - now)}>
         <TaskTrio>
           {tasks.map((t) => (
             <TaskTile
@@ -122,9 +122,9 @@ export function Tasks() {
   )
 }
 
-function Section({ title, aside, children }: { title: string; aside?: string; children: React.ReactNode }) {
+function Section({ title, aside, tour, children }: { title: string; aside?: string; tour?: string; children: React.ReactNode }) {
   return (
-    <section className={s.section}>
+    <section className={s.section} data-tour={tour}>
       <header>
         <h2>{title}</h2>
         {aside && <span>{aside}</span>}

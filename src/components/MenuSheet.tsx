@@ -18,6 +18,7 @@ const ICON: Record<string, IconName> = {
   company: 'info',
   wheel: 'wheel',
   levels: 'box',
+  tour: 'question',
 }
 
 type Props = {

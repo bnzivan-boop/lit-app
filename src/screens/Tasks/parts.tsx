@@ -29,7 +29,7 @@ type Props = { q: QuestView; now: number; onOpen: () => void; onClaim: () => voi
 /** Супер-задание: герой экрана */
 export function SuperQuest({ q, now, onOpen, onClaim }: Props) {
   return (
-    <section className={s.super}>
+    <section className={s.super} data-tour="t-super">
       <span className={s.superFlame} aria-hidden />
       <span className={s.sticker}>
         Супер

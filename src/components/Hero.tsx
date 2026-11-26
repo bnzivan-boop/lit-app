@@ -56,13 +56,13 @@ export function Hero({ nick, id, level, xp, xpNext, balance, boost, fire, head, 
       <div ref={plate} className={s.plate} style={shape} />
       {isNewYear() ? <Festive className={s.fire} /> : <Fire state={fire} className={s.fire} />}
       <img ref={head} className={s.head} src="/assets/characters/hero-head-blue-fire.png" alt="" />
-      <button type="button" className={`press ${s.level}`} onClick={onLevels} aria-label={`Уровень ${level}: награды за уровень${levelReady ? `, ждут ${levelReady}` : ''}`}>
+      <button type="button" className={`press ${s.level}`} data-tour="level" onClick={onLevels} aria-label={`Уровень ${level}: награды за уровень${levelReady ? `, ждут ${levelReady}` : ''}`}>
         <span>{level}</span>
         LVL
         {levelReady ? <i className={s.levelDot}>{levelReady}</i> : null}
       </button>
       <IconButton icon="menu" label="Меню" onClick={onMenu} className={s.menu} />
-      <div className={s.money}>
+      <div className={s.money} data-tour="money">
         <Money kind="soft" value={balance.soft} coin={softCoin} />
         <Money kind="hard" value={balance.hard} />
       </div>
@@ -106,7 +106,7 @@ function Xp({ xp, next, level, boost }: { xp: number; next: number; level: numbe
     </>
   )
   return (
-    <div className={s.xp} role="progressbar" aria-label="Опыт" aria-valuemin={0} aria-valuemax={next} aria-valuenow={xp}>
+    <div data-tour="xp" className={s.xp} role="progressbar" aria-label="Опыт" aria-valuemin={0} aria-valuemax={next} aria-valuenow={xp}>
       <span ref={glow} className={s.glow} />
       <div className={s.xpText}>{text}</div>
       <div ref={fill} className={`${s.xpText} ${s.xpFill}`} aria-hidden>

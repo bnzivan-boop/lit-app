@@ -11,7 +11,7 @@ export function BoxBar({ taken, free, next, onOpen }: Props) {
   const clip = usePanel(plate, { top: [0, 32], bottom: [0, 10] })
   const ready = free > 0
   return (
-    <section className={s.bar} data-state={ready ? 'ready' : taken ? 'taken' : 'open'}>
+    <section className={s.bar} data-tour="g-box" data-state={ready ? 'ready' : taken ? 'taken' : 'open'}>
       <span ref={plate} className={s.plate} style={clip}>
         <i />
       </span>

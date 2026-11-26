@@ -32,6 +32,7 @@
     { "id": "orders", "title": "Мои заказы", "group": "orders" },
     { "id": "track", "title": "Где мой заказ", "group": "orders" },
     { "id": "notifications", "title": "Уведомления", "group": "app" },
+    { "id": "tour", "title": "Как всё устроено", "group": "help" },
     { "id": "faq", "title": "Частые вопросы", "group": "help" },
     { "id": "support", "title": "Написать в поддержку", "group": "help" },
     { "id": "settings", "title": "Настройки", "group": "app" }

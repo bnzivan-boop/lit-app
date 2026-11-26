@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { startTour } from '../../components/Tour'
 import { useNavigate, useSearchParams } from 'react-router'
 import { Button } from '../../components/Button'
 import { CaseCard, CaseCardSkeleton, CaseCarousel } from '../../components/CaseCard'
@@ -97,20 +98,24 @@ export function Home({ topBar = true }: { topBar?: boolean }) {
 
       <section className={s.section}>
         <h2>Кейсы</h2>
-        <CaseCarousel>
-          {store.cases.map((c) => (
-            <CaseCard
-              key={c.id}
-              title={c.title}
-              rarity={c.rarity}
-              price={c.price.soft}
-              image={c.image}
-              balance={balance.soft}
-              onOpen={() => open(`/case/${c.id}`)}
-            />
-          ))}
-        </CaseCarousel>
-        <DropBar {...store.drop} remind={store.remindDrop} onRemind={store.toggleRemind} onOpen={() => open('/drop')} />
+        <div data-tour="cases">
+          <CaseCarousel>
+            {store.cases.map((c) => (
+              <CaseCard
+                key={c.id}
+                title={c.title}
+                rarity={c.rarity}
+                price={c.price.soft}
+                image={c.image}
+                balance={balance.soft}
+                onOpen={() => open(`/case/${c.id}`)}
+              />
+            ))}
+          </CaseCarousel>
+        </div>
+        <div data-tour="drop">
+          <DropBar {...store.drop} remind={store.remindDrop} onRemind={store.toggleRemind} onOpen={() => open('/drop')} />
+        </div>
       </section>
 
       <section className={s.section}>
@@ -127,6 +132,10 @@ export function Home({ topBar = true }: { topBar?: boolean }) {
           badges={{ levels: store.levels.ready ? `Собрать ${store.levels.ready}` : '', wheel: store.wheel.spun ? '' : 'Крутить', friend: store.referral.ready > 0 ? `Собрать ${store.referral.ready}` : '' }}
           onSelect={(id) => {
             if (id === 'delete') return setLeaving(true)
+            if (id === 'tour') {
+              setMenu(false)
+              return setTimeout(startTour, 350)
+            }
             if (id === 'profile' || id === 'wheel') return go(`/${id}`)
             openFromMenu(MENU_PATH[id] ?? `/${id}`)
           }}
@@ -192,7 +201,7 @@ function DailyTasks({ store, onPlay, onScan }: TasksProps) {
   const { tasks, doneCount, action } = store
   const allDone = doneCount === tasks.length
   return (
-    <section className={s.section}>
+    <section className={s.section} data-tour="tasks">
       <header className={s.head}>
         <h2>Задания дня</h2>
         <span className={s.chest}>

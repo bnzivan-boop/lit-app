@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
+import { TourHost } from './components/Tour'
 import { Snowfall } from './components/Snowfall'
 import { Navigate, Outlet, Route, Routes, useLocation, useNavigate } from 'react-router'
 import { DeviceFrame } from './components/DeviceFrame'
@@ -53,6 +54,7 @@ function Shell() {
   return (
     <div className={s.shell}>
       <Outlet />
+      <TourHost />
       <TabBar badge={{ tasks: readyCount }} active={active} onSelect={(id) => (id === 'scan' && pathname === '/promo' ? go('/scan', { state: { from: pathname } }) : go(PATH[id]))} />
     </div>
   )
