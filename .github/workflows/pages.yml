@@ -1,10 +1,9 @@
-# Сборка и публикация на GitHub Pages: https://bnzivan-boop.github.io/lit-app/
+# Публикация на GitHub Pages. Сейчас сайт публикует Vercel (vercel.json), поэтому запуск только вручную.
+# Pages у закрытого репозитория работает только на платном тарифе GitHub.
 # Код для входа берётся из секрета APP_CODE (Settings → Secrets and variables → Actions)
 name: Pages
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:

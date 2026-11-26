@@ -1,0 +1,8 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "installCommand": "npm ci",
+  "buildCommand": "if [ ${#APP_CODE} -lt 8 ]; then echo 'Нет переменной APP_CODE (от 8 символов): без кода сайт не публикуем'; exit 1; fi; npm run build",
+  "outputDirectory": "dist",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}
