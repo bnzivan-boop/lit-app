@@ -255,6 +255,57 @@
       { "place": 30, "nick": "arsen_k", "power": 220 }
     ]
   },
+  "season": {
+    "title": "Титаны", "endsAt": "2026-12-21T23:59:00+03:00", "power": 1250,
+    "leagues": [
+      { "id": "bronze", "name": "Бронза", "of": "Бронзы", "from": 0 },
+      { "id": "silver", "name": "Серебро", "of": "Серебра", "from": 5000 },
+      { "id": "gold", "name": "Золото", "of": "Золота", "from": 15000 },
+      { "id": "platinum", "name": "Платина", "of": "Платины", "from": 30000 },
+      { "id": "diamond", "name": "Бриллиант", "of": "Бриллианта", "from": 60000 }
+    ],
+    "challenges": {
+      "daily": [
+        { "id": "d1", "game": "energy-rush", "title": "Победи в Энерджи Раш", "text": "Займи 1 место в гонке", "progress": 1, "goal": 3, "power": 150 },
+        { "id": "d2", "title": "Сыграй в 3 игры", "text": "Любые мини-игры", "progress": 1, "goal": 3, "power": 150 },
+        { "id": "d3", "game": "energy-ninja", "title": "Набери 100 очков в Энерджи Ниндзя", "text": "За одну игру", "progress": 40, "goal": 100, "power": 250, "hard": true }
+      ],
+      "weekly": [
+        { "id": "w1", "title": "Сыграй 20 игр", "text": "Любые мини-игры за неделю", "progress": 7, "goal": 20, "power": 600 },
+        { "id": "w2", "game": "energy-mix", "title": "Набери 1 000 очков в Энерджи Микс", "text": "Сумма за неделю", "progress": 320, "goal": 1000, "power": 600 },
+        { "id": "w3", "game": "energy-rush", "title": "Выиграй 5 гонок в Энерджи Раш", "text": "Займи 1 место пять раз", "progress": 1, "goal": 5, "power": 900, "hard": true }
+      ],
+      "seasonal": { "id": "s1", "title": "Испытание Титана", "text": "Выполни 60 ежедневных испытаний за сезон", "progress": 12, "goal": 60, "power": 5000, "box": "box-9" }
+    },
+    "rewards": {
+      "base": [
+        { "power": 100, "box": "box-3" }, { "power": 500, "box": "box-4" }, { "power": 1000, "box": "box-8" },
+        { "power": 1500, "box": "box-1" }, { "power": 3000, "box": "box-5" }, { "power": 5000, "box": "box-2" }
+      ],
+      "extra": [
+        { "items": 10, "box": "box-9" }, { "items": 30, "box": "box-6" }, { "items": 50, "box": "box-2" },
+        { "items": 100, "box": "box-5" }, { "items": 200, "box": "box-1" }
+      ],
+      "items": 4
+    },
+    "board": {
+      "group": { "size": 100, "rows": [
+        { "place": 1, "nick": "nikitos_47", "power": 4870 }, { "place": 2, "nick": "vlad_drift", "power": 4410 },
+        { "place": 3, "nick": "masha.lit", "power": 3980 }, { "place": 4, "nick": "kirill_gg", "power": 3300 },
+        { "place": 5, "nick": "tema.energy", "power": 2060 }, { "place": 6, "nick": "Korostkina", "power": 1250, "me": true },
+        { "place": 7, "nick": "lisa_run", "power": 1180 }, { "place": 8, "nick": "sanya_pro", "power": 990 },
+        { "place": 9, "nick": "dasha.k", "power": 870 }, { "place": 10, "nick": "mr_bolt", "power": 760 }
+      ] },
+      "all": { "size": 24816, "rows": [
+        { "place": 1, "nick": "titan_max", "power": 18240 }, { "place": 2, "nick": "lera.energy", "power": 17610 },
+        { "place": 3, "nick": "gromov", "power": 16980 }, { "place": 4, "nick": "neo_lit", "power": 15420 },
+        { "place": 5, "nick": "katya_drift", "power": 14900 }, { "place": 6, "nick": "boss.ninja", "power": 14310 },
+        { "place": 7, "nick": "artyom_99", "power": 13870 }, { "place": 8, "nick": "zhenya.run", "power": 13020 },
+        { "place": 9, "nick": "fox_energy", "power": 12660 }, { "place": 10, "nick": "ilya.pro", "power": 12180 },
+        { "place": 3412, "nick": "Korostkina", "power": 1250, "me": true }
+      ] }
+    }
+  },
   "seasonPass": {
     "level": 18,
     "receiptsForPremium": 3,

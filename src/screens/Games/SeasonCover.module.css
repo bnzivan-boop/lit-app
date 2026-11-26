@@ -1,0 +1,171 @@
+.cover {
+  --season: #064541;
+  position: relative;
+  display: block;
+  height: calc(var(--safe-top) + 540px);
+  margin-inline: calc(var(--screen-pad) * -1);
+  color: #fff;
+}
+
+.frame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--season);
+}
+
+/* фото в полном цвете; низ уходит в бирюзу сезона, текст стоит на цвете, не на фото */
+.photo {
+  position: absolute;
+  left: 50%;
+  top: calc(var(--safe-top) + 30px);
+  width: max(128%, 500px);
+  max-width: none;
+  translate: -50% 0;
+}
+
+.shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, var(--bg) 0, transparent calc(var(--safe-top) + 70px)),
+    linear-gradient(0deg, var(--season) 34%, color-mix(in srgb, var(--season) 70%, transparent) 46%, transparent 62%);
+}
+
+.hit {
+  position: absolute;
+  inset: 0;
+}
+
+.top {
+  position: absolute;
+  inset: calc(var(--safe-top) + 14px) var(--screen-pad) auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  pointer-events: none;
+}
+
+.sticker {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 12px 1px;
+  border-radius: 10px;
+  background: #fff;
+  color: var(--bg);
+  font: var(--weight-display) 20px / 1 var(--font-display);
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.ends {
+  font: var(--weight-label) 16px / 1 var(--font-display);
+}
+
+.body {
+  position: absolute;
+  inset: auto var(--screen-pad) 44px;
+  pointer-events: none;
+}
+
+.body h1 {
+  font-size: min(62px, 16vw);
+  line-height: 0.88;
+}
+
+.body p {
+  margin-top: 10px;
+  max-width: 330px;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+}
+
+.me {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.badge {
+  flex: none;
+  width: 56px;
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.5));
+}
+
+.stat {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+}
+
+.row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.row b {
+  font: var(--weight-display) 24px / 1 var(--font-display);
+  letter-spacing: var(--tracking-display);
+  text-transform: uppercase;
+}
+
+.power {
+  font: var(--weight-display) 20px / 1 var(--font-display);
+  letter-spacing: var(--tracking-display);
+  white-space: nowrap;
+}
+
+
+
+.liquid {
+  --liquid-h: 44px;
+  --accent: var(--metal-hi);
+  --accent-low: var(--metal-lo);
+  --accent-ink: #1a0d06;
+}
+
+/* шкала в цвете металла лиги */
+.me {
+  --metal: #d08b66;
+  --metal-lo: #c4682c;
+  --metal-hi: #ffc79c;
+}
+
+.me[data-league='silver'] {
+  --metal-lo: #7f8c93;
+  --metal-hi: #f4f8fa;
+  --metal: #c9d3d6;
+}
+
+.me[data-league='gold'] {
+  --metal-lo: #c7871c;
+  --metal-hi: #ffe68a;
+  --metal: #f5c84b;
+}
+
+.me[data-league='platinum'] {
+  --metal-lo: #5a52d8;
+  --metal-hi: #c9c5ff;
+  --metal: #8f8cff;
+}
+
+.me[data-league='diamond'] {
+  --metal-lo: #16b8ae;
+  --metal-hi: #b8fffa;
+  --metal: #70fff6;
+}
+
+.go {
+  margin-top: 16px;
+  pointer-events: auto;
+}
+
+.dim {
+  opacity: 0.5;
+}

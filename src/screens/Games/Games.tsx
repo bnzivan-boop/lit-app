@@ -6,7 +6,8 @@ import { BOX_CASE, GAMES, type Game } from '../../data/games'
 import { useStore } from '../../data/store'
 import { useOpen } from '../../lib/useOrigin'
 import { BoxBar } from './BoxBar'
-import { Feature, Panel } from './Panel'
+import { Panel } from './Panel'
+import { SeasonCover } from './SeasonCover'
 import s from './Games.module.css'
 
 /* раскладка комикса: одиночные кадры и пары */
@@ -16,8 +17,7 @@ const ROWS = [['energy-jet'], ['energy-mix', 'energy-ninja'], ['energy-rush'], [
 export function Games() {
   const go = useNavigate()
   const openOver = useOpen()
-  const { balance, best, tasks, gameBox, minutesToMidnight } = useStore()
-  const feature = GAMES.find((g) => g.isNew) ?? GAMES[0]
+  const { balance, best, tasks, gameBox, minutesToMidnight, now } = useStore()
   const taskOf = (g: Game) => tasks.find((t) => t.game === g.id && !t.done)
   const note = (g: Game) => (best[g.id] > 0 ? `рекорд ${num(best[g.id])}` : 'ещё не играл')
   const open = (g: Game) => go(`/games/${g.id}`)
@@ -29,7 +29,7 @@ export function Games() {
         <Amount value={balance.soft} kind="soft" coin={18} />
         <Amount value={balance.hard} kind="hard" coin={18} />
       </span>
-      <Feature game={feature} note={note(feature)} task={taskOf(feature)?.hint} onOpen={() => open(feature)} onPlay={() => go(`/games/${feature.id}/play`)} />
+      <SeasonCover now={now} onOpen={() => go('/season')} />
 
       <BoxBar {...gameBox} next={duration(minutesToMidnight)} onOpen={() => openOver(`/case/${BOX_CASE}`)} />
 

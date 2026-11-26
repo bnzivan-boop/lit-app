@@ -33,6 +33,7 @@ import { Scan } from './screens/Scan/Scan'
 import { Wheel } from './screens/Wheel/Wheel'
 import { Tasks } from './screens/Tasks/Tasks'
 import { Stub } from './screens/Stub/Stub'
+import { Season } from './screens/Season/Season'
 import s from './App.module.css'
 
 const PATH: Record<TabId, string> = { home: '/', tasks: '/tasks', scan: '/promo', games: '/games', shop: '/shop' }
@@ -114,6 +115,10 @@ function Pages() {
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/friends" element={<Friends />} />
+        <Route path="/season" element={<Season />} />
+        <Route path="/season/about" element={<Stub title="О сезоне" />} />
+        <Route path="/season/rewards" element={<Stub title="Награды сезона" />} />
+        <Route path="/season/board" element={<Stub title="Лидерборд" />} />
         <Route path="/games/:id" element={<GamePage />} />
         <Route path="/games/:id/top" element={<Board />} />
         <Route path="/games/:id/play" element={<Play />} />
