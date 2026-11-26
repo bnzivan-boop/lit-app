@@ -45,7 +45,9 @@ export function Loader({ onReveal, onDone }: Props) {
       last = now
       /* не быстрее 0,8 экрана в секунду: наполнение видно и при мгновенной загрузке */
       level += Math.min((progress * 1.06 - level) * 4 * dt, 0.8 * dt)
-      const box = fill.current!
+      const box = fill.current
+      /* лоадер уже снят, а кадр ещё пришёл */
+      if (!box) return
       const w = box.clientWidth
       const h = box.clientHeight
       let d = ''

@@ -138,3 +138,33 @@
   color: var(--accent-ink);
   font: var(--weight-label) var(--fs-button-sm) / 1 var(--font-display);
 }
+
+/* базовый кэшбек: заголовок над товарами и множитель, если увеличен */
+.cbHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 2px 0 4px;
+}
+
+.cbHead b {
+  font: var(--weight-label) 14px / 1 var(--font-display);
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.cbMult {
+  padding: 4px 8px 5px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font: var(--weight-display) 15px / 1 var(--font-display);
+}
+
+.taskNote {
+  display: block;
+  margin-top: 2px;
+  font-size: 12px;
+  opacity: 0.6;
+}

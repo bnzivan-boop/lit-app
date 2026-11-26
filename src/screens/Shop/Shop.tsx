@@ -4,7 +4,7 @@ import { Icon } from '../../components/Icon'
 import { TopBar } from '../../components/TopBar'
 import { weekdayOf } from '../../data/format'
 import { LEAGUE_NAME } from '../../data/labels'
-import { CATEGORIES, isOpen, LEAGUES, PRODUCTS } from '../../data/shop'
+import { CATEGORIES, isOpen, LEAGUES, PRODUCTS, saleOf, SALES } from '../../data/shop'
 import { useStore } from '../../data/store'
 import { useOpen } from '../../lib/useOrigin'
 import { usePanel } from '../../lib/usePanel'
@@ -18,7 +18,7 @@ import s from './Shop.module.css'
 /** Магазин: дроп недели, путь по лигам, товары полками по лигам */
 export function Shop() {
   const open = useOpen()
-  const { balance, user, cartCount, drop, remindDrop, toggleRemind } = useStore()
+  const { balance, user, cartCount, drop, remindDrop, toggleRemind, now } = useStore()
   const [category, setCategory] = useState('all')
   const [info, setInfo] = useState(false)
   const frame = useRef<HTMLDivElement>(null)
@@ -27,6 +27,9 @@ export function Shop() {
   const at = LEAGUES.indexOf(user.league)
   /* своя лига первой, потом ниже, потом закрытые по порядку */
   const order = [...LEAGUES.slice(0, at + 1).reverse(), ...LEAGUES.slice(at + 1)]
+  /* полка скидок первой: открытые товары со скидкой из выбранного раздела */
+  const onSale = list.filter((p) => saleOf(p, now) && isOpen(p, user.league))
+  const sales = SALES.filter((x) => Date.parse(x.startsAt) <= now && now < Date.parse(x.endsAt))
   const shelves = order.map((l) => ({ league: l, items: list.filter((p) => p.minLeague === l) })).filter((x) => x.items.length > 0)
 
   function jump(league: string) {
@@ -92,6 +95,23 @@ export function Shop() {
         ))}
       </div>
 
+      {onSale.length > 0 && (
+        <section className={`${s.shelf} ${s.saleShelf}`}>
+          <header>
+            <span className={s.saleMark}>%</span>
+            <div>
+              <h2>Скидки</h2>
+              <p>{sales.map((x) => `${x.title} −${x.percent}%`).join(' · ')}</p>
+            </div>
+          </header>
+          <div className={s.grid}>
+            {onSale.map((p) => (
+              <ProductCard key={p.id} product={p} hard={balance.hard} now={now} onClick={() => open(`/shop/${p.id}`)} />
+            ))}
+          </div>
+        </section>
+      )}
+
       {shelves.map(({ league, items }) => {
         const closed = !isOpen(items[0], user.league)
         return (
@@ -105,7 +125,7 @@ export function Shop() {
             </header>
             <div className={s.grid}>
               {items.map((p) => (
-                <ProductCard key={p.id} product={p} hard={balance.hard} closed={closed} onClick={() => open(`/shop/${p.id}`)} />
+                <ProductCard key={p.id} product={p} hard={balance.hard} now={now} closed={closed} onClick={() => open(`/shop/${p.id}`)} />
               ))}
             </div>
           </section>

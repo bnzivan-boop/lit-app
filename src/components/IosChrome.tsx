@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { isNewYear, toggleNewYear } from '../lib/theme'
 import s from './IosChrome.module.css'
 
 /* Верх iPhone и кнопки Telegram для показа. На localhost видны всегда,
@@ -41,8 +42,8 @@ export function IosChromeView({ inline }: { inline?: boolean }) {
     return () => clearInterval(t)
   }, [])
   return (
-    <div className={`${s.chrome} ${inline ? s.inline : ''}`} aria-hidden>
-      <div className={s.status}>
+    <div className={`${s.chrome} ${inline ? s.inline : ''}`}>
+      <div className={s.status} aria-hidden>
         <span className={s.time}>{now}</span>
         <span className={s.island} />
         <span className={s.icons}>
@@ -63,13 +64,21 @@ export function IosChromeView({ inline }: { inline?: boolean }) {
         </span>
       </div>
       <div className={s.telegram}>
-        <span>
+        <span aria-hidden>
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.800" strokeLinecap="round">
             <path d="m1.500 1.500 9 9M10.500 1.500l-9 9" />
           </svg>
           Закрыть
         </span>
-        <span className={s.more}>
+        {!inline && (
+          <button type="button" className={`press ${s.ny}`} data-on={isNewYear() || undefined} aria-pressed={isNewYear()} onClick={toggleNewYear}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden>
+              <path d="M12 2v20M3.3 7l17.4 10M3.3 17 20.7 7M9 4l3 2 3-2M9 20l3-2 3 2" />
+            </svg>
+            Новый год
+          </button>
+        )}
+        <span className={s.more} aria-hidden>
           <svg width="14" height="9" viewBox="0 0 14 9" fill="none" stroke="currentColor" strokeWidth="1.900" strokeLinecap="round" strokeLinejoin="round">
             <path d="m1.500 1.800 5.500 5.400 5.500-5.400" />
           </svg>

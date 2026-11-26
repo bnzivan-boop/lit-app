@@ -18,6 +18,21 @@ export type Product = {
 }
 
 export const PRODUCTS = mock.shop as Product[]
+
+/** Скидка: на товары списком или на весь раздел, процент, срок и причина. Цена сама возвращается после срока */
+export type Sale = { id: string; title: string; percent: number; products?: string[]; category?: string; startsAt: string; endsAt: string }
+export const SALES = mock.sales as Sale[]
+
+/** Действующая скидка на товар; если их несколько — бо́льшая */
+export function saleOf(p: Product, now: number) {
+  const on = SALES.filter((x) => Date.parse(x.startsAt) <= now && now < Date.parse(x.endsAt) && (x.products?.includes(p.id) || x.category === p.category))
+  const best = on.sort((a, b) => b.percent - a.percent)[0]
+  if (!best) return undefined
+  return { ...best, price: Math.round((p.price.hard * (100 - best.percent)) / 100), base: p.price.hard, msLeft: Date.parse(best.endsAt) - now }
+}
+
+/** Цена сейчас: со скидкой, если она идёт */
+export const priceOf = (p: Product, now: number) => saleOf(p, now)?.price ?? p.price.hard
 export const CATEGORIES = mock.shopCategories
 export const LEAGUES = mock.leagues as League[]
 export const ORDER = mock.shopOrder
@@ -65,5 +80,9 @@ export type Order = {
 export const deliveryPlace = (d: Delivery) =>
   d.mode === 'point' ? `${d.city.title}, ${d.point?.address}` : `${d.city.title}, ${d.address?.street}, ${d.address?.house}${d.address?.flat ? `, кв. ${d.address.flat}` : ''}`
 export const needsDelivery = (lines: CartLine[]) => lines.some((l) => !findProduct(l.id)?.digital)
-export const cartSum = (lines: CartLine[]) => lines.reduce((sum, l) => sum + (findProduct(l.id)?.price.hard ?? 0) * l.qty, 0)
+export const cartSum = (lines: CartLine[], now: number) =>
+  lines.reduce((sum, l) => {
+    const p = findProduct(l.id)
+    return sum + (p ? priceOf(p, now) : 0) * l.qty
+  }, 0)
 export const cartCount = (lines: CartLine[]) => lines.reduce((sum, l) => sum + l.qty, 0)

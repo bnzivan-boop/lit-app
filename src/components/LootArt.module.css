@@ -41,7 +41,7 @@
   position: relative;
   padding: 4cqmin 8cqmin 5cqmin;
   border-radius: 12cqmin;
-  background: var(--accent-ink);
+  background: var(--ink-plate, var(--accent-ink));
   color: #fff;
   font: var(--weight-display) 38cqmin / 0.9 var(--font-display);
   letter-spacing: var(--tracking-display);
@@ -60,7 +60,7 @@
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
-  background: var(--accent-ink);
+  background: var(--ink-plate, var(--accent-ink));
 }
 
 .svg {

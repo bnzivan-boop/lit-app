@@ -4,7 +4,7 @@ import { cartCount, cartSum, needsDelivery, ORDER, type CartLine } from '../../d
 import s from './Total.module.css'
 
 /** Сумма заказа: хард за товары, рубли за сервисный сбор и доставку */
-export function Total({ lines, delivery }: { lines: CartLine[]; delivery?: number }) {
+export function Total({ lines, delivery, now }: { lines: CartLine[]; delivery?: number; now: number }) {
   const n = cartCount(lines)
   return (
     <section className={s.total}>
@@ -15,7 +15,7 @@ export function Total({ lines, delivery }: { lines: CartLine[]; delivery?: numbe
             {n} {plural(n, ['товар', 'товара', 'товаров'])}
           </dt>
           <dd>
-            <Amount value={cartSum(lines)} kind="hard" coin={20} />
+            <Amount value={cartSum(lines, now)} kind="hard" coin={20} />
           </dd>
         </div>
         {needsDelivery(lines) && (

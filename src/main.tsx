@@ -3,6 +3,8 @@ import { createRoot } from 'react-dom/client'
 import './tokens.css'
 import './base.css'
 import './fontLab.css'
+import './newyear.css'
+import { initTheme } from './lib/theme'
 import { hasAccess } from './gate/access'
 import { Gate } from './gate/Gate'
 import { loadTelegram } from './lib/telegram'
@@ -13,6 +15,8 @@ const asked = new URLSearchParams(location.search).get('font')
 if (asked) sessionStorage.setItem('font', asked)
 const font = sessionStorage.getItem('font')
 if (font && FONTS.includes(font)) document.documentElement.dataset.font = font
+
+initTheme()
 
 const root = createRoot(document.getElementById('root')!)
 

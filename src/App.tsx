@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
+import { Snowfall } from './components/Snowfall'
 import { Navigate, Outlet, Route, Routes, useLocation, useNavigate } from 'react-router'
 import { DeviceFrame } from './components/DeviceFrame'
 import { chromeWanted, IosChrome } from './components/IosChrome'
@@ -87,6 +88,7 @@ function Screens() {
       {!appPath().startsWith('/kit') && <IosChrome />}
       {phase !== 'load' && <Pages />}
       {phase !== 'ready' && <Loader onReveal={reveal} onDone={done} />}
+      <Snowfall fixed />
     </>
   )
 }

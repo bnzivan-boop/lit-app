@@ -586,6 +586,7 @@ function ReceiptDemo() {
     doubled: true,
     xp: 300,
     boostUntil: 0,
+    cashback: 1,
   }
   return (
     <Section title="Скан чека">
@@ -749,10 +750,10 @@ function ShopKit() {
     <Section title="Магазин">
       <State name="Товар: хватает, не хватает, закрыт лигой, нажатие">
         <div className={s.tiles}>
-          <ProductCard product={item('wink')} hard={572} onClick={NONE} />
-          <ProductCard product={item('shorts')} hard={572} onClick={NONE} />
-          <ProductCard product={item('xbox')} hard={572} closed onClick={NONE} />
-          <ProductCard product={item('station')} hard={572} pressed onClick={NONE} />
+          <ProductCard product={item('wink')} hard={572} now={Date.parse("2026-11-25T12:00:00+03:00")} onClick={NONE} />
+          <ProductCard product={item('shorts')} hard={572} now={Date.parse("2026-11-25T12:00:00+03:00")} onClick={NONE} />
+          <ProductCard product={item('xbox')} hard={572} now={Date.parse("2026-11-25T12:00:00+03:00")} closed onClick={NONE} />
+          <ProductCard product={item('station')} hard={572} now={Date.parse("2026-11-25T12:00:00+03:00")} pressed onClick={NONE} />
         </div>
       </State>
       <State name="Медали лиг: открыта и закрыта">

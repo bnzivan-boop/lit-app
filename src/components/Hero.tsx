@@ -1,4 +1,6 @@
 import { useRef, type Ref, type RefObject } from 'react'
+import { isNewYear } from '../lib/theme'
+import { Festive } from './Festive'
 import { Coin } from './Amount'
 import { num } from '../data/format'
 import { CURRENCY_NAME } from '../data/labels'
@@ -48,7 +50,7 @@ export function Hero({ nick, id, level, xp, xpNext, balance, boost, fire, head, 
         <Icon name="copy" size={16} />
       </button>
       <div ref={plate} className={s.plate} style={shape} />
-      <Fire state={fire} className={s.fire} />
+      {isNewYear() ? <Festive className={s.fire} /> : <Fire state={fire} className={s.fire} />}
       <img ref={head} className={s.head} src="/assets/characters/hero-head-blue-fire.png" alt="" />
       <div className={s.level}>
         <span>{level}</span>

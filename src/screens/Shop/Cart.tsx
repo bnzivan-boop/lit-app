@@ -1,10 +1,11 @@
 import { useState } from 'react'
+import { num } from '../../data/format'
 import { useNavigate } from 'react-router'
 import { Amount } from '../../components/Amount'
 import { Button } from '../../components/Button'
 import { Icon } from '../../components/Icon'
 import { Sheet } from '../../components/Sheet'
-import { cartSum, DROP, findProduct, maxQty, ORDER, thumb, type CartLine } from '../../data/shop'
+import { cartSum, DROP, findProduct, maxQty, ORDER, priceOf, saleOf, thumb, type CartLine } from '../../data/shop'
 import { useStore } from '../../data/store'
 import { haptic } from '../../lib/motion'
 import { useOpen, useOrigin } from '../../lib/useOrigin'
@@ -18,11 +19,11 @@ export function Cart() {
   const go = useNavigate()
   const open = useOpen()
   const back = useOrigin('/shop')
-  const { cart, balance, setCart } = useStore()
+  const { cart, balance, setCart, now } = useStore()
   const [remove, setRemove] = useState<CartLine | null>(null)
   const [note, setNote] = useState(true)
   const [need, setNeed] = useState(false)
-  const missing = cartSum(cart) - balance.hard
+  const missing = cartSum(cart, now) - balance.hard
 
   if (cart.length === 0)
     return (
@@ -67,7 +68,8 @@ export function Cart() {
                 <span>{l.size ? `размер ${l.size}` : p.digital ? 'придёт кодом' : 'с доставкой'}</span>
                 <div className={s.row}>
                   <span className={s.price}>
-                    <Amount value={p.price.hard * l.qty} kind="hard" coin={20} />
+                    {saleOf(p, now) && <s className={s.was}>{num(p.price.hard * l.qty)}</s>}
+                    <Amount value={priceOf(p, now) * l.qty} kind="hard" coin={20} />
                   </span>
                   <Stepper value={l.qty} max={maxQty(p)} onChange={(n) => (n > 0 ? setCart({ ...l, qty: n }) : setRemove(l))} />
                 </div>
@@ -88,7 +90,7 @@ export function Cart() {
           </button>
         </aside>
       )}
-      <Total lines={cart} />
+      <Total now={now} lines={cart} />
 
       {remove && (
         <Sheet label="Удалить товар" onClose={() => setRemove(null)}>

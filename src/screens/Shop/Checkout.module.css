@@ -36,7 +36,7 @@
 }
 
 .step[data-done] .num {
-  background: var(--accent-ink);
+  background: var(--ink-plate, var(--accent-ink));
   color: var(--accent);
 }
 

@@ -134,7 +134,7 @@ g[data-on] .wire {
 }
 
 .socket[data-on] i {
-  background: var(--accent-ink);
+  background: var(--ink-plate, var(--accent-ink));
 }
 
 .art {
@@ -296,7 +296,7 @@ g[data-on] .wire {
   height: 54px;
   margin-top: 18px;
   border-radius: var(--r-button);
-  background: var(--accent-ink);
+  background: var(--ink-plate, var(--accent-ink));
   color: #fff;
   font: var(--weight-display) 20px / 1 var(--font-display);
   text-align: center;

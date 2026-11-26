@@ -7,6 +7,8 @@ import { rollWheel, useStore, WHEEL, type WheelPrize } from '../../data/store'
 import type { Currency } from '../../data/types'
 import { haptic, reduced } from '../../lib/motion'
 import { sparks } from '../../lib/sparks'
+import { confetti } from '../../lib/confetti'
+import { isNewYear } from '../../lib/theme'
 import { Backdrop } from './Backdrop'
 import { Disc } from './Disc'
 import { mod, SECTORS, under } from './geometry'
@@ -142,7 +144,10 @@ export function Wheel({ onLeave }: { onLeave: () => void }) {
       setIndex(target)
       setLit(target)
       setTone(won.kind)
-      if (root.current && disc.current) sparks(root.current, disc.current, 10 + won.tier * 5)
+      if (root.current && disc.current) {
+        sparks(root.current, disc.current, 10 + won.tier * 5)
+        if (isNewYear()) confetti(root.current, disc.current, 50 + won.tier * 10)
+      }
       haptic('done')
       roll(to - shift, 420, 'cubic-bezier(0.2, 0.8, 0.2, 1)', () => {
         timer.current = window.setTimeout(() => setPhase('win'), 620)
@@ -213,7 +218,7 @@ export function Wheel({ onLeave }: { onLeave: () => void }) {
     )
 
   return (
-    <main ref={root} className={s.screen} data-phase={phase} data-locked={locked || undefined}>
+    <main ref={root} className={s.screen} data-phase={phase} data-locked={locked || undefined} data-wheel>
       <Backdrop tone={tone} />
       <header className={s.top}>
         <button type="button" className={`press ${s.close}`} aria-label="Не сейчас" onClick={leave} disabled={phase !== 'ready'}>
@@ -250,12 +255,13 @@ export function Wheel({ onLeave }: { onLeave: () => void }) {
               <img key={p.id} src={art(p)} alt="" className={i === index ? s.on : ''} />
             ))}
           </div>
-          <span ref={pointer} className={s.pointer} aria-hidden />
+          {isNewYear() && <span className="ny-gloss" aria-hidden />}
+          <span ref={pointer} className={s.pointer} data-ny-pointer aria-hidden />
         </div>
       </div>
 
       <footer className={s.actions}>
-        <button type="button" className={`press ${s.spin}`} onClick={() => spin()} disabled={locked}>
+        <button type="button" className={`press ${s.spin}`} onClick={() => spin()} disabled={locked} data-ny-spin>
           {locked ? 'Приходи завтра' : 'Крутить'}
         </button>
       </footer>

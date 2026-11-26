@@ -124,6 +124,8 @@ export type ReceiptResult = {
   doubled: boolean
   tickets: number
   boostUntil: number
+  /** множитель кэшбека на этом чеке */
+  cashback: number
 }
 
 /** Итог последней игры */
@@ -209,6 +211,19 @@ function adventView(a: State['advent']) {
     available: (todayReady ? 1 : 0) + Math.min(restoreLeft, missed.length),
   }
 }
+
+/** Базовый кэшбек: гарантированный хард за каждый товар LIT в чеке; задания — сверху. Может быть временно увеличен */
+export type CashbackRate = { tag: string; title: string; unit: string; hard: number; image: string }
+export const CASHBACK = mock.cashback as { rates: CashbackRate[]; boost: { multiplier: number; title: string; startsAt: string; endsAt: string } }
+
+export function cashbackView(now: number) {
+  const b = CASHBACK.boost
+  const on = Date.parse(b.startsAt) <= now && now < Date.parse(b.endsAt)
+  return { rates: CASHBACK.rates, multiplier: on ? b.multiplier : 1, boost: on ? { ...b, msLeft: Date.parse(b.endsAt) - now } : null }
+}
+
+/** Хард за товар по ставке кэшбека */
+const rateOf = (tag: string, fallback: number) => CASHBACK.rates.find((r) => r.tag === tag)?.hard ?? fallback
 
 /* для показа: ?soft=5000 и ?hard=5000 задают баланс */
 function demo(kind: 'soft' | 'hard') {
@@ -322,7 +337,8 @@ function addReceipt(s: State, now: number): State {
   const { items, shop, xp: baseXp, tickets } = mock.receipt
   const doubled = s.boostUntil > now
   const xp = baseXp * (doubled ? mock.receiptBoost.multiplier : 1)
-  const hard = items.reduce((sum, i) => sum + i.hard * i.qty, 0)
+  const mult = cashbackView(now).multiplier
+  const hard = items.reduce((sum, i) => sum + rateOf(i.tag, i.hard) * mult * i.qty, 0)
   const boostUntil = extendBoost(s.boostUntil, now)
   const tasks = s.tasks.map((t) => (t.type === 'receipt' && !isDone(t) ? { ...t, progress: t.goal } : t))
   const quests = s.quests.map((x) => {
@@ -341,14 +357,14 @@ function addReceipt(s: State, now: number): State {
     tickets: s.tickets + tickets,
     receipts: s.receipts + 1,
     boostUntil,
-    receipt: { shop, items, moved: changed.length, ready, hard, xp, doubled, tickets, boostUntil },
+    receipt: { shop, items: items.map((i) => ({ ...i, hard: rateOf(i.tag, i.hard) * mult })), moved: changed.length, ready, hard, xp, doubled, tickets, boostUntil, cashback: mult },
   }
 }
 
 /** Заказ: хард списывается сразу, корзина пустеет. Рубли здесь только показываем */
 function placeOrder(s: State, now: number): State {
   const { recipient, delivery, payment } = s.checkout
-  const hard = cartSum(s.cart)
+  const hard = cartSum(s.cart, now)
   const physical = needsDelivery(s.cart)
   if (s.cart.length === 0 || !recipient || !payment || (physical && !delivery) || hard > s.balance.hard) return s
   const order: Order = {
@@ -547,6 +563,7 @@ function useStoreValue(id: ScenarioId) {
     weekEndsAt: Date.parse(mock.leagueWeek.endsAt),
     claim: (questId: string) => dispatch({ type: 'claim', id: questId, at: now }),
     advent: adventView(state.advent),
+    cashback: cashbackView(now),
     collectAdvent: (day: number) => dispatch({ type: 'advent', day }),
     profile: state.profile,
     saveProfile: (data: Partial<State['profile']>) => dispatch({ type: 'profile', data }),

@@ -1,0 +1,306 @@
+/* Новогодняя тема: всё здесь работает только при html[data-theme='ny'] (lib/theme.ts).
+   Палитра праздника: бирюза бренда + тёплое золото + праздничный красный (только загрузка и лампочки). */
+
+html[data-theme='ny'] {
+  --ny-gold: #f5c84b;
+  --ny-gold-hi: #ffe9a8;
+  --ny-red: #d0150f;
+  --ny-red-deep: #5c0604;
+  /* акцент действия и заливок вместо бирюзы — праздничный бордовый, текст на нём белый */
+  --accent: #e3241b;
+  --accent-low: #a3120c;
+  --accent-ink: #ffffff;
+  /* тёмные плашки, которые брали цвет текста на акценте, остаются тёмными */
+  --ink-plate: #061716;
+  --accent-tint: rgba(227, 36, 27, 0.16);
+  --glow-mid: #b8160f;
+  --glow-low: #520705;
+}
+
+/* ───── гирлянда над кнопкой скана ───── */
+.ny-garland {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: -20px;
+  width: 124px;
+  height: 30px;
+  translate: -50% 0;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.ny-wire {
+  fill: none;
+  stroke: #55625f;
+  stroke-width: 1;
+}
+
+.ny-cap {
+  fill: #4a5655;
+}
+
+.ny-bulb ellipse {
+  fill: var(--ny-gold);
+  filter: drop-shadow(0 0 3px currentColor);
+  animation: ny-twinkle 1.6s ease-in-out infinite alternate;
+}
+
+.ny-bulb[data-i='0'] ellipse,
+.ny-bulb[data-i='3'] ellipse {
+  color: var(--accent);
+  fill: var(--accent);
+  animation-delay: -0.5s;
+}
+
+.ny-bulb[data-i='1'] ellipse,
+.ny-bulb[data-i='4'] ellipse {
+  color: #ff3b2c;
+  fill: #ff3b2c;
+  animation-delay: -1.1s;
+}
+
+.ny-bulb[data-i='2'] ellipse {
+  color: var(--ny-gold);
+}
+
+@keyframes ny-twinkle {
+  from {
+    opacity: 0.45;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ───── загрузка: праздничный красный с золотом, логотип не трогаем ───── */
+html[data-theme='ny'] [role='status'][aria-label='Загрузка'] {
+  --accent: var(--ny-red);
+  --glow-low: var(--ny-red-deep);
+  --glow-mid: #e8261a;
+  background: radial-gradient(80% 60% at 50% 45%, #ec2a1e, var(--ny-red) 45%, var(--ny-red-deep));
+}
+
+/* ───── падающий снег ───── */
+.ny-snowfall {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ny-snowfall-fixed {
+  position: fixed;
+  z-index: 105;
+  max-width: var(--app-max);
+  margin-inline: auto;
+}
+
+.ny-snowfall-fixed i {
+  opacity: 0.75;
+}
+
+.ny-snowfall i {
+  position: absolute;
+  left: var(--x);
+  top: -12px;
+  width: var(--s);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 6px rgb(255 255 255 / 0.8), 0 1px 3px rgb(0 40 38 / 0.35);
+  opacity: 0.95;
+  animation: ny-fall var(--t) var(--d) linear infinite;
+}
+
+.ny-snowfall i[data-far] {
+  opacity: 0.55;
+  filter: blur(0.6px);
+}
+
+@keyframes ny-fall {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(var(--w), 55dvh);
+  }
+  100% {
+    transform: translate(0, 112dvh);
+  }
+}
+
+/* ───── колесо: обод-гирлянда, шапочка-указатель, блик ёлочного шара ───── */
+html[data-theme='ny'] circle[data-c] {
+  /* бегущий огонь по кругу: задержка по номеру лампочки; на вращении бежит вдвое быстрее */
+  animation-name: ny-chase !important;
+  animation-delay: calc(var(--i) * -0.075s) !important;
+}
+
+html[data-theme='ny'] circle[data-c='0'] {
+  fill: var(--ny-gold);
+  filter: drop-shadow(0 0 4px var(--ny-gold));
+}
+
+html[data-theme='ny'] circle[data-c='1'] {
+  fill: #ff3b2c;
+  filter: drop-shadow(0 0 4px #ff3b2c);
+}
+
+html[data-theme='ny'] circle[data-c='2'] {
+  fill: #b8fffa;
+  filter: drop-shadow(0 0 4px var(--accent));
+}
+
+@keyframes ny-chase {
+  from {
+    opacity: 0.25;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* фон колеса — праздничный красный; софт с красными лучами, хард с золотыми */
+html[data-theme='ny'] [data-scene] {
+  --base: #d0150f;
+  --ray: #ad100a;
+  --deep: #3f0603;
+  --hot: #ff5a3a;
+}
+
+html[data-theme='ny'] [data-scene='hard'] {
+  --ray: #d8402a;
+  --hot: #ffcf6a;
+}
+
+/* на красном текст светлый */
+html[data-theme='ny'] [data-wheel] {
+  color: #fff;
+}
+
+/* экран выигрыша с колеса — тоже красный; за хардом золотой свет */
+html[data-theme='ny'] [data-ny-win] {
+  --hi: #ff6a4a !important;
+  --loot: #d0150f !important;
+  --deep: #4a0503 !important;
+  --fg: #ffffff !important;
+  --on: #d0150f !important;
+}
+
+html[data-theme='ny'] [data-ny-win='hard'] {
+  --hi: #ffd56a !important;
+}
+
+/* кнопка «Крутить» на красном — белая с красной надписью */
+html[data-theme='ny'] [data-ny-spin] {
+  background: #fff;
+  color: var(--ny-red);
+}
+
+/* указатель — золотая шапочка ёлочного шара */
+html[data-theme='ny'] [data-ny-pointer] {
+  top: -36px;
+  width: 34px;
+  height: 40px;
+  margin-left: -17px;
+  background: linear-gradient(90deg, #a8740f, var(--ny-gold-hi) 38%, var(--ny-gold) 55%, #9c6a0b);
+  clip-path: polygon(22% 0, 78% 0, 78% 26%, 100% 34%, 100% 46%, 50% 100%, 0 46%, 0 34%, 22% 26%);
+}
+
+.ny-gloss {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  border-radius: 50%;
+  background:
+    radial-gradient(38% 26% at 32% 20%, rgb(255 255 255 / 0.34), transparent 70%),
+    radial-gradient(60% 60% at 70% 82%, rgb(255 255 255 / 0.06), transparent 70%);
+  pointer-events: none;
+}
+
+/* ───── сияние за головой героя вместо огня ───── */
+.ny-festive {
+  overflow: visible;
+}
+
+.ny-festive-glow {
+  position: absolute;
+  inset: 6%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgb(255 214 110 / 0.75), rgb(227 36 27 / 0.45) 52%, transparent 78%);
+  animation: ny-breathe 3.2s ease-in-out infinite alternate;
+}
+
+@keyframes ny-breathe {
+  from {
+    opacity: 0.7;
+    scale: 0.96;
+  }
+  to {
+    opacity: 1;
+    scale: 1.04;
+  }
+}
+
+.ny-bokeh {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--s);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  translate: -50% -50%;
+  filter: blur(1.5px);
+  animation: ny-twinkle 2.4s ease-in-out var(--d) infinite alternate;
+}
+
+.ny-bokeh[data-tone='gold'] {
+  background: radial-gradient(closest-side, #fff3c4, var(--ny-gold) 55%, rgb(245 200 75 / 0.2));
+}
+
+.ny-bokeh[data-tone='red'] {
+  background: radial-gradient(closest-side, #ffb4a8, var(--accent) 55%, rgb(227 36 27 / 0.2));
+}
+
+.ny-bokeh[data-tone='white'] {
+  background: radial-gradient(closest-side, #fff, rgb(255 255 255 / 0.5) 55%, transparent);
+}
+
+.ny-star {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--s);
+  height: var(--s);
+  translate: -50% -50%;
+  fill: #fff7d6;
+  filter: drop-shadow(0 0 6px var(--ny-gold));
+  animation: ny-star 2s ease-in-out var(--d) infinite;
+}
+
+@keyframes ny-star {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(0.5) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1) rotate(45deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ny-bulb ellipse,
+  .ny-festive-glow,
+  .ny-bokeh,
+  .ny-star,
+  .ny-snowfall i {
+    animation: none;
+  }
+
+  .ny-snowfall {
+    display: none;
+  }
+}

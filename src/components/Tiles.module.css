@@ -130,7 +130,7 @@
 }
 
 .pill {
-  background: var(--accent-ink);
+  background: var(--ink-plate, var(--accent-ink));
   color: var(--text);
 }
 
@@ -168,7 +168,7 @@
   top: 30px;
   right: 34px;
   width: 56px;
-  background: var(--accent-ink);
+  background: var(--ink-plate, var(--accent-ink));
   opacity: 0.1;
 }
 

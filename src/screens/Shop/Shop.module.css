@@ -210,3 +210,21 @@
   gap: 24px 10px;
   margin-top: 16px;
 }
+
+/* полка скидок: красный знак процента вместо медали лиги */
+.saleMark {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font: var(--weight-display) 24px / 1 var(--font-display);
+}
+
+.saleShelf p {
+  color: var(--accent);
+}

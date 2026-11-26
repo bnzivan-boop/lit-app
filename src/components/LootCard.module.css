@@ -67,7 +67,7 @@
   content: '';
   position: absolute;
   inset: 4px 0 0;
-  background: var(--accent-ink);
+  background: var(--ink-plate, var(--accent-ink));
   clip-path: polygon(0 var(--cut), 100% 0, 100% 100%, 0 100%);
 }
 

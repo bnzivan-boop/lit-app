@@ -77,7 +77,7 @@
   height: 50px;
   border-radius: 16px;
   overflow: hidden;
-  background: var(--accent-ink);
+  background: var(--ink-plate, var(--accent-ink));
   color: var(--accent);
 }
 

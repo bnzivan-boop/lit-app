@@ -289,3 +289,43 @@
     transition: none;
   }
 }
+
+/* плитка кэшбека: нажимается, открывает окно о кэшбеке */
+.gains .cash {
+  padding: 0;
+}
+
+.cash button {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px 12px;
+  border-radius: inherit;
+  text-align: left;
+}
+
+.cash[data-boost] {
+  background: var(--accent-tint);
+  box-shadow: inset 0 0 0 1.5px var(--accent);
+}
+
+.mult {
+  margin-left: 6px;
+  padding: 3px 6px 4px;
+  border-radius: 7px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font: var(--weight-display) 14px / 1 var(--font-display);
+}
+
+.cashText {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cashText svg {
+  flex: none;
+  opacity: 0.6;
+}

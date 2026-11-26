@@ -210,3 +210,60 @@
   background: var(--accent);
   transform-origin: left;
 }
+
+/* скидка: причина, срок и цена после */
+.sale {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 18px;
+  background: var(--accent-tint);
+  box-shadow: inset 0 0 0 1.5px var(--accent);
+}
+
+.salePct {
+  flex: none;
+  padding: 6px 8px 7px;
+  border-radius: 10px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font: var(--weight-display) 20px / 1 var(--font-display);
+}
+
+.saleText {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  font-size: var(--fs-body-sm);
+}
+
+.saleText b {
+  font: var(--weight-display) 17px / 1.05 var(--font-display);
+  text-transform: uppercase;
+}
+
+.saleText > span {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-muted);
+}
+
+.salePrice {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  font: var(--weight-display) 22px / 1 var(--font-display);
+}
+
+.salePrice s {
+  color: var(--text-muted);
+  font-size: 14px;
+}

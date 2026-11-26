@@ -79,7 +79,7 @@
 }
 
 .step[data-place='1'] .place {
-  background: var(--accent-ink);
+  background: var(--ink-plate, var(--accent-ink));
   color: var(--accent);
 }
 

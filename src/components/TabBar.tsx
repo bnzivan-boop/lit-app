@@ -1,4 +1,5 @@
 import { Icon, type IconName } from './Icon'
+import { Garland } from './Garland'
 import s from './TabBar.module.css'
 
 export type TabId = 'home' | 'tasks' | 'scan' | 'games' | 'shop'
@@ -43,6 +44,7 @@ export function TabBar({ active, onSelect, fixed = true, pressed, disabled = [],
     <nav className={`${s.bar} ${fixed ? s.fixed : ''}`} aria-label="Разделы">
       {TABS.slice(0, 2).map(tab)}
       <span className={s.scanCell}>
+        <Garland />
         <button
           type="button"
           className={`press ${s.scan}`}

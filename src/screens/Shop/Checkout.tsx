@@ -28,7 +28,7 @@ export function Checkout() {
   if (cart.length === 0) return placed.current ? null : <Navigate to="/cart" replace />
 
   const physical = needsDelivery(cart)
-  const hard = cartSum(cart)
+  const hard = cartSum(cart, now)
   const step = params.get('step')
   const show = (id?: string) => setParams(id ? { step: id } : {}, { replace: true, state })
   const save = (data: Parameters<typeof saveCheckout>[0]) => {
@@ -117,7 +117,7 @@ export function Checkout() {
           ))}
         </div>
       </section>
-      <Total lines={cart} delivery={d?.tariff.price} />
+      <Total now={now} lines={cart} delivery={d?.tariff.price} />
     </Screen>
   )
 }

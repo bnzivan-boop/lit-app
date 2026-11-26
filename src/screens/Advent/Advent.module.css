@@ -135,7 +135,7 @@
 }
 
 .cell[data-state='today'] .mark {
-  background: var(--accent-ink);
+  background: var(--ink-plate, var(--accent-ink));
   color: var(--accent);
 }
 

@@ -79,6 +79,27 @@
   gap: 14px;
 }
 
+/* переключатель новогодней темы — только для показа */
+.ny {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding-inline: 12px;
+  border-radius: 16px;
+  background: #2b3131;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  pointer-events: auto;
+}
+
+.ny[data-on] {
+  background: linear-gradient(135deg, #e3241b, #9e0f0a);
+  box-shadow: inset 0 0 0 1px rgb(255 215 120 / 0.6);
+  color: #ffe9a8;
+}
+
 .home {
   position: absolute;
   bottom: 8px;

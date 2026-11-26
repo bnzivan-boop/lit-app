@@ -18,7 +18,7 @@
   width: 190px;
   aspect-ratio: 810 / 1212;
   rotate: -16deg;
-  background: var(--accent-ink);
+  background: var(--ink-plate, var(--accent-ink));
   opacity: 0.09;
   -webkit-mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
   mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;

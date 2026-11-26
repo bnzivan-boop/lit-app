@@ -3,6 +3,7 @@ import { useLocation, useNavigate, useSearchParams } from 'react-router'
 import { useOrigin } from '../../lib/useOrigin'
 import { Amount } from '../../components/Amount'
 import { Button } from '../../components/Button'
+import { CashbackSheet } from '../../components/Cashback'
 import { Icon } from '../../components/Icon'
 import { Qr } from '../../components/Qr'
 import { useStore } from '../../data/store'
@@ -27,7 +28,8 @@ export function Scan() {
   const { state } = useLocation()
   const back = useOrigin()
   const [params] = useSearchParams()
-  const { scanReceipt, boost } = useStore()
+  const { scanReceipt, boost, cashback } = useStore()
+  const [cash, setCash] = useState(false)
   const failure = params.get('error')
   const [phase, setPhase] = useState<Phase>('aim')
   const scan = useRef(scanReceipt)
@@ -36,7 +38,8 @@ export function Scan() {
   })
 
   useEffect(() => {
-    if (phase === 'error') return
+    /* пока читают про кэшбек, чек не ловим */
+    if (phase === 'error' || cash) return
     if (phase === 'aim') {
       const t = setTimeout(() => {
         haptic('press')
@@ -50,7 +53,7 @@ export function Scan() {
       go('/receipt', { replace: true, state })
     }, 900)
     return () => clearTimeout(t)
-  }, [phase, failure, go, state])
+  }, [phase, failure, go, state, cash])
 
   function retry() {
     setPhase('aim')
@@ -114,11 +117,17 @@ export function Scan() {
         <section className={s.panel}>
           <h2>За каждый чек</h2>
           <ul className={s.gains}>
-            <li>
-              <b>
-                <Amount value={25} kind="hard" coin={20} />
-              </b>
-              и больше за каждый товар LIT
+            <li className={s.cash} data-boost={cashback.multiplier > 1 || undefined}>
+              <button type="button" className="press" onClick={() => setCash(true)} aria-label="Кэшбек за товары LIT: подробнее">
+                <b>
+                  <Amount value={cashback.rates[0].hard * cashback.multiplier} kind="hard" coin={20} />
+                  {cashback.multiplier > 1 && <span className={s.mult}>×{cashback.multiplier}</span>}
+                </b>
+                <span className={s.cashText}>
+                  кэшбек за банку LIT
+                  <Icon name="info" size={14} />
+                </span>
+              </button>
             </li>
             <li>
               <b>×2</b>
@@ -133,6 +142,7 @@ export function Scan() {
           </ul>
         </section>
       )}
+      {cash && <CashbackSheet onClose={() => setCash(false)} />}
     </main>
   )
 }

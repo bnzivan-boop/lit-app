@@ -61,7 +61,7 @@ export function WheelWin({ prize, image, balance, held, onHeld, onClose }: Props
   const rest = (kind: 'soft' | 'hard') => balance[kind] - (prize.kind === kind ? held : 0)
 
   return (
-    <main ref={root} className={s.screen} style={lootVars(prize.kind)}>
+    <main ref={root} className={s.screen} style={lootVars(prize.kind)} data-ny-win={prize.kind}>
       <span className={s.glow} aria-hidden />
       <span className={s.flame} aria-hidden />
       <header className={s.top}>

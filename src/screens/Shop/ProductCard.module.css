@@ -114,3 +114,27 @@
   gap: 4px;
   color: var(--text-muted);
 }
+
+/* скидка: наклейка на фото, старая цена зачёркнута, срок */
+.sale {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  padding: 5px 8px 6px;
+  border-radius: 9px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font: var(--weight-display) 16px / 1 var(--font-display);
+}
+
+.was {
+  margin-left: 6px;
+  color: var(--text-muted);
+  font: var(--weight-label) 14px / 1 var(--font-display);
+  text-decoration: line-through;
+}
+
+.until {
+  color: var(--accent);
+  font: var(--weight-label) 13px / 1.2 var(--font-display);
+}

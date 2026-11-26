@@ -60,6 +60,6 @@
 }
 
 .hero[data-on] button {
-  background: var(--accent-ink);
+  background: var(--ink-plate, var(--accent-ink));
   color: #fff;
 }

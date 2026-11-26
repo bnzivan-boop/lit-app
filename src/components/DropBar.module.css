@@ -71,7 +71,7 @@
   gap: 6px;
   padding: 10px 0 8px;
   border-radius: 14px;
-  background: var(--accent-ink);
+  background: var(--ink-plate, var(--accent-ink));
   color: var(--text);
   font: 400 var(--fs-min) / 1 var(--font-body);
 }
@@ -109,6 +109,6 @@
   width: 46px;
   height: 46px;
   border-radius: 14px;
-  background: var(--accent-ink);
+  background: var(--ink-plate, var(--accent-ink));
   color: var(--text);
 }

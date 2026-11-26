@@ -1,10 +1,11 @@
 import { useRef, useState } from 'react'
 import { Navigate, useNavigate, useParams } from 'react-router'
+import { num } from '../../data/format'
 import { Amount } from '../../components/Amount'
 import { Button } from '../../components/Button'
 import { Icon } from '../../components/Icon'
 import { LEAGUE_NAME } from '../../data/labels'
-import { DROP, findProduct, isOpen, maxQty, photo } from '../../data/shop'
+import { DROP, findProduct, isOpen, maxQty, photo, saleOf } from '../../data/shop'
 import { useStore } from '../../data/store'
 import { haptic, reduced } from '../../lib/motion'
 import { useOpen, useOrigin } from '../../lib/useOrigin'
@@ -22,7 +23,7 @@ export function Product() {
   const go = useNavigate()
   const open = useOpen()
   const back = useOrigin('/shop')
-  const { balance, cart, cartCount, setCart, user } = useStore()
+  const { balance, cart, cartCount, setCart, user, now } = useStore()
   const p = findProduct(id)
   const [size, setSize] = useState<string>()
   const [chart, setChart] = useState(false)
@@ -34,7 +35,8 @@ export function Product() {
   if (!p) return <Navigate to="/shop" replace />
   if (p.id === DROP.id) return <Navigate to="/drop" replace />
 
-  const price = p.price.hard
+  const sale = saleOf(p, now)
+  const price = sale?.price ?? p.price.hard
   const closed = !isOpen(p, user.league)
   const missing = price - balance.hard
   const line = cart.find((l) => l.id === p.id && l.size === size)
@@ -75,6 +77,21 @@ export function Product() {
         {p.left && <span className={s.left}>осталось {p.left}</span>}
       </div>
       <h1 className={s.title}>{p.title}</h1>
+      {sale && (
+        <div className={s.sale}>
+          <span className={s.salePct}>−{sale.percent}%</span>
+          <span className={s.saleText}>
+            <b>{sale.title}</b>
+            <span>
+              до {new Date(sale.endsAt).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' })} · потом <Amount value={sale.base} kind="hard" coin={15} />
+            </span>
+          </span>
+          <span className={s.salePrice}>
+            <Amount value={sale.price} kind="hard" coin={20} />
+            <s>{num(sale.base)}</s>
+          </span>
+        </div>
+      )}
       <p className={s.about}>{p.about}</p>
       <p className={s.how}>{p.digital ? 'Придёт кодом в «Мои заказы», доставка не нужна' : 'Доставим по адресу, срок увидишь при оформлении'}</p>
 

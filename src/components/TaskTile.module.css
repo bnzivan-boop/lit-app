@@ -39,7 +39,7 @@
   height: 26px;
   padding-inline: 9px 7px;
   border-radius: 13px;
-  background: var(--accent-ink);
+  background: var(--ink-plate, var(--accent-ink));
   font-size: var(--fs-body-sm);
 }
 

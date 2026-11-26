@@ -20,7 +20,7 @@ export function Backdrop({ tone }: { tone: Currency }) {
   return (
     <div className={s.back} aria-hidden>
       {(['soft', 'hard'] as const).map((k) => (
-        <div key={k} className={`${s.scene} ${s[k]} ${tone === k ? s.on : ''}`}>
+        <div key={k} className={`${s.scene} ${s[k]} ${tone === k ? s.on : ''}`} data-scene={k}>
           <span className={s.rays} />
           <span className={s.edge} />
         </div>

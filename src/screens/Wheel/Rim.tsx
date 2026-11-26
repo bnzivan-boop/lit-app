@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react'
 import s from './Rim.module.css'
 
 const R = 200
@@ -17,7 +18,8 @@ export function Rim({ mode }: { mode: 'idle' | 'spin' | 'win' | 'off' }) {
           cy={-(R - 11)}
           transform={`rotate(${(i * 360) / LIGHTS})`}
           className={s.light}
-          style={{ animationDelay: `${((i % 6) / 6) * -0.9}s` }}
+          style={{ animationDelay: `${((i % 6) / 6) * -0.9}s`, '--i': i } as CSSProperties}
+          data-c={i % 3}
         />
       ))}
     </svg>

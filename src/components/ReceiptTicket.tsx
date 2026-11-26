@@ -56,6 +56,10 @@ export function ReceiptTicket({ receipt, totalRef, onPrinted, still }: Props) {
             <h1>Чек принят</h1>
             <p>{receipt.shop}</p>
           </header>
+          <div data-row className={s.cbHead}>
+            <b>Кэшбек за товары LIT</b>
+            {receipt.cashback > 1 && <span className={s.cbMult}>×{receipt.cashback}</span>}
+          </div>
           {receipt.items.map((i) => (
             <div key={i.title} data-row className={s.row}>
               <span className={s.thumb}>
@@ -78,6 +82,7 @@ export function ReceiptTicket({ receipt, totalRef, onPrinted, still }: Props) {
             <div data-row className={`${s.row} ${s.task}`}>
               <span className={s.title}>
                 {receipt.moved} {plural(receipt.moved, ['задание продвинулось', 'задания продвинулись', 'заданий продвинулись'])}
+                <small className={s.taskNote}>награды — сверху, в «Заданиях»</small>
               </span>
               {receipt.ready > 0 && <span className={s.ready}>{receipt.ready} {plural(receipt.ready, ['готово', 'готовы', 'готовы'])}</span>}
             </div>

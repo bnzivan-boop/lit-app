@@ -216,7 +216,7 @@
 .xpText .boost b {
   padding: 5px 8px;
   border-radius: 10px;
-  background: var(--accent-ink);
+  background: var(--ink-plate, var(--accent-ink));
   color: var(--accent);
   font-size: 16px;
 }

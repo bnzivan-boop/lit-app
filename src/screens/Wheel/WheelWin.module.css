@@ -63,7 +63,7 @@
   height: var(--tap);
   padding-inline: 16px;
   border-radius: var(--r-chip);
-  background: var(--accent-ink);
+  background: var(--ink-plate, var(--accent-ink));
   color: var(--text);
   font-size: 18px;
 }
