@@ -1,0 +1,139 @@
+.lead {
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: var(--accent-tint);
+  font-size: var(--fs-body-sm);
+  line-height: 1.4;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 20px;
+  background: var(--surface-1);
+  text-align: left;
+}
+
+.top,
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.top b {
+  font: var(--weight-display) 20px / 1 var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+.meta {
+  color: var(--text-muted);
+  font-size: var(--fs-body-sm);
+}
+
+.bottom {
+  margin-top: 4px;
+  font-size: var(--fs-body-sm);
+}
+
+.bottom > :last-child {
+  font-size: 18px;
+}
+
+.status {
+  flex: none;
+  padding: 5px 9px 6px;
+  border-radius: 9px;
+  background: var(--surface-2);
+  font: var(--weight-label) 13px / 1 var(--font-display);
+}
+
+[data-status='ok'] .status,
+.status[data-status='ok'] {
+  background: var(--accent-tint);
+  color: var(--accent);
+}
+
+[data-status='rejected'] .status,
+.status[data-status='rejected'] {
+  background: var(--warn-tint);
+  color: var(--warn);
+}
+
+.reason {
+  color: var(--warn-text);
+  font-size: 13px !important;
+  text-align: right;
+}
+
+.sheet {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding-bottom: 8px;
+}
+
+.sheet h2 {
+  font-size: var(--fs-screen);
+}
+
+.sheet dl {
+  align-self: stretch;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 18px;
+  background: var(--surface-2);
+}
+
+.sheet dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 14px;
+}
+
+.sheet dl div + div {
+  border-top: 1px solid var(--line);
+}
+
+.sheet dt {
+  color: var(--text-muted);
+  font-size: var(--fs-body-sm);
+}
+
+.sheet dd {
+  margin: 0;
+  font: var(--weight-label) 15px / 1.2 var(--font-display);
+  text-align: right;
+  word-break: break-all;
+}
+
+.reasonBig {
+  color: var(--warn-text);
+  font-size: var(--fs-body);
+}
+
+.copy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  min-height: 52px;
+  border-radius: var(--r-button);
+  background: var(--surface-2);
+  font: var(--weight-label) 17px / 1 var(--font-display);
+}

@@ -69,7 +69,17 @@ export function TourHost() {
 
   const onNext = useCallback(() => setI((k) => (k === null || k >= TOUR.length - 1 ? null : k + 1)), [])
 
-  if (i === null || hidden) return null
+  /* пока открыта шторка, меню или окно награды — тур ждёт */
+  const [busy, setBusy] = useState(false)
+  useEffect(() => {
+    if (i === null) return
+    const check = () => setBusy(Boolean(document.querySelector('[role="dialog"]:not([data-tour-layer]), [aria-modal="true"]:not([data-tour-layer])')))
+    check()
+    const t = setInterval(check, 300)
+    return () => clearInterval(t)
+  }, [i])
+
+  if (i === null || hidden || busy) return null
   const step = TOUR[i]
   if (step.page !== pathname) return null
   return (
@@ -139,7 +149,7 @@ function TourStepView({ step, n, total, onNext, onHide }: { step: TourStep; n: n
   const arrow = Math.min(Math.max(box.x + box.w / 2, 28), window.innerWidth - 28)
 
   return createPortal(
-    <div className={s.layer} role="dialog" aria-modal="true" aria-label={`Подсказка ${n + 1} из ${total}: ${step.title}`}>
+    <div className={s.layer} data-tour-layer role="dialog" aria-modal="true" aria-label={`Подсказка ${n + 1} из ${total}: ${step.title}`}>
       <button
         type="button"
         className={s.hole}

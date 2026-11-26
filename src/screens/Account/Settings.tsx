@@ -16,6 +16,7 @@ import f from '../Shop/Forms.module.css'
 import { Row, Rows } from './Rows'
 import s from './Settings.module.css'
 
+
 /** Настройки: ник, Telegram, телефон, данные доставки. ?edit= открывает форму */
 export function Settings() {
   const back = useOrigin()

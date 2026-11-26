@@ -13,6 +13,8 @@ import { GamePage } from './screens/Games/GamePage'
 import { Games } from './screens/Games/Games'
 import { Play } from './screens/Games/Play'
 import { Faq } from './screens/Account/Faq'
+import { Receipts } from './screens/Account/Receipts'
+import { Legal } from './screens/Account/Legal'
 import { Friends } from './screens/Account/Friends'
 import { Notifications } from './screens/Account/Notifications'
 import { Settings } from './screens/Account/Settings'
@@ -121,6 +123,8 @@ function Pages() {
         <Route path="/order/done" element={<Done />} />
         <Route path="/orders" element={<Orders />} />
         <Route path="/faq" element={<Faq />} />
+        <Route path="/receipts" element={<Receipts />} />
+        <Route path="/legal/:doc" element={<Legal />} />
         <Route path="/support" element={<Support />} />
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/settings" element={<Settings />} />

@@ -1,0 +1,45 @@
+.company {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+}
+
+.company div {
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: var(--surface-1);
+}
+
+.company dt {
+  font: var(--weight-label) 16px / 1.2 var(--font-display);
+}
+
+.company dd {
+  margin: 6px 0 0;
+  color: var(--text-muted);
+  font-size: var(--fs-body);
+  line-height: 1.4;
+  user-select: text;
+}
+
+/* юридический текст: читать удобно, копировать можно */
+.doc {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  user-select: text;
+}
+
+.doc h2 {
+  margin-top: 6px;
+  font: var(--weight-display) 18px / 1.15 var(--font-display);
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.doc p {
+  color: var(--text-muted);
+  font-size: var(--fs-body);
+  line-height: 1.5;
+}

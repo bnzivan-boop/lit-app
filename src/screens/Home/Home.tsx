@@ -28,7 +28,7 @@ import { flyCoins, haptic, reduced, tween } from '../../lib/motion'
 import { useOpen } from '../../lib/useOrigin'
 import s from './Home.module.css'
 
-const MENU_PATH: Record<string, string> = { orders: '/orders', track: '/orders', friend: '/friends' }
+const MENU_PATH: Record<string, string> = { orders: '/orders', track: '/orders', friend: '/friends', offer: '/legal/offer', privacy: '/legal/privacy', company: '/legal/company' }
 
 const COINS = 16
 /* огонь горит всегда, заряд его усиливает */

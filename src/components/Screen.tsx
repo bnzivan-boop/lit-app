@@ -12,7 +12,7 @@ export function Screen({ title, onBack, children, footer }: Props) {
         <button type="button" className={`press ${s.back}`} aria-label="Назад" onClick={onBack}>
           <Icon name="chevron" size={24} />
         </button>
-        <h1>{title}</h1>
+        <h1 data-long={title.split(' ').some((w) => w.length > 14) || undefined}>{title}</h1>
       </header>
       {children}
       {footer && <footer className={s.foot}>{footer}</footer>}

@@ -18,6 +18,9 @@ const ICON: Record<string, IconName> = {
   company: 'info',
   wheel: 'wheel',
   levels: 'box',
+  receipts: 'scan',
+  offer: 'info',
+  privacy: 'lock',
   tour: 'question',
 }
 

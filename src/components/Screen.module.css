@@ -29,7 +29,13 @@
 }
 
 .head h1 {
+  min-width: 0;
   font-size: 34px;
+}
+
+/* длинное слово в заголовке («конфиденциальности») — мельче, чтобы влезло */
+.head h1[data-long] {
+  font-size: min(34px, 7.6vw);
 }
 
 .foot {
