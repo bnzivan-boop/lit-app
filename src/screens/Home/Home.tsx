@@ -7,6 +7,9 @@ import type { FireState } from '../../components/Fire'
 import { Hero, HeroSkeleton } from '../../components/Hero'
 import { SegmentBar } from '../../components/ProgressBar'
 import { PromoBanner } from '../../components/PromoBanner'
+import { BannerCarousel } from '../../components/BannerCarousel'
+import { PromoSlide } from '../Promo/PromoSlide'
+import { PROMOS } from '../../data/promos'
 import { Skeleton } from '../../components/Skeleton'
 import { MenuSheet } from '../../components/MenuSheet'
 import { Stats, StatsSkeleton } from '../../components/Stats'
@@ -76,9 +79,14 @@ export function Home({ topBar = true }: { topBar?: boolean }) {
         <StreakTile {...streak} onSave={() => action.kind === 'streak' && play(action.game)} />
       </div>
 
-      {banners.map((b) => (
-        <PromoBanner key={b.image} {...b} onClick={() => go('/tasks')} />
-      ))}
+      <BannerCarousel>
+        {banners.map((b) => (
+          <PromoBanner key={b.image} {...b} onClick={() => go('/tasks')} />
+        ))}
+        {PROMOS.map((p) => (
+          <PromoSlide key={p.id} promo={p} onClick={() => go(`/promo/${p.id}`)} />
+        ))}
+      </BannerCarousel>
 
       <DailyTasks store={store} onPlay={play} onScan={() => open('/scan')} />
 

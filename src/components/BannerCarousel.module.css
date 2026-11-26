@@ -1,0 +1,47 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.track {
+  display: flex;
+  gap: var(--space-2);
+  margin-inline: calc(var(--screen-pad) * -1);
+  padding-inline: var(--screen-pad);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--screen-pad);
+  scrollbar-width: none;
+}
+
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+/* следующий баннер выглядывает справа */
+.track > *:nth-child(n) {
+  flex: none;
+  width: 88%;
+  scroll-snap-align: start;
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.dots i {
+  width: 6px;
+  height: 6px;
+  border-radius: 3px;
+  background: rgb(255 255 255 / 0.25);
+  transition: width 200ms var(--ease-out, ease-out), background-color 200ms ease;
+}
+
+.dots i[data-on] {
+  width: 18px;
+  background: #fff;
+}
