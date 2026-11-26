@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router'
 import { Button } from '../../components/Button'
-import { Fire, type FireState } from '../../components/Fire'
+import { type FireState } from '../../components/Fire'
+import { Glow } from '../../components/Glow'
 import { Icon } from '../../components/Icon'
 import { LiquidBar } from '../../components/LiquidBar'
 import { Rewards } from '../../components/Rewards'
@@ -47,7 +48,7 @@ export function Result({ game, run, onAgain }: Props) {
   return (
     <main ref={root} className={s.screen} data-win={win || undefined}>
       <div className={s.stage}>
-        {win && <Fire state={fire} className={s.fire} />}
+        {win && <Glow />}
         <img ref={art} className={s.art} src={win ? '/assets/rewards/emblem.webp' : '/assets/rewards/sad.webp'} alt="" />
       </div>
       <h1 className={s.title}>{win ? 'Классное прохождение' : 'Не вышло'}</h1>

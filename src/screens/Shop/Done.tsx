@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react'
 import { Navigate, useNavigate } from 'react-router'
 import { Button } from '../../components/Button'
-import { Fire, type FireState } from '../../components/Fire'
+import { type FireState } from '../../components/Fire'
+import { Glow } from '../../components/Glow'
 import { useStore } from '../../data/store'
 import { haptic, tween } from '../../lib/motion'
 import { sparks } from '../../lib/sparks'
@@ -29,7 +30,7 @@ export function Done() {
   return (
     <main ref={root} className={s.screen}>
       <div className={s.stage}>
-        <Fire state={fire} className={s.fire} />
+        <Glow />
         <img ref={art} className={s.art} src="/assets/rewards/emblem.webp" alt="" />
         <span className={s.tape} data-back aria-hidden>
           <i />

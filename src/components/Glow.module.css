@@ -1,0 +1,73 @@
+.glow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(440px, 112%);
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  pointer-events: none;
+}
+
+/* мягкий бирюзовый ореол, дышит */
+.core {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--accent) 62%, transparent), color-mix(in srgb, var(--accent) 22%, transparent) 48%, transparent 74%);
+  animation:
+    appear 700ms cubic-bezier(0.23, 1, 0.32, 1) both,
+    breathe 2.4s ease-in-out 700ms infinite alternate;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    scale: 0.6;
+  }
+}
+
+@keyframes breathe {
+  from {
+    opacity: 0.65;
+    scale: 0.92;
+  }
+  to {
+    opacity: 1;
+    scale: 1.06;
+  }
+}
+
+/* одна вспышка в момент появления награды */
+.flash {
+  position: absolute;
+  inset: 22%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, #fff, color-mix(in srgb, var(--accent) 60%, transparent) 45%, transparent);
+  opacity: 0;
+  animation: flash 900ms cubic-bezier(0.23, 1, 0.32, 1) 120ms both;
+}
+
+@keyframes flash {
+  0% {
+    opacity: 0;
+    scale: 0.4;
+  }
+  18% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    scale: 2.2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .core,
+  .flash {
+    animation: none;
+  }
+
+  .flash {
+    display: none;
+  }
+}

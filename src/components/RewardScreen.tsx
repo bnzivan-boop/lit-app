@@ -8,6 +8,7 @@ import { sparks } from '../lib/sparks'
 import { Amount } from './Amount'
 import { Button } from './Button'
 import { Fire, type FireState } from './Fire'
+import { Glow } from './Glow'
 import { Rewards } from './Rewards'
 import s from './RewardScreen.module.css'
 
@@ -96,7 +97,7 @@ export function RewardScreen({ title, reward, before, after, image, photo, actio
         </span>
       </header>
       <div className={s.stage}>
-        <Fire state={fire} className={s.fire} />
+        {image ? <Fire state={fire} className={s.fire} /> : <Glow />}
         <img ref={art} className={s.art} src={image ?? '/assets/rewards/emblem.webp'} alt="" data-item={image ? '' : undefined} data-photo={photo || undefined} />
       </div>
       <h1 className={s.title}>Награда твоя</h1>
