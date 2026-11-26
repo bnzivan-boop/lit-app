@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Navigate, useLocation, useNavigate } from 'react-router'
-import { useOrigin } from '../../lib/useOrigin'
+import { useOpen, useOrigin } from '../../lib/useOrigin'
 import { BoostTile, TicketTile } from '../../components/RewardTiles'
 import { Amount } from '../../components/Amount'
 import { Button } from '../../components/Button'
@@ -17,7 +17,8 @@ export function Receipt() {
   const go = useNavigate()
   const { state } = useLocation()
   const back = useOrigin()
-  const { receipt, user, balance, boost, tickets } = useStore()
+  const open = useOpen()
+  const { receipt, user, balance, boost, promo } = useStore()
   const top = useRef<HTMLDivElement>(null)
   const total = useRef<HTMLSpanElement>(null)
   const layer = useRef<HTMLDivElement>(null)
@@ -66,7 +67,7 @@ export function Receipt() {
         <ReceiptTicket receipt={receipt} totalRef={total} onPrinted={() => setPhase((p) => (p === 'print' ? 'ready' : p))} />
         <div className={`${s.rewards} ${phase === 'print' ? s.hidden : ''}`}>
           <BoostTile msLeft={boost.msLeft} extended={receipt.doubled} />
-          <TicketTile count={receipt.tickets} total={tickets} />
+          <TicketTile count={receipt.tickets} total={promo.tickets} onClick={() => open('/promo/prizes')} />
         </div>
       </main>
       <footer className={`${s.actions} ${phase === 'print' ? s.hidden : ''}`}>

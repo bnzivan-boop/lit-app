@@ -42,6 +42,10 @@ import { LeagueMark } from '../Shop/LeagueMark'
 import { ProductCard } from '../Shop/ProductCard'
 import { Stepper } from '../Shop/Stepper'
 import { Row, Rows, SwitchRow } from '../Account/Rows'
+import { PROMOS } from '../../data/promos'
+import { PromoCard } from '../Promo/PromoCard'
+import { PromoTimer } from '../Promo/PromoTimer'
+import { ScanDock } from '../Promo/ScanDock'
 import { DailyChest } from '../Tasks/DailyChest'
 import { QuestSheet } from '../Tasks/QuestSheet'
 import { Section } from './Section'
@@ -789,6 +793,28 @@ function AccountKit() {
   )
 }
 
+function PromoKit() {
+  return (
+    <Section title="Чеки и акции">
+      <State name="Баннеры акций, нажатие">
+        {PROMOS.map((p, i) => (
+          <div key={p.id} style={{ paddingTop: 30 }}>
+            <PromoCard promo={p} ends="11 дней" pressed={i === 1} onClick={NONE} />
+          </div>
+        ))}
+      </State>
+      <State name="Сканировать чек: без билетов, с билетами, нажатие">
+        <ScanDock inline tickets={0} onClick={NONE} />
+        <ScanDock inline tickets={3} boosted onClick={NONE} />
+        <ScanDock inline tickets={3} pressed onClick={NONE} />
+      </State>
+      <State name="До конца акции">
+        <PromoTimer msLeft={21 * 864e5 + 3_600_000} />
+      </State>
+    </Section>
+  )
+}
+
 export function Components() {
   return (
     <>
@@ -804,6 +830,7 @@ export function Components() {
       <GamesKit />
       <ShopKit />
       <AccountKit />
+      <PromoKit />
       <Leagues />
       <Cases />
       <Rest />

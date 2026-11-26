@@ -1,0 +1,342 @@
+.page {
+  position: relative;
+  min-height: 100dvh;
+  overflow-x: clip;
+  padding: 0 var(--screen-pad) calc(var(--safe-bottom) + 118px);
+  background: #050808;
+}
+
+/* --- Первый экран --- */
+.hero {
+  position: relative;
+  margin-inline: calc(var(--screen-pad) * -1);
+  padding: calc(var(--safe-top) + 66px) var(--screen-pad) 0;
+  overflow: hidden;
+  text-align: center;
+  background: radial-gradient(120% 270px at 78% -20px, #5cfff5 0%, #19b7ae 34%, #07403e 66%, transparent 100%), #050808;
+}
+
+[data-theme='dragon'] .hero {
+  background: radial-gradient(86% 46% at 60% 70%, #ff7a1c 0%, #cf3f0f 34%, rgba(90, 30, 70, 0.5) 66%, transparent 100%), linear-gradient(#072a63 60%, #050808 96%);
+}
+
+.back {
+  position: absolute;
+  z-index: 2;
+  left: var(--screen-pad);
+  top: calc(var(--safe-top) + 10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--tap);
+  height: var(--tap);
+  border-radius: 50%;
+  background: #050909;
+}
+
+.back svg {
+  rotate: 180deg;
+}
+
+.ends {
+  position: absolute;
+  right: var(--screen-pad);
+  top: calc(var(--safe-top) + 18px);
+}
+
+.hero h1 {
+  font-size: min(46px, 11.8vw);
+  line-height: 0.94;
+}
+
+.hero p {
+  max-width: 310px;
+  margin: 12px auto 0;
+  font-size: 16px;
+  line-height: 1.3;
+  text-wrap: balance;
+}
+
+.scene {
+  width: calc(100% + var(--screen-pad) * 2);
+  max-width: none;
+  margin: -30px calc(var(--screen-pad) * -1) -46px;
+  -webkit-mask: linear-gradient(transparent 2%, #000 30%, #000 66%, transparent 90%);
+  mask: linear-gradient(transparent 2%, #000 30%, #000 66%, transparent 90%);
+}
+
+[data-theme='dragon'] .scene {
+  width: calc(122% + var(--screen-pad) * 2);
+  margin: -16% 0 -14px calc(-22% - var(--screen-pad));
+  -webkit-mask: linear-gradient(#000 84%, transparent 97%);
+  mask: linear-gradient(#000 84%, transparent 97%);
+}
+
+/* Твоё участие: одна строка, число и слово вместе */
+.mine {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  min-height: 64px;
+  padding-inline: 8px;
+  border-radius: 22px;
+  background: var(--panel);
+}
+
+.mine > * {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 48px;
+  font-size: 16px;
+}
+
+.mine b {
+  font: var(--weight-display) 30px / 1 var(--font-display);
+  letter-spacing: var(--tracking-display);
+}
+
+.section {
+  margin-top: 38px;
+}
+
+.section h2 {
+  margin-bottom: 16px;
+  font-size: 32px;
+}
+
+/* Призы: плитки одного стиля, супер-призы широкие и невысокие */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 148px 148px;
+  grid-auto-rows: 182px;
+  grid-auto-flow: dense;
+  gap: 9px;
+  margin: 0 -6px;
+}
+
+.prize {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  background: radial-gradient(76% 70% at 54% 44%, #25c9bf 0%, #0d5a56 52%, #0a1f1f 100%);
+}
+
+.prize[data-tone='1'] {
+  background: radial-gradient(90% 80% at 50% 40%, #234443 0%, #122222 60%, #0b1313 100%);
+}
+
+.prize[data-tone='2'] {
+  background: radial-gradient(90% 86% at 52% 40%, #8bfff8 0%, #3de0d6 46%, #0c7a74 100%);
+}
+
+.prize[data-size='tall'] {
+  grid-row: span 2;
+}
+
+.prize[data-size='wide'] {
+  grid-column: span 2;
+}
+
+.prizeFlame {
+  position: absolute;
+  left: -14%;
+  top: -18%;
+  width: 92%;
+  aspect-ratio: 810 / 1212;
+  rotate: 10deg;
+  background: #021312;
+  opacity: 0.22;
+  -webkit-mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+  mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+}
+
+.prize[data-size='wide'] .prizeFlame {
+  left: 34%;
+  width: 52%;
+  top: -60%;
+}
+
+.prize img {
+  position: absolute;
+  max-width: none;
+  filter: drop-shadow(0 12px 12px rgba(0, 0, 0, 0.5));
+}
+
+.prize[data-image='iphone'] img {
+  left: -2px;
+  bottom: 0;
+  width: 340px;
+}
+
+.prize[data-image='macbook'] img {
+  left: 0;
+  top: 6px;
+  width: 180px;
+}
+
+.prize[data-image='airmax'] img {
+  left: 8px;
+  top: 4px;
+  width: 156px;
+}
+
+.prize[data-image='ps5'] img {
+  left: 12px;
+  top: -8px;
+  width: 190px;
+  rotate: 3deg;
+}
+
+.prize[data-image='airpods'] img {
+  left: 10px;
+  top: 14px;
+  width: 144px;
+}
+
+.prize[data-image='ipad'] img {
+  left: 2px;
+  bottom: 0;
+  width: 300px;
+}
+
+.prize[data-image='rayban'] img {
+  left: -6px;
+  top: 0;
+  width: 180px;
+}
+
+.prize[data-image='deck'] img {
+  left: -10px;
+  top: -8px;
+  width: 212px;
+}
+
+.count {
+  position: absolute;
+  right: 12px;
+  top: 10px;
+}
+
+.prize figcaption {
+  position: absolute;
+  inset: auto 0 0;
+  padding: 34px 14px 13px;
+  background: linear-gradient(transparent, rgba(2, 8, 8, 0.82) 62%);
+}
+
+.prize figcaption b {
+  display: block;
+  font: var(--weight-display) 24px / 0.95 var(--font-display);
+  letter-spacing: -0.03em;
+}
+
+.prize figcaption > span:last-child:not(:first-child) {
+  display: block;
+  margin-top: 6px;
+  font-size: 14px;
+  line-height: 1.25;
+}
+
+/* в широкой плитке имя стоит сбоку от предмета */
+.prize[data-size='wide'] figcaption {
+  inset: auto 0 0 62%;
+  padding: 0 12px 16px 0;
+  background: none;
+}
+
+.prize[data-size='super'] {
+  grid-column: span 2;
+  height: 148px;
+  background: radial-gradient(60% 110% at 76% 46%, var(--glow) 0%, var(--glow-low) 48%, transparent 100%), #050b0c;
+}
+
+.prize[data-size='super'] figcaption {
+  inset: 0 auto 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 42%;
+  padding: 0 0 0 16px;
+  background: none;
+}
+
+.prize[data-size='super'] figcaption b {
+  margin-top: 12px;
+}
+
+[data-theme='dragon'] .prize[data-size='super'] {
+  background: radial-gradient(60% 110% at 80% 50%, #ff7a1c 0%, #b9360f 38%, transparent 100%), #0a2047;
+}
+
+[data-theme='dragon'] .prize[data-image='can'][data-size='super'] {
+  background: radial-gradient(54% 110% at 80% 50%, #2f6cff 0%, #123f9e 46%, transparent 100%), #0a2047;
+}
+
+.prize[data-image='vesta'] img {
+  right: -56px;
+  bottom: 8px;
+  width: 276px;
+}
+
+.prize[data-image='soon'] img {
+  right: -20px;
+  top: 0;
+  width: 252px;
+  filter: none;
+  -webkit-mask: linear-gradient(90deg, transparent 2%, #000 34%);
+  mask: linear-gradient(90deg, transparent 2%, #000 34%);
+}
+
+.prize[data-image='jet'] img {
+  right: -14px;
+  bottom: -18px;
+  width: 244px;
+  filter: none;
+  -webkit-mask: linear-gradient(90deg, transparent, #000 24%);
+  mask: linear-gradient(90deg, transparent, #000 24%);
+}
+
+.prize[data-image='can'] img {
+  right: 48px;
+  top: 10px;
+  width: 104px;
+  rotate: 8deg;
+}
+
+/* Правила: просто список */
+.rules {
+  display: grid;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rules li {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  align-items: baseline;
+  font-size: 17px;
+  line-height: 1.35;
+}
+
+.rules b {
+  color: var(--hot);
+  font: var(--weight-display) 28px / 1 var(--font-display);
+  letter-spacing: var(--tracking-display);
+}
+
+.sheetTitle {
+  margin-top: 4px;
+  font-size: 34px;
+}
+
+.sheetText {
+  margin: 12px 0 20px;
+  font-size: 16px;
+  line-height: 1.45;
+}

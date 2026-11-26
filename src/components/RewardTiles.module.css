@@ -11,7 +11,7 @@
 }
 
 .boost h2,
-.ticket h2 {
+.ticket strong {
   position: relative;
   font: var(--weight-label) var(--fs-button) / 1 var(--font-display);
   letter-spacing: 0;

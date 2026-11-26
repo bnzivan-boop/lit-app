@@ -1,0 +1,160 @@
+.card {
+  position: relative;
+  display: block;
+  width: 100%;
+  /* на высоком экране баннеры растут и занимают место до кнопки скана */
+  height: clamp(246px, (100dvh - var(--safe-top) - 262px) / 2, 284px);
+  color: #fff;
+}
+
+.frame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+[data-theme='dragon'] .frame {
+  background: radial-gradient(62% 74% at 76% 66%, #ff8a24 0%, #d8430f 34%, #47245c 70%, transparent 100%), #062456;
+}
+
+[data-theme='prizes'] .frame {
+  background: radial-gradient(60% 72% at 80% 58%, #6ffff4 0%, #1fc4ba 32%, #0a5552 64%, transparent 100%), #062625;
+}
+
+.flame {
+  position: absolute;
+  right: 8px;
+  top: -70px;
+  width: 250px;
+  aspect-ratio: 810 / 1212;
+  rotate: 14deg;
+  opacity: 0.16;
+  background: #fff;
+  -webkit-mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+  mask: url('/assets/brand/logo-flame-white.png') center / contain no-repeat;
+}
+
+[data-theme='prizes'] .flame {
+  background: #04201e;
+  opacity: 0.4;
+}
+
+.pop {
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(0 -70px, calc(100% + 20px) -70px, calc(100% + 20px) calc(100% - var(--br)), 0 calc(100% - var(--bl)));
+  pointer-events: none;
+}
+
+.art {
+  position: absolute;
+  max-width: none;
+}
+
+[data-theme='dragon'] .art {
+  right: -11%;
+  bottom: -8px;
+  width: 70%;
+}
+
+[data-theme='prizes'] .art {
+  right: -31%;
+  bottom: 16px;
+  width: 84%;
+  filter: drop-shadow(0 16px 16px rgba(0, 0, 0, 0.5));
+}
+
+/* призы летят над машиной */
+.fly {
+  position: absolute;
+  max-width: none;
+  filter: drop-shadow(0 8px 8px rgba(0, 0, 0, 0.35));
+  animation: fly 3s ease-in-out infinite alternate;
+}
+
+.fly[data-n='1'] {
+  right: 15%;
+  top: -18px;
+  width: 29%;
+  rotate: 8deg;
+}
+
+.fly[data-n='2'] {
+  right: 31%;
+  top: 24%;
+  width: 19%;
+  rotate: -12deg;
+  animation-delay: -1.2s;
+}
+
+.fly[data-n='3'] {
+  right: -3%;
+  top: 34px;
+  width: 24%;
+  rotate: 16deg;
+  animation-delay: -2s;
+}
+
+@keyframes fly {
+  from {
+    transform: translateY(4px);
+  }
+  to {
+    transform: translateY(-5px) rotate(3deg);
+  }
+}
+
+.text {
+  position: absolute;
+  inset: 14px auto 15px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 44%;
+}
+
+.tags {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.ends {
+  font: var(--weight-label) 15px / 1 var(--font-display);
+}
+
+.title {
+  margin-top: 11px;
+  font: var(--weight-display) min(37px, 9.5vw) / 0.95 var(--font-display);
+  letter-spacing: var(--tracking-display);
+  text-transform: uppercase;
+}
+
+.sub {
+  margin-top: 8px;
+  font-size: var(--fs-body-sm);
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.more {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: none;
+  height: 38px;
+  margin-top: auto;
+  padding-inline: 16px 10px;
+  border-radius: 19px;
+  background: #fff;
+  color: var(--bg);
+  font: var(--weight-label) 17px / 1 var(--font-display);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fly {
+    animation: none;
+  }
+}

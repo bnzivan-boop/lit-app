@@ -16,6 +16,8 @@ import { Notifications } from './screens/Account/Notifications'
 import { Settings } from './screens/Account/Settings'
 import { Support } from './screens/Account/Support'
 import { appPath } from './lib/base'
+import { PromoHub } from './screens/Promo/PromoHub'
+import { PromoPage } from './screens/Promo/PromoPage'
 import { useScroll } from './lib/useOrigin'
 import { Home } from './screens/Home/Home'
 import { Kit } from './screens/Kit/Kit'
@@ -33,7 +35,7 @@ import { Tasks } from './screens/Tasks/Tasks'
 import { Stub } from './screens/Stub/Stub'
 import s from './App.module.css'
 
-const PATH: Record<TabId, string> = { home: '/', tasks: '/tasks', scan: '/scan', games: '/games', shop: '/shop' }
+const PATH: Record<TabId, string> = { home: '/', tasks: '/tasks', scan: '/promo', games: '/games', shop: '/shop' }
 
 function Shell() {
   const { pathname } = useLocation()
@@ -43,7 +45,7 @@ function Shell() {
   return (
     <div className={s.shell}>
       <Outlet />
-      <TabBar badge={{ tasks: readyCount }} active={active} onSelect={(id) => go(PATH[id], id === 'scan' ? { state: { from: pathname } } : undefined)} />
+      <TabBar badge={{ tasks: readyCount }} active={active} onSelect={(id) => (id === 'scan' && pathname === '/promo' ? go('/scan', { state: { from: pathname } }) : go(PATH[id]))} />
     </div>
   )
 }
@@ -101,6 +103,7 @@ function Pages() {
         <Route path="/scan" element={<Scan />} />
         <Route path="/receipt" element={<Receipt />} />
         <Route path="/drop" element={<Drop />} />
+        <Route path="/promo/:id" element={<PromoPage />} />
         <Route path="/shop/:id" element={<Product />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
@@ -117,6 +120,7 @@ function Pages() {
         <Route element={<Shell />}>
           <Route path="/" element={offer ? <Navigate to="/wheel" replace /> : <Home />} />
           <Route path="/tasks" element={<Tasks />} />
+          <Route path="/promo" element={<PromoHub />} />
           <Route path="/games" element={<Games />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/profile" element={<Stub title="Профиль" />} />

@@ -1,0 +1,35 @@
+.tag {
+  display: inline-flex;
+  align-items: center;
+  height: 27px;
+  padding: 0 10px;
+  border-radius: 8px;
+  background: var(--hot, var(--accent));
+  color: var(--hot-ink, var(--accent-ink));
+  font: var(--weight-display) 17px / 1 var(--font-display);
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.tag > span {
+  transform: translateY(0.5px);
+}
+
+.tag[data-tone='white'] {
+  background: #fff;
+  color: #060b0b;
+}
+
+.tag[data-tone='dark'] {
+  background: #050909;
+  color: #fff;
+}
+
+.tag[data-big] {
+  height: 46px;
+  padding: 0 10px;
+  border-radius: 12px;
+  font-size: 32px;
+  letter-spacing: -0.06em;
+}

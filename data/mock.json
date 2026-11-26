@@ -1,5 +1,5 @@
 {
-  "_note": "Тестовые данные. Веса в caseLoot условные. Веса wheel — проценты: хард 1/5/15 вместе 5%, 50/1000 вместе 0,5%. Ники, цифры и призы условные. Бонусы за друзей, ссылки и ответы на вопросы условные. Цены, лиги, остатки магазина, пункты и тарифы СДЭК условные. Правила, цели и рейтинги игр условные, кроме Джампа и Джета; gameRun — условный курс очков. Основные данные — состояние «день»; demo.scenarios накладываются сверху.",
+  "_note": "Тестовые данные. Веса в caseLoot условные. Веса wheel — проценты: хард 1/5/15 вместе 5%, 50/1000 вместе 0,5%. Ники, цифры и призы условные. Сроки и правила акций, число чеков и билетов условные. Бонусы за друзей, ссылки и ответы на вопросы условные. Цены, лиги, остатки магазина, пункты и тарифы СДЭК условные. Правила, цели и рейтинги игр условные, кроме Джампа и Джета; gameRun — условный курс очков. Основные данные — состояние «день»; demo.scenarios накладываются сверху.",
   "demo": {
     "default": "day",
     "scenarios": {
@@ -34,6 +34,56 @@
     { "id": "faq", "title": "Частые вопросы", "group": "help" },
     { "id": "support", "title": "Написать в поддержку", "group": "help" },
     { "id": "settings", "title": "Настройки", "group": "app" }
+  ],
+  "promoStats": { "receipts": 3, "tickets": 3, "dreams": 1 },
+  "promos": [
+    {
+      "id": "dragon",
+      "sticker": "Акция",
+      "title": "2 Jeeland Jet",
+      "sub": "или тренировка с «Шанхай Дрэгонс»",
+      "theme": "dragon",
+      "art": "dragon",
+      "name": "Выиграй 2 Jeeland Jet",
+      "lead": "или тренировку с командой «Шанхай Дрэгонс»",
+      "endsAt": "2026-12-06T23:59:00+03:00",
+      "dreams": false,
+      "super": [
+        { "title": "Jeeland Jet", "note": "две машины", "image": "jet", "count": 2 },
+        { "title": "Тренировка", "note": "с командой «Шанхай Дрэгонс»", "image": "can" }
+      ],
+      "prizes": [],
+      "steps": ["Покупай лимонад LIT «Драгонмикс»", "Сканируй чек в приложении", "Один чек — один билет. Чек можно добавить один раз", "Больше билетов — выше шанс выиграть", "Победителей объявим в приложении после окончания акции"],
+      "scene": "dragon-scene"
+    },
+    {
+      "id": "prizes",
+      "sticker": "Розыгрыш",
+      "title": "100 призов",
+      "sub": "и два супер-приза",
+      "theme": "prizes",
+      "art": "vesta",
+      "scene": "prizes-scene",
+      "name": "Большой розыгрыш 100 призов",
+      "lead": "Покупай продукцию LIT, сканируй чек и участвуй в розыгрыше",
+      "endsAt": "2026-12-16T23:59:00+03:00",
+      "dreams": true,
+      "super": [
+        { "title": "Lada Vesta", "note": "за покупку «Юдзу‑сушняк»", "image": "vesta" },
+        { "title": "Скоро", "note": "пока под чехлом", "image": "soon", "soon": true }
+      ],
+      "prizes": [
+        { "title": "iPhone 18 Pro Max", "image": "iphone", "count": 10, "size": "tall" },
+        { "title": "MacBook Neo", "image": "macbook", "count": 20 },
+        { "title": "AirPods Max", "image": "airmax", "count": 10 },
+        { "title": "PS5 Pro и GTA VI", "image": "ps5", "count": 15, "size": "wide" },
+        { "title": "AirPods Pro", "image": "airpods", "count": 15 },
+        { "title": "iPad Air", "image": "ipad", "count": 15, "size": "tall" },
+        { "title": "Ray-Ban Wayfarer", "image": "rayban", "count": 10 },
+        { "title": "Steam Deck", "image": "deck", "count": 5, "size": "wide" }
+      ],
+      "steps": ["Покупай любую продукцию LIT Energy", "Сканируй чек в приложении", "Один чек — один билет. Чек можно добавить один раз", "Больше билетов — выше шанс выиграть", "Lada Vesta разыгрывается среди чеков с «Юдзу‑сушняк»"]
+    }
   ],
   "telegram": { "username": "korostkina", "bot": "", "support": "https://t.me/" },
   "notify": { "on": true, "streak": true, "charge": false, "order": true },

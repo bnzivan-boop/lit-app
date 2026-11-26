@@ -46,7 +46,8 @@ export function TabBar({ active, onSelect, fixed = true, pressed, disabled = [],
         <button
           type="button"
           className={`press ${s.scan}`}
-          aria-label="Скан чека"
+          aria-label={active === 'scan' ? 'Сканировать чек' : 'Чеки и акции'}
+          aria-current={active === 'scan' ? 'page' : undefined}
           data-pressed={pressed === 'scan' || undefined}
           disabled={disabled.includes('scan')}
           onClick={() => onSelect?.('scan')}

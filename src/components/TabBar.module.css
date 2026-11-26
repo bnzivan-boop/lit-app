@@ -71,3 +71,9 @@
   font: var(--weight-display) 13px / 18px var(--font-display);
   text-align: center;
 }
+
+/* На экране акций главная кнопка — крупная над панелью, центральная уступает ей */
+.scan[aria-current='page'] {
+  background: var(--surface-2);
+  color: var(--accent);
+}

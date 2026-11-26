@@ -165,6 +165,8 @@ type State = {
   remindDrop: boolean
   progress: { level: number; xp: number; xpNext: number }
   tickets: number
+  /** отсканировано за сессию */
+  receipts: number
   boostUntil: number
   receipt: ReceiptResult | null
   inventory: string[]
@@ -204,6 +206,7 @@ function init(id: ScenarioId): State {
     remindDrop: false,
     progress: { level: mock.user.level, xp: mock.user.xp, xpNext: mock.user.xpNext },
     tickets: 0,
+    receipts: 0,
     boostUntil: 0,
     receipt: null,
     inventory: [],
@@ -303,6 +306,7 @@ function addReceipt(s: State, now: number): State {
     streak: tasks.some((t, i) => t !== s.tasks[i]) ? countDay(s.streak) : s.streak,
     progress: addXp(s.progress, xp),
     tickets: s.tickets + tickets,
+    receipts: s.receipts + 1,
     boostUntil,
     receipt: { shop, items, moved: changed.length, ready, hard, xp, doubled, tickets, boostUntil },
   }
@@ -543,6 +547,8 @@ function useStoreValue(id: ScenarioId) {
     remindDrop: state.remindDrop,
     receipt: state.receipt,
     tickets: state.tickets,
+    /** участие в акциях: прошлое из моков плюс чеки этой сессии */
+    promo: { receipts: mock.promoStats.receipts + state.receipts, tickets: mock.promoStats.tickets + state.tickets, dreams: mock.promoStats.dreams },
     boost: { msLeft: Math.max(0, state.boostUntil - now), multiplier: mock.receiptBoost.multiplier },
     /** демо-время: для живых таймеров */
     clock: state.clock,

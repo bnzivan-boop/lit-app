@@ -1,0 +1,20 @@
+/* Темы акций: одни и те же переменные для баннера и страницы */
+.theme {
+  --hot: var(--accent);
+  --hot-ink: var(--accent-ink);
+  --sky: #020606;
+  --glow: #18cfc4;
+  --glow-low: #07403e;
+  --panel: #0c1717;
+  --rim: rgba(112, 255, 246, 0.42);
+}
+
+.theme[data-theme='dragon'] {
+  --hot: #ffc531;
+  --hot-ink: #1d0a02;
+  --sky: #03142f;
+  --glow: #ff6a17;
+  --glow-low: #7a1d0c;
+  --panel: #0a2047;
+  --rim: rgba(255, 160, 60, 0.6);
+}
